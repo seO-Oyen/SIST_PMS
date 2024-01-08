@@ -12,8 +12,7 @@
   }
   &.btn-sm {
     font-size: $btn-font-size-sm;
-    padding: .5rem .75rem;
-    border-radius: 4px;
+    padding: 0.47rem 0.6rem;
   }
   &.btn-lg {
     font-size: $btn-font-size-lg;
@@ -34,7 +33,7 @@
       margin-right: .5rem;
     }
     .btn-icon-append {
-      margin-left: .5rem;
+      margin-left: 0;
     }
   }
   &.btn-social-icon {
@@ -72,5 +71,13 @@
 @each $color, $value in $theme-colors {
   .btn-inverse-#{$color} {
     @include button-inverse-variant($value);
+  }
+  .btn-#{$color} {
+    &,
+    &:hover {
+      box-shadow: 0 2px 2px 0 rgba(theme-color($color), .14), 
+                0 3px 1px -2px rgba(theme-color($color), .2), 
+                0 1px 5px 0 rgba(theme-color($color), .12)
+    }
   }
 }

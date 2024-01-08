@@ -41,22 +41,22 @@ $colors: (
 
 
 $theme-colors: (
-  primary:         #f2125e,
-  secondary:       #392ccd,
-  success:         #17c964,
-  info:            #2b80ff,
-  warning:         #ff8300,
-  danger:          #ff0000,
-  light:           #e6e6e6,
-  dark:            #000000
+  primary:         #844fc1,
+  secondary:       #6c7293,
+  success:         #21bf06,
+  info:            #3b86d1,
+  warning:         #f39915,
+  danger:          #dc3545,
+  light:           #f8f9fa,
+  dark:            #282f3a
 );
 
 $theme-gradient-colors: (
-  primary:         linear-gradient(230deg, #759bff, #843cf6),
+  primary:         linear-gradient(to right, #3023ae, #c86dd7),
   secondary:       linear-gradient(to right, #e7ebf0, #868e96),
   success:         linear-gradient(45deg, #7bffce, #30c93e),
   info:            linear-gradient(to bottom, #0e4cfd, #6a8eff),
-  warning:         linear-gradient(135deg, #ffc480, #ff763b),
+  warning:         linear-gradient(to top, #f76b1c, #fad961),
   danger:          linear-gradient(316deg, #fc5286, #fbaaa2),
   light:           linear-gradient(to right, #cfd9df 0%, #e2ebf0 100%),
   dark:            linear-gradient(to right, #7d7979 0%, #000000 100%)
@@ -65,8 +65,8 @@ $theme-gradient-colors: (
 ////////// COLOR SYSTEM //////////
 
 ////////// COLOR VARIABLES //////////
-$content-bg: #e8eff9;
-$border-color: #e8eff9;
+$content-bg: #f4f5fa;
+$border-color: #f3f3f3;
 
 ////////// COLOR VARIABLES //////////
 
@@ -91,13 +91,11 @@ $social-colors: (
 
 ////////// FONTS//
 
-$type1:     'Roboto', sans-serif;
-
-
+$type1:    'Poppins', sans-serif;
 
 $default-font-size: .875rem; // 14px as base font size
 
-$text-muted: #9a9ea2;
+$text-muted: #a5abcc;
 $body-color: #001737;
 
 ////////// FONT VARIABLES //////////
@@ -154,8 +152,12 @@ $tooltip-border-radius: .375rem;
 
 $input-bg:                color(white);
 $input-border-radius:     2px;
-$input-placeholder-color: #7e7e7e;
+$input-placeholder-color: #c9c8c8;
 $input-font-size: .875rem;
+
+$input-height :           2.875rem;
+$input-height-sm :           2.25rem;
+$input-height-lg :           3.5rem;
 
 $input-padding-y:       .875rem;
 $input-padding-x:       1.375rem;
@@ -177,7 +179,7 @@ $dropdown-color: $body-color;
 $dropdown-border-color: $border-color;
 $dropdown-divider-bg:   $border-color;
 $dropdown-link-color:   $body-color;
-$dropdown-header-color: #001737;
+$dropdown-header-color: $body-color;
 $dropdown-link-hover-bg: #eaeaf1;
 ////////  DROPDOWNS ///////
 
@@ -198,15 +200,15 @@ $table-inverse-color: color(white);
 ////////// MEASUREMENT AND PROPERTY VARIABLES //////////
 
 $border-property: 1px solid $border-color;
-$card-spacing-y: 1.875rem;
-$card-padding-y: 1.875rem;
-$card-padding-x: 1.875rem;
-$card-border-radius: 0;
-$card-border-color: #e7eaed;
-$card-box-shadow: none;
-$card-title-color: #000000;
+$card-spacing-y: 1.375rem;
+$card-padding-y: 1.5rem;
+$card-padding-x: 1.8rem;
+$card-border-radius: 0.25rem;
+$card-border-color: #e4e4f4;
+$card-box-shadow: 0 5px 10px 0 rgba(230, 230, 243, 0.88);
+$card-title-color: $body-color;
 $card-description-color: #76838f;
-$grid-gutter-width: 30px;
+$grid-gutter-width: 1.375rem;
 $action-transition-duration: 0.25s;
 $action-transition-timing-function: ease;
 ////////// OTHER VARIABLES //////////
@@ -291,3 +293,6 @@ $nav-pills-custom-bg:               #fcfcfd;
 $fullcalendar-color: #a8b2b9;
 ////////   CALENDAR  //////////////
 
+////////   Toggle Switch  //////////////
+$toggle-switch-bg: #e9ecef;
+////////   CALENDAR  //////////////

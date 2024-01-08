@@ -54,7 +54,8 @@ code {
     }
 
     &.purchase-button {
-      background-color: theme-color(primary);
+      background-color: rgba(172, 50 ,228, 0.9);
+      @include background-image(theme-gradient-color(primary));
       color: $white;
       border: none;
       line-height: 1;

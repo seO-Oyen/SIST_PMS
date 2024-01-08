@@ -139,10 +139,6 @@
       &.danger {
         @extend .bg-danger;
       }
-      &.light {
-        @extend .bg-light;
-        border:1px solid lighten(color(gray),60%);
-      }
       &.info {
         @extend .bg-info;
       }
@@ -150,12 +146,12 @@
         @extend .bg-dark;
       }
       &.default {
-        background: $white;
+        background: lighten(color(gray),60%);
       }
     }
   }
   .chat-list {
-    padding-left: 0;;
+    padding-left: 0;
     .list {
       padding: 0.4rem 0.8rem;
       @include display-flex;

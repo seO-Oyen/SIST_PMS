@@ -6,6 +6,10 @@
     .navbar {
       .navbar-brand-wrapper {
         width: $sidebar-width-mini;
+        .navbar-brand {
+          margin-left: 1rem;
+          margin-right: 1rem;
+        }
       }
       .navbar-menu-wrapper {
         width: calc(100% - #{$sidebar-width-mini});
@@ -43,10 +47,17 @@
                 display: inline-block;
                 margin-left: 5px;
                 position: absolute;
-                top: 50%;
+                top: 36%;
                 right: 20px;
                 @include transform(translateY(-50%));
               }
+            }
+          }
+        }
+        &.sub-menu {
+          .nav-item {
+            &::before {
+              margin-left: 7px;
             }
           }
         }
@@ -66,8 +77,6 @@
             .nav-item {
               .nav-link {
                 padding: .75rem 0 .75rem 1.5rem;
-                margin-left: auto;
-                margin-right: auto;
                 display: block;
                 text-align: left;
                 width: 66%;
@@ -85,40 +94,28 @@
   @media (min-width: 992px) {
     .navbar {
       .navbar-brand-wrapper {
-        width: $sidebar-width-icon;
+        width: calc(#{$sidebar-width-icon} + #{$sidebar-margin-left});
         .brand-logo {
           display: none;
         }
-        .brand-logo-mini {
+      }
+      .navbar-menu-wrapper {
+        width: calc(100% - #{$sidebar-width-icon} - #{$sidebar-margin-left});
+      }
+    }
+    .navbar-breadcrumb {
+      .navbar-links-wrapper {
+        width: calc(#{$sidebar-width-icon} + #{$sidebar-margin-left});
+        .nav-link {
           display: none;
-        }
-        .navbar-toggler {
-          padding: 0;
         }
       }
       .navbar-menu-wrapper {
-        width: calc(100% - #{$sidebar-width-icon});
+        width: calc(100% - #{$sidebar-width-icon} - #{$sidebar-margin-left});        
       }
     }
     .sidebar {
       width: $sidebar-width-icon;
-      .sidebar-profile {
-        .sidebar-profile-name {
-          .sidebar-name,
-          .sidebar-designation {
-            display: none;
-          }
-        }
-      }
-      .nav-search {
-        display: none;
-      }
-      .sidebar-legend {
-        display: none;
-      }
-      .sidebar-menu-title{
-        display: none;
-      }
       .nav {
         overflow: visible;
         .nav-item {
@@ -166,12 +163,12 @@
               .menu-title {
                 @include display-flex;
                 @include align-items(center);
-                background: $icon-only-menu-bg-dark;
-                @at-root #{selector-append(".sidebar-light", &)} {
-                    background: $icon-only-menu-bg-light;
+                background: $icon-only-menu-bg-light;
+                @at-root #{selector-append(".sidebar-dark", &)} {
+                    background: $icon-only-menu-bg-dark;
                 }
                 padding: 0.5rem 1.4rem;
-                left: $sidebar-width-icon;
+                left: calc(#{$sidebar-width-icon} - 2px );
                 position: absolute;
                 text-align: left;
                 top: 0;
@@ -195,9 +192,9 @@
               }
               &:hover {
                 .menu-title {
-                  background: $icon-only-menu-bg-dark;
-                  @at-root #{selector-append(".sidebar-light", &)} {
-                    background: $icon-only-menu-bg-light;
+                  background: $icon-only-menu-bg-light;
+                  @at-root #{selector-append(".sidebar-dark", &)} {
+                    background: $icon-only-menu-bg-dark;
                   }
                 }
               }
@@ -206,13 +203,13 @@
             .collapsing {
               display: block;
               padding: .5rem 0;
-              background: $icon-only-menu-bg-dark;
+              background: $icon-only-menu-bg-light;
               @include border-radius(0 0 5px 0);
-              @at-root #{selector-append(".sidebar-light", &)} {
-                  background: $icon-only-menu-bg-light;
+              @at-root #{selector-append(".sidebar-dark", &)} {
+                  background: $icon-only-menu-bg-dark;
               }
               position: absolute;
-              left: $sidebar-width-icon;
+              left: calc(#{$sidebar-width-icon} - 2px );
               width: $icon-only-collapse-width;
               box-shadow: 4px 4px 7px 0px rgba(182, 185, 189, 0.25);
               @at-root #{selector-append(".rtl", &)} {
@@ -223,6 +220,10 @@
               }
             }
           }
+        }
+        &:not(.submenu) {
+          margin-left: 0;
+          margin-right: 0;
         }
         &.sub-menu {
           padding: $sidebar-icon-only-submenu-padding;
@@ -251,12 +252,8 @@
       -moz-transition: width $action-transition-duration $action-transition-timing-function;
       -ms-transition: width $action-transition-duration $action-transition-timing-function;
       width: 0;
-      .sidebar-profile,
-      .sidebar-legend,
-      .nav-search,
-      .sidebar-menu-title {
-        visibility: hidden;
-      }
+      border: 0;
+      margin: 0;
     }
 
     .main-panel {
@@ -280,11 +277,11 @@
       .sidebar {
         position: absolute;
         height: 100%;
-        -webkit-box-shadow: 0 0 3px 1px #a7a3a3;
+        -webkit-box-shadow: 0 0 10px 1px #dbdbdb;
         /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-        -moz-box-shadow: 0 0 3px 1px #a7a3a3;
+        -moz-box-shadow: 0 0 10px 1px #dbdbdb;
         /* Firefox 3.5 - 3.6 */
-        box-shadow: 0 0 3px 1px #a7a3a3;
+        box-shadow: 0 0 10px 1px #dbdbdb;
         /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
       }
     }

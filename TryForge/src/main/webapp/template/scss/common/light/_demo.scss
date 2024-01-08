@@ -233,6 +233,7 @@
   padding-bottom: 24px;
   z-index: 2;
   background: $content-bg;
+  z-index: 999;
 }
 
 .doc-content {
@@ -309,4 +310,74 @@
       }
     }
   }  
+}
+
+.project-orders-table {
+  thead {
+    tr {
+      th {
+        &:first-child {
+          padding-left: 1.9rem;
+          padding-right: 1.9rem;
+        }
+        &:last-child {
+          padding-right: 1.9rem;
+        }
+      }
+    }
+  }
+  tbody {
+    tr {
+      td {
+        &:first-child {
+          padding-left: 1.9rem;
+        }
+        &:last-child {
+          padding-right: 1.9rem;
+        }
+      }
+    }
+  }
+}
+
+.newsletter-card {
+  .form {
+    .form-group {
+      .form-control {
+        border-radius: 25px;
+        border: 0;
+        max-width: 85%;
+        margin: 0 auto;
+        height: 42px;
+        &::placeholder {
+          text-align: center;
+          color: #001737;
+        }
+      }
+    }
+    button {
+      padding: 14px 40px;
+    }
+  }
+}
+
+.profile-card {
+  .avatar {
+    @include display-flex();
+    @include align-items(center);
+    @include justify-content(center);
+    // text-align: center;
+    width: 87px;
+    height: 87px;
+    border-radius: 50px;
+    border: 4px dashed rgba(255,255,255,.58);
+    img {
+      border-radius: 30px;
+      width: 60px;
+      height: 60px;
+    }
+  }
+  .info {
+    border-top: 1px solid rgba(255, 250, 250, .22);
+  }
 }

@@ -6,11 +6,11 @@
   dragula([document.getElementById("dragula-event-left"), document.getElementById("dragula-event-right")])
     .on('drop', function(el) {
       console.log($(el));
-      iconTochange = $(el).find('.mdi');
-      if (iconTochange.hasClass('mdi-check')) {
-        iconTochange.removeClass('mdi-check text-primary').addClass('mdi-check-all text-success');
-      } else if (iconTochange.hasClass('mdi-check-all')) {
-        iconTochange.removeClass('mdi-check-all text-success').addClass('mdi-check text-primary');
+      iconTochange = $(el).find('.typcn');
+      if (iconTochange.hasClass('typcn-tick')) {
+        iconTochange.removeClass('typcn-tick text-primary').addClass('typcn-input-checked text-success');
+      } else if (iconTochange.hasClass('typcn-input-checked')) {
+        iconTochange.removeClass('typcn-input-checked text-success').addClass('typcn-tick text-primary');
       }
     })
 })(jQuery);
