@@ -31,11 +31,10 @@
 		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 			<!-- 왼쪽 상단 로고 -->
 			<div class="navbar-brand-wrapper d-flex justify-content-center">
-				<div
-					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
 					<a class="navbar-brand brand-logo" href="index.jsp">
-					<img src="images/try_logo.jpg" alt="logo" style="width: 50px;"/>
-					<span>TryForge</span>
+					<img src="images/try_forge01.jpg" alt="logo" />
+					<!-- <span>TryForge</span> -->
 					</a> 
 					<a class="navbar-brand brand-logo-mini" href="index.jsp">
 					<img src="images/try_logo.jpg" alt="logo" /></a>
@@ -165,8 +164,9 @@
 			</div>
 		</nav>
 		
+		<!-- 기존 민트색 상단바 -->
 		<!-- partial -->
-		<nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0">
+		<!-- <nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0">
 			<div class="navbar-links-wrapper d-flex align-items-stretch">
 				<div class="nav-link">
 					<a href="javascript:;"><i class="typcn typcn-calendar-outline"></i></a>
@@ -208,7 +208,8 @@
 					</li>
 				</ul>
 			</div>
-		</nav>
+		</nav> -->
+		
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
 			<div class="theme-setting-wrapper">
@@ -403,31 +404,42 @@
 					<!-- chat tab ends -->
 				</div>
 			</div>
+			
+			<!-- 사이드바 -->
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
 					<li class="nav-item"><a class="nav-link" href="index.jsp">
 							<i class="typcn typcn-device-desktop menu-icon"></i> <span
-							class="menu-title">Dashboard</span>
-							<div class="badge badge-danger">new</div>
+							class="menu-title">대시보드</span>
+							<!-- <div class="badge badge-danger">new</div> -->
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-						aria-controls="ui-basic"> <i
-							class="typcn typcn-document-text menu-icon"></i> <span
-							class="menu-title">UI Elements</span> <i class="menu-arrow"></i>
-					</a>
-						<div class="collapse" id="ui-basic">
+					
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="collapse" 
+							href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+							<i class="typcn typcn-document-text menu-icon"></i>
+							<span class="menu-title">공지사항</span>
+							<!-- 메뉴 옆 +기호 -->
+							<!-- <i class="menu-arrow"></i> -->
+						</a>
+						<!-- 클릭시 나오는 메뉴 -->
+						<!-- <div class="collapse" id="ui-basic">
 							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"><a class="nav-link"
-									href="pages/ui-features/buttons.html">Buttons</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="pages/ui-features/typography.html">Typography</a></li>
+								<li class="nav-item">
+									<a class="nav-link" href="pages/ui-features/buttons.jsp">Buttons</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="pages/ui-features/dropdowns.jsp">Dropdowns</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="pages/ui-features/typography.jsp">Typography</a>
+								</li>
 							</ul>
-						</div></li>
+						</div> -->
+					</li>
+					
 					<li class="nav-item"><a class="nav-link"
 						data-toggle="collapse" href="#form-elements" aria-expanded="false"
 						aria-controls="form-elements"> <i
@@ -437,7 +449,7 @@
 						<div class="collapse" id="form-elements">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item"><a class="nav-link"
-									href="pages/forms/basic_elements.html">Basic Elements</a></li>
+									href="pages/forms/basic_elements.jsp">Basic Elements</a></li>
 							</ul>
 						</div></li>
 					<li class="nav-item"><a class="nav-link"
