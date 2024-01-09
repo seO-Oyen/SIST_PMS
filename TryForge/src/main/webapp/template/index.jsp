@@ -38,10 +38,10 @@
 					</a> 
 					<a class="navbar-brand brand-logo-mini" href="index.jsp">
 					<img src="images/try_logo.jpg" alt="logo" /></a>
-					<!-- <button class="navbar-toggler navbar-toggler align-self-center"
+					<button class="navbar-toggler navbar-toggler align-self-center"
 						type="button" data-toggle="minimize">
 						<span class="typcn typcn-th-menu"></span>
-					</button> -->
+					</button>
 				</div>
 			</div>
 			
@@ -166,7 +166,37 @@
 		
 		<!-- 기존 민트색 상단바 -->
 		<!-- partial -->
-		<!-- <nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0">
+		<nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0">
+			
+			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+				<ul class="navbar-nav mr-lg-2">
+					<li class="nav-item ml-0">
+						<h4 class="mb-0">Dashboard</h4>
+					</li>
+					<li class="nav-item">
+						<div class="d-flex align-items-baseline">
+							<p class="mb-0">Home</p>
+							<i class="typcn typcn-chevron-right"></i>
+							<p class="mb-0">Main Dahboard</p>
+						</div>
+					</li>
+				</ul>
+				<!-- 검색창 => <ul>은 공간때문에 냅둠 -->
+				<ul class="navbar-nav navbar-nav-right">
+					<!-- <li class="nav-item nav-search d-none d-md-block mr-0">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search..."
+								aria-label="search" aria-describedby="search">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="search"> <i
+									class="typcn typcn-zoom"></i>
+								</span>
+							</div>
+						</div>
+					</li> -->
+				</ul>
+			</div>
+			<!-- 아이콘 버튼 -->
 			<div class="navbar-links-wrapper d-flex align-items-stretch">
 				<div class="nav-link">
 					<a href="javascript:;"><i class="typcn typcn-calendar-outline"></i></a>
@@ -181,41 +211,15 @@
 					<a href="javascript:;"><i class="typcn typcn-document-text"></i></a>
 				</div>
 			</div>
-			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-				<ul class="navbar-nav mr-lg-2">
-					<li class="nav-item ml-0">
-						<h4 class="mb-0">Dashboard</h4>
-					</li>
-					<li class="nav-item">
-						<div class="d-flex align-items-baseline">
-							<p class="mb-0">Home</p>
-							<i class="typcn typcn-chevron-right"></i>
-							<p class="mb-0">Main Dahboard</p>
-						</div>
-					</li>
-				</ul>
-				<ul class="navbar-nav navbar-nav-right">
-					<li class="nav-item nav-search d-none d-md-block mr-0">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search..."
-								aria-label="search" aria-describedby="search">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="search"> <i
-									class="typcn typcn-zoom"></i>
-								</span>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</nav> -->
+		</nav>
 		
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
 			<div class="theme-setting-wrapper">
-				<div id="settings-trigger">
+				<!--  -->
+				<!-- <div id="settings-trigger">
 					<i class="typcn typcn-cog-outline"></i>
-				</div>
+				</div> -->
 				<div id="theme-settings" class="settings-panel">
 					<i class="settings-close typcn typcn-times"></i>
 					<p class="settings-heading">SIDEBAR SKINS</p>
@@ -440,91 +444,112 @@
 						</div> -->
 					</li>
 					
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#form-elements" aria-expanded="false"
-						aria-controls="form-elements"> <i
-							class="typcn typcn-film menu-icon"></i> <span class="menu-title">Form
-								elements</span> <i class="menu-arrow"></i>
+					<li class="nav-item">
+					<a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
+						aria-controls="form-elements"> 
+						<i class="typcn typcn-film menu-icon"></i> 
+							<span class="menu-title">간트차트</span>
+							<!-- <i class="menu-arrow"></i> -->
 					</a>
-						<div class="collapse" id="form-elements">
+						<!-- <div class="collapse" id="form-elements">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item"><a class="nav-link"
-									href="pages/forms/basic_elements.jsp">Basic Elements</a></li>
+									href="pages/forms/basic_elements.jsp">Basic Elements</a>
+								</li>
 							</ul>
-						</div></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#charts" aria-expanded="false"
-						aria-controls="charts"> <i
-							class="typcn typcn-chart-pie-outline menu-icon"></i> <span
-							class="menu-title">Charts</span> <i class="menu-arrow"></i>
+						</div> -->
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false"
+						aria-controls="charts">
+						<i class="typcn typcn-chart-pie-outline menu-icon"></i>
+						<span class="menu-title">캘린더</span>
+						<!-- <i class="menu-arrow"></i> -->
 					</a>
-						<div class="collapse" id="charts">
+						<!-- <div class="collapse" id="charts">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item">
+								<a class="nav-link" href="pages/charts/chartjs.jsp">ChartJs</a>
+								</li>
+							</ul>
+						</div> -->
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false"
+						aria-controls="tables">
+						<i class="typcn typcn-th-small-outline menu-icon"></i>
+						<span class="menu-title">업무 관리</span>
+						<!-- <i class="menu-arrow"></i> -->
+					</a>
+						<!-- <div class="collapse" id="tables">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item">
+								<a class="nav-link" href="pages/tables/basic-table.jsp">Basic table</a>
+								</li>
+							</ul>
+						</div> -->
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false"
+						aria-controls="icons">
+						<i class="typcn typcn-compass menu-icon"></i>
+						<span class="menu-title">업무 보고</span>
+						<!-- <i class="menu-arrow"></i> -->
+					</a>
+						<!-- <div class="collapse" id="icons">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item">
+								<a class="nav-link" href="pages/icons/mdi.jsp">Mdi icons</a>
+								</li>
+							</ul>
+						</div> -->
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
+						aria-controls="auth">
+						<i class="typcn typcn-user-add-outline menu-icon"></i>
+						<span class="menu-title">리스크 관리</span>
+						<!-- <i class="menu-arrow"></i> -->
+					</a>
+						<!-- <div class="collapse" id="auth">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item">
+								<a class="nav-link" href="pages/samples/login.jsp"> Login </a>
+								</li>
+								<li class="nav-item">
+								<a class="nav-link" href="pages/samples/register.jsp"> Register </a>
+								</li>
+							</ul>
+						</div> -->
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
+							aria-controls="error">
+							<i class="typcn typcn-globe-outline menu-icon"></i>
+							<span class="menu-title">파일저장소</span>
+							<!-- <i class="menu-arrow"></i> -->
+						</a>
+						<!-- <div class="collapse" id="error">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item"><a class="nav-link"
-									href="pages/charts/chartjs.html">ChartJs</a></li>
+									href="pages/samples/error-404.jsp"> 404 </a></li>
+								<li class="nav-item"><a class="nav-link"
+									href="pages/samples/error-500.jsp"> 500 </a></li>
 							</ul>
-						</div></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#tables" aria-expanded="false"
-						aria-controls="tables"> <i
-							class="typcn typcn-th-small-outline menu-icon"></i> <span
-							class="menu-title">Tables</span> <i class="menu-arrow"></i>
-					</a>
-						<div class="collapse" id="tables">
-							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"><a class="nav-link"
-									href="pages/tables/basic-table.html">Basic table</a></li>
-							</ul>
-						</div></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#icons" aria-expanded="false"
-						aria-controls="icons"> <i
-							class="typcn typcn-compass menu-icon"></i> <span
-							class="menu-title">Icons</span> <i class="menu-arrow"></i>
-					</a>
-						<div class="collapse" id="icons">
-							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"><a class="nav-link"
-									href="pages/icons/mdi.html">Mdi icons</a></li>
-							</ul>
-						</div></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#auth" aria-expanded="false"
-						aria-controls="auth"> <i
-							class="typcn typcn-user-add-outline menu-icon"></i> <span
-							class="menu-title">User Pages</span> <i class="menu-arrow"></i>
-					</a>
-						<div class="collapse" id="auth">
-							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"><a class="nav-link"
-									href="pages/samples/login.html"> Login </a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="pages/samples/register.html"> Register </a></li>
-							</ul>
-						</div></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#error" aria-expanded="false"
-						aria-controls="error"> <i
-							class="typcn typcn-globe-outline menu-icon"></i> <span
-							class="menu-title">Error pages</span> <i class="menu-arrow"></i>
-					</a>
-						<div class="collapse" id="error">
-							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"><a class="nav-link"
-									href="pages/samples/error-404.html"> 404 </a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="pages/samples/error-500.html"> 500 </a></li>
-							</ul>
-						</div></li>
-					<li class="nav-item"><a class="nav-link"
+						</div> -->
+					</li>
+					<!-- <li class="nav-item"><a class="nav-link"
 						href="https://bootstrapdash.com/demo/polluxui-free/docs/documentation.html">
 							<i class="typcn typcn-mortar-board menu-icon"></i> <span
 							class="menu-title">Documentation</span>
-					</a></li>
+					</a>
+					</li> -->
 				</ul>
 			</nav>
+			
+			<!-- main 대시보드 내용 -->
 			<!-- partial -->
-			<div class="main-panel">
+			<%-- <div class="main-panel">
 				<div class="content-wrapper">
 
 					<div class="row">
@@ -977,10 +1002,12 @@
 						</div>
 					</div>
 
-				</div>
+				</div> --%>
+				
+				<!-- 풋터 -->
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<footer class="footer">
+				<!-- <footer class="footer">
 					<div class="card">
 						<div class="card-body">
 							<div
@@ -999,9 +1026,9 @@
 							</div>
 						</div>
 					</div>
-				</footer>
+				</footer> -->
 				<!-- partial -->
-			</div>
+			<!-- </div> -->
 			<!-- main-panel ends -->
 		</div>
 		<!-- page-body-wrapper ends -->
