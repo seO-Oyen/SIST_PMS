@@ -28,18 +28,18 @@
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
 		<!-- 상단바 -->
-		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="border-bottom:none;" >
 			<!-- 왼쪽 상단 로고 -->
-			<div class="navbar-brand-wrapper d-flex justify-content-center">
-				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-					<a class="navbar-brand brand-logo" href="index.jsp">
-					<img src="images/try_forge01.jpg" alt="logo" />
+			<div class="navbar-brand-wrapper d-flex justify-content-center" style="background:white;">
+				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100" >
+					<a class="navbar-brand brand-logo" href="index.jsp" >
+					<img src="images/try_forge01.jpg" alt="logo" style="width:100%"/>
 					<!-- <span>TryForge</span> -->
 					</a> 
 					<a class="navbar-brand brand-logo-mini" href="index.jsp">
-					<img src="images/try_logo.jpg" alt="logo" /></a>
+					<img src="images/try_logo.jpg" alt="logo" style="width:100%;"/></a>
 					<button class="navbar-toggler navbar-toggler align-self-center"
-						type="button" data-toggle="minimize">
+						type="button" data-toggle="minimize" style="color:black; margin-left:10px;">
 						<span class="typcn typcn-th-menu"></span>
 					</button>
 				</div>
@@ -166,7 +166,7 @@
 		
 		<!-- 기존 민트색 상단바 -->
 		<!-- partial -->
-		<nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0">
+		<nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0" style="background:#007FFF;">
 			
 			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 				<ul class="navbar-nav mr-lg-2">
@@ -198,16 +198,16 @@
 			</div>
 			<!-- 아이콘 버튼 -->
 			<div class="navbar-links-wrapper d-flex align-items-stretch">
-				<div class="nav-link">
+				<div class="nav-link" style="border-right:none;">
 					<a href="javascript:;"><i class="typcn typcn-calendar-outline"></i></a>
 				</div>
-				<div class="nav-link">
+				<div class="nav-link" style="border-right:none;">
 					<a href="javascript:;"><i class="typcn typcn-mail"></i></a>
 				</div>
-				<div class="nav-link">
+				<div class="nav-link" style="border-right:none;">
 					<a href="javascript:;"><i class="typcn typcn-folder"></i></a>
 				</div>
-				<div class="nav-link">
+				<div class="nav-link" style="border-right:none;">
 					<a href="javascript:;"><i class="typcn typcn-document-text"></i></a>
 				</div>
 			</div>
