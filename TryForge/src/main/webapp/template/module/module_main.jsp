@@ -13,16 +13,33 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="shortcut icon" type="image/x-icon" href="images/try_logo_s.jpg">
+<link rel="shortcut icon" type="image/x-icon" href="${path}/template/images/try_logo_s.jpg">
 <title>TryForge</title>
 <!-- base:css -->
-<link rel="stylesheet" href="vendors/typicons/typicons.css">
-<link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="${path}/template/vendors/typicons/typicons.css">
+<link rel="stylesheet" href="${path}/template/vendors/css/vendor.bundle.base.css">
 <!-- endinject -->
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="css/vertical-layout-light/style.css">
+<link rel="stylesheet" href="${path}/template/css/vertical-layout-light/style.css">
+
+<!-- base:js -->
+<script src="${path}/template/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<script src="${path}/template/vendors/chart.js/Chart.min.js"></script>
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="${path}/template/js/off-canvas.js"></script>
+<script src="${path}/template/js/hoverable-collapse.js"></script>
+<script src="${path}/template/js/template.js"></script>
+<script src="${path}/template/js/settings.js"></script>
+<script src="${path}/template/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="${path}/template/js/dashboard.js"></script>
+<!-- End custom js for this page-->
 </head>
 <body>
 	<div class="container-scroller">
@@ -33,11 +50,11 @@
 			<div class="navbar-brand-wrapper d-flex justify-content-center" style="background:white;">
 				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100" >
 					<a class="navbar-brand brand-logo" href="index.jsp" >
-					<img src="images/try_forge01.jpg" alt="logo" style="width:100%"/>
+					<img src="${path}/template/images/try_forge01.jpg" alt="logo" style="width:100%"/>
 					<!-- <span>TryForge</span> -->
 					</a> 
 					<a class="navbar-brand brand-logo-mini" href="index.jsp">
-					<img src="images/try_logo.jpg" alt="logo" style="width:100%;"/></a>
+					<img src="${path}/template/images/try_logo.jpg" alt="logo" style="width:100%;"/></a>
 					<button class="navbar-toggler navbar-toggler align-self-center"
 						type="button" data-toggle="minimize" style="color:black; margin-left:10px;">
 						<span class="typcn typcn-th-menu"></span>
@@ -50,7 +67,7 @@
 				<ul class="navbar-nav mr-lg-2">
 					<li class="nav-item nav-profile dropdown">
 					<a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
-						<img src="images/faces/face5.jpg" alt="profile" /> 
+						<img src="${path}/template/images/faces/face5.jpg" alt="profile" /> 
 						<span class="nav-profile-name">(유저 이름)</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -88,7 +105,7 @@
 						<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
 						<a class="dropdown-item preview-item">
 							<div class="preview-thumbnail">
-								<img src="images/faces/face4.jpg" alt="image"
+								<img src="${path}/template/images/faces/face4.jpg" alt="image"
 									class="profile-pic">
 							</div>
 							<div class="preview-item-content flex-grow">
@@ -98,7 +115,7 @@
 						</a> 
 						<a class="dropdown-item preview-item">
 							<div class="preview-thumbnail">
-								<img src="images/faces/face2.jpg" alt="image"
+								<img src="${path}/template/images/faces/face2.jpg" alt="image"
 									class="profile-pic">
 							</div>
 							<div class="preview-item-content flex-grow">
@@ -341,7 +358,7 @@
 						<ul class="chat-list">
 							<li class="list active">
 								<div class="profile">
-									<img src="images/faces/face1.jpg" alt="image"><span
+									<img src="${path}/template/images/faces/face1.jpg" alt="image"><span
 										class="online"></span>
 								</div>
 								<div class="info">
@@ -351,7 +368,7 @@
 							</li>
 							<li class="list">
 								<div class="profile">
-									<img src="images/faces/face2.jpg" alt="image"><span
+									<img src="${path}/template/images/faces/face2.jpg" alt="image"><span
 										class="offline"></span>
 								</div>
 								<div class="info">
@@ -365,7 +382,7 @@
 							</li>
 							<li class="list">
 								<div class="profile">
-									<img src="images/faces/face3.jpg" alt="image"><span
+									<img src="${path}/template/images/faces/face3.jpg" alt="image"><span
 										class="online"></span>
 								</div>
 								<div class="info">
@@ -375,7 +392,7 @@
 							</li>
 							<li class="list">
 								<div class="profile">
-									<img src="images/faces/face4.jpg" alt="image"><span
+									<img src="${path}/template/images/faces/face4.jpg" alt="image"><span
 										class="offline"></span>
 								</div>
 								<div class="info">
@@ -385,7 +402,7 @@
 							</li>
 							<li class="list">
 								<div class="profile">
-									<img src="images/faces/face5.jpg" alt="image"><span
+									<img src="${path}/template/images/faces/face5.jpg" alt="image"><span
 										class="online"></span>
 								</div>
 								<div class="info">
@@ -395,7 +412,7 @@
 							</li>
 							<li class="list">
 								<div class="profile">
-									<img src="images/faces/face6.jpg" alt="image"><span
+									<img src="${path}/template/images/faces/face6.jpg" alt="image"><span
 										class="online"></span>
 								</div>
 								<div class="info">

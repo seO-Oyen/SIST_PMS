@@ -12,8 +12,8 @@ public class TestController {
 	@Autowired(required = false)
 	private TestService service;
 	
-	@RequestMapping("test.do")
+	@RequestMapping("/index.do")
 	public String boardList() {
-		return "test";
+		return "index";
 	}
 }
