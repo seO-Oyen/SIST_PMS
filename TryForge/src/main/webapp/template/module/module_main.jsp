@@ -13,7 +13,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="shortcut icon" type="image/x-icon" href="${path}/template/images/try_logo_s.jpg">
+<link rel="shortcut icon" type="image/x-icon" href="${path}/template/images/logo_backDelete.png">
 <title>TryForge</title>
 <!-- base:css -->
 <link rel="stylesheet" href="${path}/template/vendors/typicons/typicons.css">
