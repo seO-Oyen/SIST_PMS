@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -12,22 +15,24 @@
             <h4 class="card-title">NOTICE</h4>
             <button type="button" class="btn btn-outline-info btn-fw"
                 style="margin-left: 85%; height: 5%; display: flex; align-items: center;">공지사항 등록</button>
+			<form>
 			<div style="display: flex; width: 100%;">
 				<div class="form-group" style="width: 30%; margin-left: 10%;">
-					<label for="exampleInputUsername1">제목</label> <input type="text"
-						class="form-control" id="exampleInputUsername1"
+					<label for="exampleInputUsername1">제목</label> <input type="text" name="notice_Title"
+						class="form-control" id="exampleInputUsername1" value="${notice.notice_Title}"
 						placeholder="Noticename" style="width: 100%;">
 				</div>
 				<div class="form-group" style="width: 30%; margin-left: 1%;">
-					<label for="exampleInputUsername2">작성자</label> <input type="text"
-						class="form-control" id="exampleInputUsername2"
+					<label for="exampleInputUsername2">작성자</label> <input type="text" name="notice_Writer"
+						class="form-control" id="exampleInputUsername2" value="${notice.notice_Writer}"
 						placeholder="writer" style="width: 100%;">
 				</div>
 
-				<button type="button" class="btn btn-inverse-info btn-fw"
+				<button type="submit" class="btn btn-inverse-info btn-fw"
 					style="margin-left: 10px; height: 5%; margin-top: 2.3%; width:10%;">검색</button>
 
 			</div>
+			</form>
 			<div class="table-responsive" style="width: 95%;">
 				<table class="table table-hover" style="width: 95%; margin-left:4%;">
 					<thead>
@@ -39,41 +44,14 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach var="nlist" items="${noticeList}">
 						<tr>
-							<td>Jacob</td>
-							<td>Photoshop</td>
-							<td class="text-danger">28.76% <i
-								class="typcn typcn-arrow-down-thick"></i></td>
-							<td><label class="badge badge-danger">Pending</label></td>
-						</tr>
-						<tr>
-							<td>Messsy</td>
-							<td>Flash</td>
-							<td class="text-danger">21.06% <i
-								class="typcn typcn-arrow-down-thick"></i></td>
-							<td><label class="badge badge-warning">In progress</label></td>
-						</tr>
-						<tr>
-							<td>John</td>
-							<td>Premier</td>
-							<td class="text-danger">35.00% <i
-								class="typcn typcn-arrow-down-thick"></i></td>
-							<td><label class="badge badge-info">Fixed</label></td>
-						</tr>
-						<tr>
-							<td>Peter</td>
-							<td>After effects</td>
-							<td class="text-success">82.00% <i
-								class="typcn typcn-arrow-up-thick"></i></td>
-							<td><label class="badge badge-success">Completed</label></td>
-						</tr>
-						<tr>
-							<td>Dave</td>
-							<td>53275535</td>
-							<td class="text-success">98.05% <i
-								class="typcn typcn-arrow-up-thick"></i></td>
-							<td><label class="badge badge-warning">In progress</label></td>
-						</tr>
+							<td>${nlist.notice_Key}</td>
+							<td>${nlist.notice_Title}</td>
+							<td>${nlist.notice_Writer}</td>
+							<td>${nlist.notice_Regdte}</td>							
+						</tr>						
+					</c:forEach>
 					</tbody>
 				</table>
 			</div>

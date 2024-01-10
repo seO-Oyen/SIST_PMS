@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import tryForge.vo.Board;
+import tryForge.vo.Notice;
 
 public interface NoticeDao {
-	@Select("select * from board")
-	List<Board> boardList();
+	@Select("SELECT * FROM notice WHERE notice_title LIKE '%' || #{notice_Title} || '%' AND notice_writer LIKE '%' || #{notice_Writer} || '%'")
+	List<Notice> noticeList(Notice sch);
 }
