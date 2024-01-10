@@ -12,8 +12,4 @@ public class TestController {
 	@Autowired(required = false)
 	private TestService service;
 	
-	@RequestMapping("/index.do")
-	public String boardList() {
-		return "index";
-	}
 }

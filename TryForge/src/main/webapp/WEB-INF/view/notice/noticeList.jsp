@@ -10,18 +10,18 @@
 <div class="col-lg-6 grid-margin stretch-card" style="max-width:85%; flex:0 0 95%;">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Hoverable Table</h4>
+                  <h4 class="card-title">NOTICE</h4>
                   <p class="card-description">
-                    Add class <code>.table-hover</code>
+                  <code></code>
                   </p>
                   <div class="table-responsive">
                     <table class="table table-hover" style="width:95%;">
                       <thead>
                         <tr>
-                          <th>User</th>
-                          <th>Product</th>
-                          <th>Sale</th>
-                          <th>Status</th>
+                          <th>번호</th>
+                          <th>제목</th>
+                          <th>작성자</th>
+                          <th>날짜</th>
                         </tr>
                       </thead>
                       <tbody>
