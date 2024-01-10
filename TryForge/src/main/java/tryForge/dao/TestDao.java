@@ -1,4 +1,4 @@
-package tryForge;
+package tryForge.dao;
 
 import java.util.List;
 
