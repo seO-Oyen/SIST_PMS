@@ -23,7 +23,7 @@ public class NoticeController {
 		return "notice/noticeList";
 	}
 	
-	@GetMapping("main.do")
+	@GetMapping("ad_main.do")
 	public String main(Notice sch, Model d) {
 		d.addAttribute("noticeList", service.noticeList(sch));
 	    return "ad_main\\ad_main";
