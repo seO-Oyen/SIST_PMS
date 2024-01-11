@@ -217,19 +217,14 @@
 				</ul>
 			</div>
 			<!-- 아이콘 버튼 -->
-			<div class="navbar-links-wrapper d-flex align-items-stretch">
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-calendar-outline"></i></a>
+			<div class="navbar-links-wrapper d-flex align-items-stretch" >
+				<div class="nav-link" style="border-right:none; flex-grow:0.1;">
+					<a href="javascript:;"><i class="mdi mdi-desktop-mac"></i></a>
 				</div>
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-mail"></i></a>
+				<div class="nav-link" style="border-right:none;flex-grow:0.1;">
+					<a href="javascript:;"><i class="mdi mdi-brightness-5" style="margin-left:none;"></i></a>
 				</div>
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-folder"></i></a>
-				</div>
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-document-text"></i></a>
-				</div>
+				
 			</div>
 		</nav>
 		
