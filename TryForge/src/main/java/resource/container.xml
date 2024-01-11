@@ -39,7 +39,7 @@
        		destroy-method="close"> <!-- 자원해제시 사용하는 메서드 선언 -->
        		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
        		<property name="url" value="jdbc:oracle:thin:@211.63.89.67:1521:xe"/>
-       		<property name="username" value="one"/>
+       		<property name="username" value="tryforge"/>
        		<property name="password" value="1111"/>
        </bean>
        <tx:annotation-driven proxy-target-class="true"/>
