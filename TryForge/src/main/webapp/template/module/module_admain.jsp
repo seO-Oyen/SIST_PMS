@@ -23,6 +23,8 @@
 <!-- End plugin css for this page -->
 <!-- inject:css -->
 <link rel="stylesheet" href="${path}/template/css/vertical-layout-light/style.css">
+  <link rel="shortcut icon" href="../../images/favicon.png" />
+  
 <link rel="stylesheet" href="${path}/template/vendors/mdi/css/materialdesignicons.min.css"/>
 
 <!-- base:js -->
@@ -433,16 +435,16 @@
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
 					<li class="nav-item"><a class="nav-link" href="index.jsp">
-							<i class="typcn typcn-device-desktop menu-icon"></i> <span
-							class="menu-title">대시보드</span>
+							<i class="mdi mdi-airplay" style="width:20px;height:20px;"></i> <span
+							class="menu-title">프로젝트관리</span>
 							<!-- <div class="badge badge-danger">new</div> -->
 					</a></li>
 					
 					<li class="nav-item">
 						<a class="nav-link" data-toggle="collapse" 
 							href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-							<i class="typcn typcn-document-text menu-icon"></i>
-							<span class="menu-title">공지사항</span>
+							<i class="mdi mdi-arrow-up-drop-circle-outline" style="width:20px;height:20px;" ></i>
+							<span class="menu-title">프로젝트요청관리</span>
 							<!-- 메뉴 옆 +기호 -->
 							<!-- <i class="menu-arrow"></i> -->
 						</a>
@@ -465,8 +467,10 @@
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
 						aria-controls="form-elements"> 
-						<i class="typcn typcn-film menu-icon"></i> 
-							<span class="menu-title">간트차트</span>
+							
+		                        <i class="mdi mdi-account-check" style="width:20px;height:20px;"></i>
+		                
+							<span class="menu-title">사용자관리</span>
 							<!-- <i class="menu-arrow"></i> -->
 					</a>
 						<!-- <div class="collapse" id="form-elements">
@@ -480,8 +484,8 @@
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false"
 						aria-controls="charts">
-						<i class="typcn typcn-chart-pie-outline menu-icon"></i>
-						<span class="menu-title">캘린더</span>
+						<i class="mdi mdi-checkbox-marked-circle" style="width:20px;height:20px;"></i>
+						<span class="menu-title">현황관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
 						<!-- <div class="collapse" id="charts">
@@ -495,8 +499,8 @@
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false"
 						aria-controls="tables">
-						<i class="typcn typcn-th-small-outline menu-icon"></i>
-						<span class="menu-title">업무 관리</span>
+						<i class="mdi mdi-file-check" ></i>
+						<span class="menu-title">업무보고관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
 						<!-- <div class="collapse" id="tables">
@@ -510,8 +514,8 @@
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false"
 						aria-controls="icons">
-						<i class="typcn typcn-compass menu-icon"></i>
-						<span class="menu-title">업무 보고</span>
+						<i class="mdi mdi-tooltip-text" style="width:20px;height:20px;"></i>
+						<span class="menu-title">공지사항관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
 						<!-- <div class="collapse" id="icons">
@@ -525,8 +529,8 @@
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
 						aria-controls="auth">
-						<i class="typcn typcn-user-add-outline menu-icon"></i>
-						<span class="menu-title">리스크 관리</span>
+						<i class="mdi mdi-account-plus" style="width:20px;height:20px;"></i>
+						<span class="menu-title">권한요청관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
 						<!-- <div class="collapse" id="auth">
@@ -540,27 +544,7 @@
 							</ul>
 						</div> -->
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
-							aria-controls="error">
-							<i class="typcn typcn-globe-outline menu-icon"></i>
-							<span class="menu-title">파일저장소</span>
-							<!-- <i class="menu-arrow"></i> -->
-						</a>
-						<!-- <div class="collapse" id="error">
-							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"><a class="nav-link"
-									href="pages/samples/error-404.jsp"> 404 </a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="pages/samples/error-500.jsp"> 500 </a></li>
-							</ul>
-						</div> -->
-					</li>
-					<!-- <li class="nav-item"><a class="nav-link"
-						href="https://bootstrapdash.com/demo/polluxui-free/docs/documentation.html">
-							<i class="typcn typcn-mortar-board menu-icon"></i> <span
-							class="menu-title">Documentation</span>
-					</a>
-					</li> -->
+					
+					
 				</ul>
 			</nav>
