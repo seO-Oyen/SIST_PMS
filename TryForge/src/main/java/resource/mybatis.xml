@@ -4,9 +4,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="board" type="tryForge.vo.Board"/>
+		<typeAlias alias="member" type="tryForge.vo.Member"/>
 	</typeAliases>
+	
 	<mappers>
-		<mapper resource="resource/mapper01.xml"/>
+		<mapper resource="resource/mapper/mapper01.xml"/>
+		<mapper resource="resource/mapper/memberMapper.xml"/>
 	</mappers>
 	
 </configuration>

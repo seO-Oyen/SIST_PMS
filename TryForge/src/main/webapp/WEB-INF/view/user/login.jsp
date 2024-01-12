@@ -28,15 +28,14 @@
 	href="${path}/template/css/vertical-layout-light/style.css">
 <!-- endinject -->
 <script>
-var id = "${member.id}"
-	var sessId = "${mem.id}"	
+	var id = "${member.id}"
+	var sessId = "${loginMem.id}"	
 	if(id!="") {
 		if(sessId!=""){
 			alert("로그인 성공\n메인페이지로 이동")
-			location.href="${path}/boardList.do"
+			location.href="${path}/userIndex.do"
 		}else{
 			alert("로그인 실패\n다시 로그인하세요")
-			
 		}
 		
 	}
@@ -58,15 +57,15 @@ var id = "${member.id}"
 							<form class="pt-3" method="post">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="exampleInputEmail1" name="memberId" placeholder="ID">
+										id="exampleInputEmail1" name="id" placeholder="ID">
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-lg"
-										id="exampleInputPassword1" name="memberPwd" placeholder="Password">
+										id="exampleInputPassword1" name="password" placeholder="Password">
 								</div>
 								<div class="mt-3">
-									<a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-										href="index.do">로그인</a>
+									<input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+										value="로그인" />
 								</div>
 								<!-- <div class="my-2 d-flex justify-content-between align-items-center"> -->
 								<div class="text-center mt-2 font-weight-light">
