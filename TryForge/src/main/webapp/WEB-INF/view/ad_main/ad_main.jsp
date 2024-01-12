@@ -131,7 +131,7 @@
 						<div style="display: flex;">
 							<h4 class="card-title">Notice</h4>
 							<button type="button" class="btn btn-link btn-rounded btn-fw"
-								style="margin-left: 70%;">자세히</button>
+								style="margin-left: 70%;" onclick="location.href='${path}/tryForge/noticeList.do'">자세히</button>
 						</div>
 						<div class="table-responsive" style="width: 95%;">
 							<table class="table table-hover"

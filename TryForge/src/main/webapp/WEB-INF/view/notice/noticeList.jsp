@@ -8,7 +8,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/> --%>
 <jsp:include page="${path}/template/module/module_admain.jsp" flush="true" />
-
+<script>
+	$(document).ready(function(){
+		//var sessId = ${loginMem}
+		
+	})
+	funtion goDetail(data){
+		
+	}
+	
+</script>
 <div class="col-lg-6 grid-margin stretch-card" style="max-width: 85%; flex: 0 0 95%;">
     <div class="card">
         <div class="card-body">
@@ -45,7 +54,7 @@
 					</thead>
 					<tbody>
 					<c:forEach var="nlist" items="${noticeList}">
-						<tr>
+						<tr onclick="goDatail('${nlist.notice_Key}')">
 							<td>${nlist.notice_Key}</td>
 							<td>${nlist.notice_Title}</td>
 							<td>${nlist.notice_Writer}</td>
