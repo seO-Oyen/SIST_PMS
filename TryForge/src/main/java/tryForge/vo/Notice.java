@@ -1,6 +1,7 @@
 package tryForge.vo;
 
 public class Notice {
+	private int cnt;
 	private int notice_Key;
 	private String notice_Writer;
 	private String notice_Title;
@@ -78,6 +79,12 @@ public class Notice {
 	}
 	public void setNotice_Writer(String notice_Writer) {
 		this.notice_Writer = notice_Writer;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	
 }

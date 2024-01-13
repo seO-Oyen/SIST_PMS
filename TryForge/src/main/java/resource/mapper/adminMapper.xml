@@ -3,5 +3,20 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="tryForge.admin.dao.NoticeDao">
-
+	<select id="getNotice">
+		select * from notice where notice_key=#{notice_key}
+	</select>
+	
+	<select id="noticeList" resultType="notice" parameterType="noticeSch">
+	SELECT * FROM (SELECT rownum cnt, n.* FROM notice n WHERE 1=1
+	and notice_title like '%'||#{notice_Title}||'%'
+	and notice_writer like '%'||#{notice_Writer}||'%' ORDER BY notice_key DESC)
+	WHERE cnt BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="totNotice" resultType="int" parameterType="noticeSch">
+	 	select count(*) from notice n where 1=1
+	 	and notice_title like '%'||#{notice_Title}||'%'
+	 	and notice_writer like '%'||#{notice_Writer}||'%' 
+	 </select>
 </mapper>
