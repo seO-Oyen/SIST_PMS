@@ -3,8 +3,8 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="tryForge.admin.dao.NoticeDao">
-	<select id="getNotice">
-		select * from notice where notice_key=#{notice_key}
+	<select id="getNotice" parameterType="int" resultType="notice">
+		select * from notice where notice_key = #{notice_Key}
 	</select>
 	
 	<select id="noticeList" resultType="notice" parameterType="noticeSch">

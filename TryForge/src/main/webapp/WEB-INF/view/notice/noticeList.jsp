@@ -37,11 +37,11 @@
 	$(document).ready(function(){
 		//var sessId = ${loginMem}
 		
-	})
-	funtion goDetail(data){
-		
-	}
 	
+	})
+	function goDetail(data){
+		location.href="${path}/tryForge/getNotice.do?notice_Key="+data;
+	}
 </script>
 <div class="col-lg-6 grid-margin stretch-card"
 	style="max-width: 85%; flex: 0 0 95%;">
@@ -80,16 +80,18 @@
 							<th>번호</th>
 							<th>제목</th>
 							<th>작성자</th>
-							<th>날짜</th>
+							<th>등록날짜</th>
+							<th>수정날짜</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="nlist" items="${noticeList}">
-							<tr>
+							<tr ondblclick="goDetail(${nlist.notice_Key})">
 								<td>${nlist.cnt}</td>
 								<td>${nlist.notice_Title}</td>
 								<td>${nlist.notice_Writer}</td>
-								<td>${nlist.notice_Regdte}</td>
+								<td><fmt:formatDate value="${nlist.notice_Regdte}" pattern="yyyy.MM.dd"/></td>
+								<td><fmt:formatDate value="${nlist.notice_Uptdte}" pattern="yyyy.MM.dd"/></td>
 							</tr>
 						</c:forEach>
 					</tbody>

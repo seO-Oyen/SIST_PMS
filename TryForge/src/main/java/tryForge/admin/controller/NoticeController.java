@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import tryForge.admin.service.NoticeService;
 import tryForge.vo.Notice;
@@ -30,5 +31,14 @@ public class NoticeController {
 		d.addAttribute("noticeList", service.noticeList(sch));
 	    return "ad_main\\ad_main";
 	}
+	
+	// 공지사항 상세페이지
+	@RequestMapping("getNotice.do")
+	public String getNotice(@RequestParam("notice_Key")int notice_Key, Model d) {
+		d.addAttribute("notice",service.getNotice(notice_Key));
+		return "notice/noticeDetail";
+	}
+	
+
 	
 }

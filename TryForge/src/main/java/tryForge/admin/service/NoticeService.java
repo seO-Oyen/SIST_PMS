@@ -41,4 +41,10 @@ public class NoticeService {
 		}
 		return dao.noticeList(sch);
 	}
+	
+	// 상세페이지 + 조회수 증가 service
+	public Notice getNotice(int notice_Key) {
+		dao.readCntUptNotice(notice_Key);
+		return dao.getNotice(notice_Key);
+	}
 }
