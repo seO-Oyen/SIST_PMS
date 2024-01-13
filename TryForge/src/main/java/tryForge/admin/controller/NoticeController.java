@@ -39,6 +39,10 @@ public class NoticeController {
 		return "notice/noticeDetail";
 	}
 	
-
+	// 공지사항 등록
+	@GetMapping("insertNotice.do")
+	public String insertNoticeFrm(Notice ins) {
+		return "notice/insertNotice";
+	}
 	
 }

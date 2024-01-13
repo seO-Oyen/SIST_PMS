@@ -14,6 +14,7 @@ public class NoticeService {
 	@Autowired(required = false)
 	private NoticeDao dao;
 	
+	// 공지사항 조회, 페이징처리
 	public List<Notice> noticeList(NoticeSch sch){
 		if(sch.getNotice_Title()==null) {
 			sch.setNotice_Title("");
@@ -47,4 +48,17 @@ public class NoticeService {
 		dao.readCntUptNotice(notice_Key);
 		return dao.getNotice(notice_Key);
 	}
+	
+	// 공지사항 등록
+	public String insertNotice(Notice ins) {
+		String msg="";
+		int chkInsert = dao.insertNotice(ins);
+		if(chkInsert >0) {
+			msg = "공지사항이 등록되었습니다.";
+		}else {
+			msg = "공지사항 등록이 실패하였습니다.\n 다시 시도해주세요.";
+		}
+		return msg;
+	}
+	
 }

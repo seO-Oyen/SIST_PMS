@@ -19,7 +19,10 @@ public interface NoticeDao {
 	// 상세페이지
 	Notice getNotice(@Param("notice_Key") int notice_Key);
 	
-	// 조회수+
+	// 조회수++
 	@Update("update notice set notice_readcnt = notice_readcnt+1 where notice_key=#{notice_Key}")
 	void readCntUptNotice(@Param("notice_Key") int notice_Key);
+	
+	// 공지사항 등록
+	int insertNotice(Notice ins);
 }
