@@ -51,6 +51,9 @@ public class NoticeService {
 	
 	// 공지사항 등록
 	public String insertNotice(Notice ins) {
+		if(ins.getNotice_Title()==null) ins.setNotice_Title("");
+		if(ins.getNotice_Detail()==null) ins.setNotice_Detail("");
+		
 		String msg="";
 		int chkInsert = dao.insertNotice(ins);
 		if(chkInsert >0) {

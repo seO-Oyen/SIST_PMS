@@ -34,8 +34,13 @@
   
 </style>
 <script>
+	//var sessId = ${loginMem}
+	//if (sessId == "") {
+		//alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
+		//location.href = "${path}/tryForge/login.do"
+	//}
+
 	$(document).ready(function(){
-		//var sessId = ${loginMem}
 		
 	
 	})
@@ -48,7 +53,7 @@
 	<div class="card">
 		<div class="card-body">
 			<h4 class="card-title">NOTICE</h4>
-			<button type="button" class="btn btn-outline-info btn-fw"
+			<button type="button" class="btn btn-outline-info btn-fw" onclick="location.href='${path}/tryForge/insertNotice.do'"
 				style="margin-left: 85%; height: 5%; display: flex; align-items: center;">공지사항
 				등록</button>
 			<form>

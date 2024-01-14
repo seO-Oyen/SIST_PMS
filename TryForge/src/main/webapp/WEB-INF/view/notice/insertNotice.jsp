@@ -11,44 +11,86 @@
 	flush="true" />
 
 <script>
-	$(document).ready(function() {
-		//var sessId = ${loginMem}
+	var sessId = "${loginMem.id}"
+	if (sessId == "") {
+		alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
+		location.href = "${path}/tryForge/login.do"
+	}
 
-	})
+	$(document).ready(function() {
+	    var msg = "${msg}";
+	    if(msg!=""){
+			if(!confirm(msg+"\n계속 등록하시겠습니까?")){
+				location.href="${path}/tryForge/noticeList.do"
+			}
+		}	
+
+	    $("#regBtn").click(function() {
+	        if ($("#noticeTitle").val() === "") {
+	            alert("제목을 입력해주세요");
+	            return;
+	        }
+	        if ($("#noticeDetail").val() === "") {
+	            alert("공지사항 상세내용을 입력해주세요");
+	            return;
+	        }
+	        if(confirm("등록하시겠습니까?")){
+				$("form").submit()				
+			}
+	        
+	    });
+	    $("#mainBtn").click(function(){
+	    	location.href="${path}/tryForge/noticeList.do"
+	    })
+	    
+	});
 </script>
-<div class="col-12 grid-margin stretch-card" style="max-width: 85%; flex: 0 0 95%;">
-	   
-              <div class="card">
-                <div class="card-body">
-               
-                  <form class="forms-sample">
-                    
-                    <div class="form-group">
-                      <label for="exampleInputName1">제목</label>
-                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Title" name="notice_Title">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail3">작성자</label>
-                      <input type="text" class="form-control" readonly id="exampleInputEmail3" placeholder="Name" name="">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputName1">아이디</label>
-                      <input type="text" class="form-control" id="exampleInputName1" readonly name="member">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputName1">작성일</label>
-                      <input type="text" class="form-control" id="exampleInputName1" readonly name="notice_Regdte">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleTextarea1">Textarea</label>
-                      <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
-                  </form>
-                </div>
-              </div>
-            </div>
+<div class="col-12 grid-margin stretch-card"
+	style="max-width: 85%; flex: 0 0 95%;">
+
+	<div class="card">
+		<div class="card-body">
+
+			<form class="forms-sample" method="post">
+				<input type="hidden" name="member_Key" value="${loginMem.no}">
+				<input type="hidden" name="member_Role" value="${loginMem.role}">
+				<input type="hidden" name="project_Key" value="PJ-003">
+
+				<div class="form-group">
+					<label for="exampleInputName1">제목</label> <input type="text"
+						class="form-control" id="noticeTitle" placeholder="Title"
+						name="notice_Title">
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputEmail3">작성자</label> <input type="text"
+						class="form-control" readonly value="${loginMem.name}"
+						id="exampleInputEmail3" placeholder="Name" name="notice_Writer">
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputName1">아이디</label> <input type="text"
+						class="form-control" value="${loginMem.id}" id="noticeId" readonly
+						name="">
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputName1">작성일</label> <input type="text"
+						class="form-control" id="noticeDate" value="${formattedDate}"
+						readonly>
+				</div>
+
+				<div class="form-group">
+					<label for="exampleTextarea1">상세내용</label>
+					<textarea class="form-control" id="noticeDetail"
+						name="notice_Detail"></textarea>
+				</div>
+				<button id="regBtn" type="button" class="btn btn-info mr-2" style="background:#007FFF;">등록</button>
+				<button class="btn btn-light" id="mainBtn">취소</button>
+			</form>
+		</div>
+	</div>
+</div>
 </div>
 
 <!-- 풋터 -->

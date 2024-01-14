@@ -1,9 +1,13 @@
 package tryForge.admin.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,7 +45,16 @@ public class NoticeController {
 	
 	// 공지사항 등록
 	@GetMapping("insertNotice.do")
-	public String insertNoticeFrm(Notice ins) {
+	public String insertNoticeFrm(Notice ins, Model d) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        String formattedDate = sdf.format(new Date());
+		d.addAttribute("formattedDate",formattedDate);
+		return "notice/insertNotice";
+	}
+	@PostMapping("insertNotice.do")
+	public String insertNotice(Notice ins,Model d) {
+		
+		d.addAttribute("msg",service.insertNotice(ins));
 		return "notice/insertNotice";
 	}
 	

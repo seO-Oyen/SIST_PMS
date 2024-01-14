@@ -11,17 +11,27 @@
 	flush="true" />
 
 <script>
-	$(document).ready(function() {
-		//var sessId = ${loginMem}
+        var sessId = "${loginMem.id}"; 
+        var sessName = "${loginMem.name}"
+        if (sessId === "") {
+            alert("로그인을 하여야 현재 화면을 볼 수 있습니다.\n로그인 페이지로 이동합니다.");
+            location.href = "${path}/tryForge/login.do";
+        }
 
-	})
-</script>
+        $(document).ready(function() {
+            var writer = "${notice.notice_Writer}"; 
+            if (sessName !== writer) {
+                $("#uptBtn").hide(); 
+                $("#delBtn").hide(); 
+            }
+        });
+    </script>
 <div class="col-12 grid-margin" style="max-width: 85%; flex: 0 0 95%;">
 	<div class="card">
 		<div class="card-body">
 		<div style="display:flex; margin-left:85%">
-                        <button type="button" class="btn btn-inverse-info btn-fw">수정</button>
-                        <button type="button" class="btn btn-inverse-danger btn-fw" style="margin-left:10px">삭제</button>
+                        <button type="button" class="btn btn-inverse-info btn-fw" id="uptBtn">수정</button>
+                        <button type="button" class="btn btn-inverse-danger btn-fw" style="margin-left:10px" id="delBtn">삭제</button>
 		</div>
 			<form class="form-sample">
 				<!-- 제목 -->
