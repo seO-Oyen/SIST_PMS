@@ -72,7 +72,7 @@
 
 				<div class="form-group">
 					<label for="exampleInputName1">등록일</label> 
-					<input type="text" class="form-control" id="noticeDate" readonly name="notice_Regdte"
+					<input type="text" class="form-control" id="noticeDate" readonly
 					 value="<fmt:formatDate value="${notice.notice_Regdte}" pattern="yyyy.MM.dd"/>">
 				</div>
 				<div class="form-group">
