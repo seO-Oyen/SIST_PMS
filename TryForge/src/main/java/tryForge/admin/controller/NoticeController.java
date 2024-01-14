@@ -44,7 +44,7 @@ public class NoticeController {
 	}
 	
 	// 공지사항 등록
-	@GetMapping("insertNoticeFrm.do")
+	@GetMapping("insertNotice.do")
 	public String insertNoticeFrm(Notice ins, Model d) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
         String formattedDate = sdf.format(new Date());

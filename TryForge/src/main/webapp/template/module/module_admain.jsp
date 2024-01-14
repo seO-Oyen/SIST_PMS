@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="path" value="${pageContext.request.contextPath }"/>
-<fmt:requestEncoding value="utf-8"/>     
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<fmt:requestEncoding value="utf-8" />
 <!DOCTYPE html>
 <html>
 
@@ -13,19 +12,24 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="shortcut icon" type="image/x-icon" href="${path}/template/images/logo_backDelete.png">
+<link rel="shortcut icon" type="image/x-icon"
+	href="${path}/template/images/logo_backDelete.png">
 <title>TryForge</title>
 <!-- base:css -->
-<link rel="stylesheet" href="${path}/template/vendors/typicons/typicons.css">
-<link rel="stylesheet" href="${path}/template/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet"
+	href="${path}/template/vendors/typicons/typicons.css">
+<link rel="stylesheet"
+	href="${path}/template/vendors/css/vendor.bundle.base.css">
 <!-- endinject -->
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="${path}/template/css/vertical-layout-light/style.css">
-  <link rel="shortcut icon" href="../../images/favicon.png" />
-  
-<link rel="stylesheet" href="${path}/template/vendors/mdi/css/materialdesignicons.min.css"/>
+<link rel="stylesheet"
+	href="${path}/template/css/vertical-layout-light/style.css">
+<link rel="shortcut icon" href="../../images/favicon.png" />
+
+<link rel="stylesheet"
+	href="${path}/template/vendors/mdi/css/materialdesignicons.min.css" />
 
 <!-- base:js -->
 <script src="${path}/template/vendors/js/vendor.bundle.base.js"></script>
@@ -45,136 +49,144 @@
 <!-- End custom js for this page-->
 </head>
 <body>
+
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
 		<!-- 상단바 -->
-		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="border-bottom:none;" >
+		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row"
+			style="border-bottom: none;">
 			<!-- 왼쪽 상단 로고 -->
-			<div class="navbar-brand-wrapper d-flex justify-content-center" style="background:white;">
-				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100" >
-					<a class="navbar-brand brand-logo" href="index.jsp" >
-					<img src="${path}/template/images/try_forge01.jpg" alt="logo" style="width:100%"/>
-					<!-- <span>TryForge</span> -->
-					</a> 
-					<a class="navbar-brand brand-logo-mini" href="index.jsp">
-					<img src="${path}/template/images/try_logo.jpg" alt="logo" style="width:100%;"/></a>
+			<div class="navbar-brand-wrapper d-flex justify-content-center"
+				style="background: white;">
+				<div
+					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+					<a class="navbar-brand brand-logo" href="index.jsp"> <img
+						src="${path}/template/images/try_forge01.jpg" alt="logo"
+						style="width: 100%" /> <!-- <span>TryForge</span> -->
+					</a> <a class="navbar-brand brand-logo-mini" href="index.jsp"> <img
+						src="${path}/template/images/try_logo.jpg" alt="logo"
+						style="width: 100%;" /></a>
 					<button class="navbar-toggler navbar-toggler align-self-center"
-						type="button" data-toggle="minimize" style="color:black; margin-left:10px;">
+						type="button" data-toggle="minimize"
+						style="color: black; margin-left: 10px;">
 						<span class="typcn typcn-th-menu"></span>
 					</button>
 				</div>
 			</div>
-			
+
 			<!-- 유저 -->
-			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+			<div
+				class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 				<ul class="navbar-nav mr-lg-2">
-					<li class="nav-item nav-profile dropdown">
-					<a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
-						<img src="${path}/template/images/faces/face5.jpg" alt="profile" /> 
-						<span class="nav-profile-name">(유저 이름)</span>
+					<li class="nav-item nav-profile dropdown"><a class="nav-link"
+						href="#" data-toggle="dropdown" id="profileDropdown"> <img
+							src="${path}/template/images/faces/face5.jpg" alt="profile" /> <span
+							class="nav-profile-name">${loginMem.name} 님 접속중</span>
 					</a>
-					<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-						aria-labelledby="profileDropdown">
-						<a class="dropdown-item"> <i class="typcn typcn-cog-outline text-primary"></i> 마이페이지
-						</a> 
-						<a class="dropdown-item"> 
-							<i class="typcn typcn-eject text-primary"></i> 로그아웃
-						</a>
-					</div>
-					</li>
+						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+							aria-labelledby="profileDropdown">
+							<a class="dropdown-item"> <i
+								class="typcn typcn-cog-outline text-primary"></i> 마이페이지
+							</a> <a class="dropdown-item"> <i
+								class="typcn typcn-eject text-primary"></i> 로그아웃
+							</a>
+						</div></li>
 					<!-- <li class="nav-item nav-user-status dropdown">
 						<p class="mb-0">(마지막 로그인 시간)</p>
 					</li> -->
 				</ul>
 				<ul class="navbar-nav navbar-nav-right">
+
 					<!-- 달력 -->
-					<li class="nav-item nav-date dropdown">
-					<a class="nav-link d-flex justify-content-center align-items-center"
+					<li class="nav-item nav-date dropdown"><a
+						class="nav-link d-flex justify-content-center align-items-center"
 						href="javascript:;">
-						<h6 class="date mb-0">Today : Mar 23</h6> 
-						<i class="typcn typcn-calendar"></i>
-					</a>
-					</li>
-					
+							<h6 id="currentDate" class="date mb-0"></h6> <i
+							class="typcn typcn-calendar"></i>
+					</a></li>
+
 					<!-- 메세지(톱니바퀴모양) -->
-					<li class="nav-item dropdown">
-					<a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-						id="messageDropdown" href="#" data-toggle="dropdown">
-					<i class="typcn typcn-cog-outline mx-0"></i> 
-					<span class="count"></span>
+					<li class="nav-item dropdown"><a
+						class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+						id="messageDropdown" href="#" data-toggle="dropdown"> <i
+							class="typcn typcn-cog-outline mx-0"></i> <span class="count"></span>
 					</a>
-					<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-						aria-labelledby="messageDropdown">
-						<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-						<a class="dropdown-item preview-item">
-							<div class="preview-thumbnail">
-								<img src="${path}/template/images/faces/face4.jpg" alt="image"
-									class="profile-pic">
-							</div>
-							<div class="preview-item-content flex-grow">
-								<h6 class="preview-subject ellipsis font-weight-normal">David Grey</h6>
-								<p class="font-weight-light small-text text-muted mb-0">The meeting is cancelled</p>
-							</div>
-						</a> 
-						<a class="dropdown-item preview-item">
-							<div class="preview-thumbnail">
-								<img src="${path}/template/images/faces/face2.jpg" alt="image"
-									class="profile-pic">
-							</div>
-							<div class="preview-item-content flex-grow">
-								<h6 class="preview-subject ellipsis font-weight-normal">Tim Cook</h6>
-								<p class="font-weight-light small-text text-muted mb-0">
-									New product launch</p>
-							</div>
-						</a> 
-					</div>
-					</li>
-					
+						<div
+							class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+							aria-labelledby="messageDropdown">
+							<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+							<a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<img src="${path}/template/images/faces/face4.jpg" alt="image"
+										class="profile-pic">
+								</div>
+								<div class="preview-item-content flex-grow">
+									<h6 class="preview-subject ellipsis font-weight-normal">David
+										Grey</h6>
+									<p class="font-weight-light small-text text-muted mb-0">The
+										meeting is cancelled</p>
+								</div>
+							</a> <a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<img src="${path}/template/images/faces/face2.jpg" alt="image"
+										class="profile-pic">
+								</div>
+								<div class="preview-item-content flex-grow">
+									<h6 class="preview-subject ellipsis font-weight-normal">Tim
+										Cook</h6>
+									<p class="font-weight-light small-text text-muted mb-0">
+										New product launch</p>
+								</div>
+							</a>
+						</div></li>
+
 					<!-- 알림창 (종모양) -->
 					<li class="nav-item dropdown mr-0"><a
 						class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center"
-						id="notificationDropdown" href="#" data-toggle="dropdown">
-						<i class="typcn typcn-bell mx-0"></i>
-						<span class="count"></span>
+						id="notificationDropdown" href="#" data-toggle="dropdown"> <i
+							class="typcn typcn-bell mx-0"></i> <span class="count"></span>
 					</a>
-					<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-						aria-labelledby="notificationDropdown">
-						<p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-						<a class="dropdown-item preview-item">
-							<div class="preview-thumbnail">
-								<div class="preview-icon bg-success">
-									<i class="typcn typcn-info mx-0"></i>
+						<div
+							class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+							aria-labelledby="notificationDropdown">
+							<p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+							<a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<div class="preview-icon bg-success">
+										<i class="typcn typcn-info mx-0"></i>
+									</div>
 								</div>
-							</div>
-							<div class="preview-item-content">
-								<h6 class="preview-subject font-weight-normal">Application Error</h6>
-								<p class="font-weight-light small-text mb-0 text-muted">Just now</p>
-							</div>
-						</a> 
-						<a class="dropdown-item preview-item">
-							<div class="preview-thumbnail">
-								<div class="preview-icon bg-warning">
-									<i class="typcn typcn-cog-outline mx-0"></i>
+								<div class="preview-item-content">
+									<h6 class="preview-subject font-weight-normal">Application
+										Error</h6>
+									<p class="font-weight-light small-text mb-0 text-muted">Just
+										now</p>
 								</div>
-							</div>
-							<div class="preview-item-content">
-								<h6 class="preview-subject font-weight-normal">Settings</h6>
-								<p class="font-weight-light small-text mb-0 text-muted">Private message</p>
-							</div>
-						</a> 
-						<a class="dropdown-item preview-item">
-							<div class="preview-thumbnail">
-								<div class="preview-icon bg-info">
-									<i class="typcn typcn-user mx-0"></i>
+							</a> <a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<div class="preview-icon bg-warning">
+										<i class="typcn typcn-cog-outline mx-0"></i>
+									</div>
 								</div>
-							</div>
-							<div class="preview-item-content">
-								<h6 class="preview-subject font-weight-normal">New user registration</h6>
-								<p class="font-weight-light small-text mb-0 text-muted">2 days ago</p>
-							</div>
-						</a>
-					</div>
-					</li>
+								<div class="preview-item-content">
+									<h6 class="preview-subject font-weight-normal">Settings</h6>
+									<p class="font-weight-light small-text mb-0 text-muted">Private
+										message</p>
+								</div>
+							</a> <a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<div class="preview-icon bg-info">
+										<i class="typcn typcn-user mx-0"></i>
+									</div>
+								</div>
+								<div class="preview-item-content">
+									<h6 class="preview-subject font-weight-normal">New user
+										registration</h6>
+									<p class="font-weight-light small-text mb-0 text-muted">2
+										days ago</p>
+								</div>
+							</a>
+						</div></li>
 				</ul>
 				<!-- 무슨 버튼인지 모르겠음. 화면상으론 안뜸 -->
 				<!-- <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
@@ -183,21 +195,23 @@
 				</button> -->
 			</div>
 		</nav>
-		
+
 		<!-- 기존 민트색 상단바 -->
 		<!-- partial -->
-		<nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0" style="background:#007FFF;">
-			
-			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+		<nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0"
+			style="background: #007FFF;">
+
+			<div
+				class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 				<ul class="navbar-nav mr-lg-2">
 					<li class="nav-item ml-0">
-						<h4 class="mb-0">Dashboard</h4>
+						<h4 class="mb-0">ADHome</h4>
 					</li>
 					<li class="nav-item">
 						<div class="d-flex align-items-baseline">
-							<p class="mb-0">Home</p>
+							<p class="mb-0"></p>
 							<i class="typcn typcn-chevron-right"></i>
-							<p class="mb-0">Main Dahboard</p>
+
 						</div>
 					</li>
 				</ul>
@@ -217,17 +231,18 @@
 				</ul>
 			</div>
 			<!-- 아이콘 버튼 -->
-			<div class="navbar-links-wrapper d-flex align-items-stretch" >
-				<div class="nav-link" style="border-right:none; flex-grow:0.1;">
-					<a href="javascript:;"><i class="mdi mdi-desktop-mac"></i></a>
+			<div class="navbar-links-wrapper d-flex align-items-stretch">
+				<div class="nav-link" style="border-right: none; flex-grow: 0.1;">
+					<a href="${path}/ad_main.do"><i class="mdi mdi-desktop-mac"></i></a>
 				</div>
-				<div class="nav-link" style="border-right:none;flex-grow:0.1;">
-					<a href="javascript:;"><i class="mdi mdi-brightness-5" style="margin-left:none;"></i></a>
+				<div class="nav-link" style="border-right: none; flex-grow: 0.1;">
+					<a href="javascript:;"><i class="mdi mdi-brightness-5"
+						style="margin-left: none;"></i></a>
 				</div>
-				
+
 			</div>
 		</nav>
-		
+
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
 			<div class="theme-setting-wrapper">
@@ -423,28 +438,24 @@
 					<!-- chat tab ends -->
 				</div>
 			</div>
-			
+
 			<!-- 사이드바 -->
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
 					<li class="nav-item"><a class="nav-link" href="index.jsp">
-							<i class="mdi mdi-airplay" style="width:20px;height:20px;"></i> <span
-							class="menu-title">프로젝트관리</span>
-							<!-- <div class="badge badge-danger">new</div> -->
+							<i class="mdi mdi-airplay" style="width: 20px; height: 20px;"></i>
+							<span class="menu-title">프로젝트관리</span> <!-- <div class="badge badge-danger">new</div> -->
 					</a></li>
-					
-					<li class="nav-item">
-						<a class="nav-link" data-toggle="collapse" 
-							href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-							<i class="mdi mdi-arrow-up-drop-circle-outline" style="width:20px;height:20px;" ></i>
-							<span class="menu-title">프로젝트요청관리</span>
-							<!-- 메뉴 옆 +기호 -->
-							<!-- <i class="menu-arrow"></i> -->
-						</a>
-						<!-- 클릭시 나오는 메뉴 -->
-						<!-- <div class="collapse" id="ui-basic">
+
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+						aria-controls="ui-basic"> <i
+							class="mdi mdi-arrow-up-drop-circle-outline"
+							style="width: 20px; height: 20px;"></i> <span class="menu-title">프로젝트요청관리</span>
+							<!-- 메뉴 옆 +기호 --> <!-- <i class="menu-arrow"></i> -->
+					</a> <!-- 클릭시 나오는 메뉴 --> <!-- <div class="collapse" id="ui-basic">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item">
 									<a class="nav-link" href="pages/ui-features/buttons.jsp">Buttons</a>
@@ -456,79 +467,64 @@
 									<a class="nav-link" href="pages/ui-features/typography.jsp">Typography</a>
 								</li>
 							</ul>
-						</div> -->
-					</li>
-					
-					<li class="nav-item">
-					<a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
-						aria-controls="form-elements"> 
-							
-		                        <i class="mdi mdi-account-check" style="width:20px;height:20px;"></i>
-		                
-							<span class="menu-title">사용자관리</span>
-							<!-- <i class="menu-arrow"></i> -->
-					</a>
-						<!-- <div class="collapse" id="form-elements">
+						</div> --></li>
+
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="collapse" href="#form-elements" aria-expanded="false"
+						aria-controls="form-elements"> <i
+							class="mdi mdi-account-check" style="width: 20px; height: 20px;"></i>
+
+							<span class="menu-title">사용자관리</span> <!-- <i class="menu-arrow"></i> -->
+					</a> <!-- <div class="collapse" id="form-elements">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item"><a class="nav-link"
 									href="pages/forms/basic_elements.jsp">Basic Elements</a>
 								</li>
 							</ul>
-						</div> -->
-					</li>
-					<li class="nav-item">
-					<a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false"
-						aria-controls="charts">
-						<i class="mdi mdi-checkbox-marked-circle" style="width:20px;height:20px;"></i>
-						<span class="menu-title">현황관리</span>
-						<!-- <i class="menu-arrow"></i> -->
-					</a>
-						<!-- <div class="collapse" id="charts">
+						</div> --></li>
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="collapse" href="#charts" aria-expanded="false"
+						aria-controls="charts"> <i
+							class="mdi mdi-checkbox-marked-circle"
+							style="width: 20px; height: 20px;"></i> <span class="menu-title">현황관리</span>
+							<!-- <i class="menu-arrow"></i> -->
+					</a> <!-- <div class="collapse" id="charts">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item">
 								<a class="nav-link" href="pages/charts/chartjs.jsp">ChartJs</a>
 								</li>
 							</ul>
-						</div> -->
-					</li>
-					<li class="nav-item">
-					<a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false"
-						aria-controls="tables">
-						<i class="mdi mdi-file-check" ></i>
-						<span class="menu-title">업무보고관리</span>
-						<!-- <i class="menu-arrow"></i> -->
-					</a>
-						<!-- <div class="collapse" id="tables">
+						</div> --></li>
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="collapse" href="#tables" aria-expanded="false"
+						aria-controls="tables"> <i class="mdi mdi-file-check"></i> <span
+							class="menu-title">업무보고관리</span> <!-- <i class="menu-arrow"></i> -->
+					</a> <!-- <div class="collapse" id="tables">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item">
 								<a class="nav-link" href="pages/tables/basic-table.jsp">Basic table</a>
 								</li>
 							</ul>
-						</div> -->
-					</li>
-					<li class="nav-item">
-					<a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false"
-						aria-controls="icons">
-						<i class="mdi mdi-tooltip-text" style="width:20px;height:20px;"></i>
-						<span class="menu-title">공지사항관리</span>
-						<!-- <i class="menu-arrow"></i> -->
-					</a>
-						<!-- <div class="collapse" id="icons">
+						</div> --></li>
+					<li class="nav-item"
+						onclick="location.href='${path}/noticeList.do'"><a
+						class="nav-link" data-toggle="collapse" aria-expanded="false"
+						aria-controls="icons"> <i class="mdi mdi-tooltip-text"
+							style="width: 20px; height: 20px;"></i> <span class="menu-title">공지사항관리</span>
+							<!-- <i class="menu-arrow"></i> -->
+					</a> <!-- <div class="collapse" id="icons">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item">
 								<a class="nav-link" href="pages/icons/mdi.jsp">Mdi icons</a>
 								</li>
 							</ul>
-						</div> -->
-					</li>
-					<li class="nav-item">
-					<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
-						aria-controls="auth">
-						<i class="mdi mdi-account-plus" style="width:20px;height:20px;"></i>
-						<span class="menu-title">권한요청관리</span>
-						<!-- <i class="menu-arrow"></i> -->
-					</a>
-						<!-- <div class="collapse" id="auth">
+						</div> --></li>
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="collapse" href="#" aria-expanded="false"
+						aria-controls="auth"> <i class="mdi mdi-account-plus"
+							style="width: 20px; height: 20px;"></i> <span class="menu-title">권한요청관리</span>
+							<!-- <i class="menu-arrow"></i> -->
+					</a> <!-- <div class="collapse" id="auth">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item">
 								<a class="nav-link" href="pages/samples/login.jsp"> Login </a>
@@ -537,9 +533,39 @@
 								<a class="nav-link" href="pages/samples/register.jsp"> Register </a>
 								</li>
 							</ul>
-						</div> -->
-					</li>
-					
-					
+						</div> --></li>
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="collapse" href="#auth" aria-expanded="false"
+						aria-controls="auth"> <i class="mdi mdi-account-convert"
+							style="width: 20px; height: 20px;"></i> <span class="menu-title">일반유저
+								페이지</span> <!-- <i class="menu-arrow"></i> -->
+					</a> <!-- <div class="collapse" id="auth">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item">
+								<a class="nav-link" href="pages/samples/login.jsp"> Login </a>
+								</li>
+								<li class="nav-item">
+								<a class="nav-link" href="pages/samples/register.jsp"> Register </a>
+								</li>
+							</ul>
+						</div> --></li>
+
+
 				</ul>
 			</nav>
+			<script>
+				// 현재 날짜를 가져오는 함수
+				function getCurrentDate() {
+					var currentDate = new Date();
+					var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May",
+							"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+					var month = monthNames[currentDate.getMonth()];
+					var day = currentDate.getDate();
+
+					return month + ' ' + day;
+				}
+
+				// 현재 날짜로 업데이트
+				document.getElementById('currentDate').innerText = 'Today: '
+						+ getCurrentDate();
+			</script>

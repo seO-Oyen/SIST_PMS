@@ -56,7 +56,7 @@
           	
           // 삭제
           $("#delBtn").click(function(){
-        	  var no = ${notice.notice_Key} 
+        	  var no = "${notice.notice_Key}";
   				if(confirm("삭제하시겠습니까?")){
   				location.href="${path}/tryForge/deleteNotice.do?notice_Key="+no		
   			}

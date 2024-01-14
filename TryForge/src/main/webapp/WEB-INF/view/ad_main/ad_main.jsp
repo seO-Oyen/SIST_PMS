@@ -150,7 +150,7 @@
 											<td>${nlist.notice_Key}</td>
 											<td>${nlist.notice_Title}</td>
 											<td>${nlist.notice_Writer}</td>
-											<td>${nlist.notice_Regdte}</td>
+											<td><fmt:formatDate value="${nlist.notice_Regdte}" pattern="yyyy.MM.dd"/></td>
 										</tr>
 									</c:forEach>
 								</tbody>
