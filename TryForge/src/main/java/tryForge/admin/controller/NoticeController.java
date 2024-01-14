@@ -44,7 +44,7 @@ public class NoticeController {
 	}
 	
 	// 공지사항 등록
-	@GetMapping("insertNotice.do")
+	@GetMapping("insertNoticeFrm.do")
 	public String insertNoticeFrm(Notice ins, Model d) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
         String formattedDate = sdf.format(new Date());
@@ -56,6 +56,44 @@ public class NoticeController {
 		
 		d.addAttribute("msg",service.insertNotice(ins));
 		return "notice/insertNotice";
+	}
+	
+	// 공지사항 수정
+	@GetMapping("updateNoticeFrm.do")
+	public String updateNoticeFrm(@RequestParam("notice_Key")int notice_Key, Model d) {
+		 d.addAttribute("notice", service.getNotice(notice_Key));
+		return "notice/updateNotice";
+	}
+	
+	@PostMapping("updateNotice.do")
+	public String updateNotice(Notice upt, Model d) {
+	    System.out.println("updateNotice 메서드 호출은 되나????");
+	    String msg = "";
+	        int uptNo = service.updateNotice(upt);
+	        if (uptNo > 0) {
+	            msg = "공지사항 수정이 완료되었습니다.";
+	        } else {
+	            msg = "공지사항 수정이 실패하였습니다.\n 다시 시도해주세요.";
+	        }
+	        d.addAttribute("msg", msg);
+	        System.out.println("msg?" + msg);
+	        d.addAttribute("proc", "upt");
+	        System.out.println("proc?");
+	        
+	        int noticeKey = upt.getNotice_Key();
+	        System.out.println("공지사항 키 값설정?? " + noticeKey);
+	        d.addAttribute("notice", service.getNotice(upt.getNotice_Key()));
+	   
+	    
+	    return "notice/updateNotice";
+	}
+	
+	// 공지사항 삭제
+	@RequestMapping("deleteNotice.do")
+	public String deleteNotice(@RequestParam("notice_Key") int notice_Key, Model d) {
+		d.addAttribute("proc","upt");
+		d.addAttribute("msg",service.deleteNotice(notice_Key));
+		return "notice/noticeDetail";
 	}
 	
 }

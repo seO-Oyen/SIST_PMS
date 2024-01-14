@@ -2,6 +2,7 @@ package tryForge.admin.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 
@@ -25,4 +26,11 @@ public interface NoticeDao {
 	
 	// 공지사항 등록
 	int insertNotice(Notice ins);
+	
+	// 공지사항 수정
+	int updateNotice(Notice upt);
+	
+	// 공지사항 삭제
+	@Delete("DELETE FROM notice WHERE notice_key = #{notice_Key}")
+	int deleteNotice(@Param("notice_Key") int notice_Key);
 }

@@ -107,11 +107,11 @@
 
 					<c:forEach begin="1" end="${noticeSch.pageCount}" var="pcnt">
 						<li class="page-item ${noticeSch.curPage==pcnt?'active' : ''}">
-							<a class="page-link" href="#">${pcnt}</a>
+							<a class="page-link" href="">${pcnt}</a>
 						</li>
 					</c:forEach>
 							
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					<li class="page-item"><a class="page-link" onclick="">Next</a></li>
 				</ul>
 			</div>
 		</div>

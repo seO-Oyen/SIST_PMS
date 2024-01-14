@@ -1,5 +1,6 @@
 package tryForge.admin.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,23 @@ public class NoticeService {
 			msg = "공지사항이 등록되었습니다.";
 		}else {
 			msg = "공지사항 등록이 실패하였습니다.\n 다시 시도해주세요.";
+		}
+		return msg;
+	}
+	
+	// 공지사항 수정
+	public int updateNotice(Notice upt) {
+	    return dao.updateNotice(upt);
+	}
+	
+	// 공지사항 삭제
+	public String deleteNotice(int notice_Key) {
+		int delNo = dao.deleteNotice(notice_Key);
+		String msg="";
+		if(delNo>0) {
+			msg="공지사항이 삭제되었습니다.";
+		}else {
+			msg="공지사항 삭제가 실패하였습니다. \n 다시 시도해주세요.";
 		}
 		return msg;
 	}
