@@ -22,6 +22,6 @@ public class UploadController {
 	@PostMapping("upload.do")
 	public String upload(FileStorage file, Model d) {
 		d.addAttribute("msg", service.uploadFile(file));	
-		return "";
+		return "/project/index";
 	}
 }

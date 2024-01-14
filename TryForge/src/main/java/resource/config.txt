@@ -1,5 +1,5 @@
 # 파일 경로 서버컴퓨터에 맞게 수정 필요!!
-file.upload = C:\\a01_java\\workspace\\board\\src\\main\\webapp\\FileStorage\\
+file.upload = C:\\Users\\kimjh\\git\\TryForge_PMS\\TryForge\\src\\main\\webapp\\FileStorage\\
 # DB서버 정보
 db.driver = oracle.jdbc.driver.OracleDriver
 db.host = jdbc:oracle:thin:@211.63.89.67:1521:xe

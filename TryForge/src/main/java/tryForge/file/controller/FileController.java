@@ -8,9 +8,9 @@ import tryForge.vo.FileStorage;
 
 @Controller
 public class FileController {
-//	@GetMapping("upload.do")
-//	public String upload(FileStorage file, Model d) {
-//		d.addAttribute("fList", service.uploadFile(file));
-//		return "";
-//	}
+	@GetMapping("file.do")
+	public String upload(FileStorage file, Model d) {
+		//d.addAttribute("fList", service.uploadFile(file));
+		return "/project/index";
+	}
 }
