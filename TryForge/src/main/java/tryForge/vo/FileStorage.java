@@ -8,11 +8,14 @@ public class FileStorage {
 	private String fname;
 	private String path;
 	private String ftype;
-	private String fsize;
+	private Double fsize;
 	private String description;
 	private Date upload_time;
 	private MultipartFile[] files;
-	public FileStorage(String fname, String path, String ftype, String fsize, String description, Date upload_time,
+	public FileStorage() {
+		// TODO Auto-generated constructor stub
+	}
+	public FileStorage(String fname, String path, String ftype, Double fsize, String description, Date upload_time,
 			MultipartFile[] files) {
 		this.fname = fname;
 		this.path = path;
@@ -22,8 +25,12 @@ public class FileStorage {
 		this.upload_time = upload_time;
 		this.files = files;
 	}
-	public FileStorage() {
-		// TODO Auto-generated constructor stub
+	public FileStorage(String fname, String path, String ftype, Double fsize, String description) {
+		this.fname = fname;
+		this.path = path;
+		this.ftype = ftype;
+		this.fsize = fsize;
+		this.description = description;
 	}
 	public String getFname() {
 		return fname;
@@ -43,10 +50,10 @@ public class FileStorage {
 	public void setFtype(String ftype) {
 		this.ftype = ftype;
 	}
-	public String getFsize() {
+	public Double getFsize() {
 		return fsize;
 	}
-	public void setFsize(String fsize) {
+	public void setFsize(Double fsize) {
 		this.fsize = fsize;
 	}
 	public String getDescription() {
@@ -67,4 +74,5 @@ public class FileStorage {
 	public void setFiles(MultipartFile[] files) {
 		this.files = files;
 	}
+
 }
