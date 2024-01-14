@@ -19,6 +19,11 @@ public class UploadService {
 @Value("${file.upload}")
 private String path;
 	
+	public FileStorage getFiles(FileStorage file) {
+	//	file.setFname();
+		return file;
+	}
+
 	public String uploadFile(FileStorage upload) {
 		int chk = 0;
 		String msg = "";
