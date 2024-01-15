@@ -2,14 +2,25 @@
     pageEncoding="UTF-8"
     %>
 
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="path" value="${pageContext.request.contextPath }"/> --%>
+<%--<c:set var="path" value="${pageContext.request.contextPath }"/> --%>
 <jsp:include page="${path}/template/module/module_main.jsp" flush="true" />
 <style>
   .file-div {
     flex: 0 0 12.5%;
     max-width: 12.5%;
+  }
+  .file-image {
+  	max-width: 100%;
+  	height: auto;
+  }
+  .file-title {
+  	font-size: 20px;
+  	text-align: center;
+  	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 </style>
 
@@ -28,20 +39,21 @@
 					    		</form>
 					    </div>
 						<div class="row">
+							<c:forEach var = "file" items="${fList}">
 							<div class="col-md-6 grid-margin stretch-card file-div">
 								<div class="card">
 									<div
 										class="card-body d-flex flex-column justify-content-between">
 										<div
 											class="d-flex justify-content-between align-items-center mb-2">
-											<p class="mb-0 text-muted">Transactions</p>
-											<p class="mb-0 text-muted">+1.37%</p>
+											<img src="${pageContext.request.contextPath}${file.iconPath}" alt ="${file.ftype}"class="file-image">
 										</div>
-										<h4>1352</h4>
-										<canvas id="transactions-chart" class="mt-auto" height="65"></canvas>
+										<h4 title="${file.fname}" class="file-title">${file.fname}</h4>
+										<h4 title="${file.fsize}" class="file-title">${file.fsize}</h4>
 									</div>
 								</div>
 							</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>

@@ -10,8 +10,9 @@ public class FileStorage {
 	private String ftype;
 	private String fsize;
 	private Date upload_time;
+	private String iconPath;
 	private MultipartFile[] files;
-
+	
 	public FileStorage() {
 		// TODO Auto-generated constructor stub
 	}
@@ -30,6 +31,14 @@ public class FileStorage {
 		this.path = path;
 		this.ftype = ftype;
 		this.fsize = fsize;
+	}
+
+	public String getIconPath() {
+		return iconPath;
+	}
+
+	public void setIconPath(String iconPath) {
+		this.iconPath = iconPath;
 	}
 
 	public String getFname() {

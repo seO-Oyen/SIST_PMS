@@ -14,42 +14,76 @@ public class FileService {
 	private FileDao dao;
 	
 	public List<FileStorage> FileList(FileStorage file){
-			
-		return dao.getFileList(file);
+		List<FileStorage> fileList = dao.getFileList(file);
+		for(FileStorage fs:fileList) {
+			String iconPath = getIcon(fs.getFtype());
+			fs.setIconPath(iconPath);
+		}
+		return fileList;
 	}
 	
 	// type에 따른 아이콘 출력
 	public String getIcon(String ftype) {
-		switch (ftype) {
-	        case "zip":
-	            return "/icons/zip-icon.png";
-	        case "html":
-	        case "css":
-	        case "javascript":
-	            return "/icons/code-icon.png";
-	        case "mp4":
-	        case "avi":
-	            return "/icons/video-icon.png";
-	        case "mpeg":
-	        case "wav":
-	            return "/icons/audio-icon.png";
-	        case "wordprocessingml.document":
-	            return "/icons/word-icon.png";
-	        case "spreadsheetml.sheet":
-	            return "/icons/excel-icon.png";
-	        case "presentationml.presentation":
-	            return "/icons/ppt-icon.png";
-	        case "pdf":
-	            return "/icons/pdf-icon.png";
-	        case "jpeg":
-	        case "png":
-	            return "/icons/image-icon.png";
-	        case "plain":
-	            return "/icons/text-icon.png";
-	        // 실행 파일의 경우 일반적인 MIME 타입이 없으므로 확장자나 다른 방법으로 판별 필요
-	        default:
-	            return "/icons/default-icon.png";
-		}
+	    switch (ftype) {
+        case "bmp":
+            return "${path}/icons/bmp-icon.png";
+        case "cad":
+        	return "/icons/cad-icon.png";
+        case "dwg":
+            return "/icons/dwg-icon.png";
+        case "css":
+            return "/icons/css-icon.png";
+        case "db":
+            return "/icons/db-icon.png";
+        case "doc":
+        	return "/icons/doc-icon.png";
+        case "docx":
+            return "/icons/docx-icon.png";
+        case "gif":
+            return "/icons/gif-icon.png";
+        case "html":
+            return "/icons/html-icon.png";
+        case "ini":
+            return "/icons/ini-icon.png";
+        case "iso":
+            return "/icons/iso-icon.png";
+        case "java":
+            return "/icons/java-icon.png";
+        case "jpg":
+            return "/icons/jpg-icon.png";
+        case "jpeg":
+            return "/icons/jpeg-icon.png";
+        case "js":
+            return "/icons/js-icon.png";
+        case "mp3":
+            return "/icons/mp3-icon.png";
+        case "mp4":
+            return "/icons/mp4-icon.png";
+        case "pdf":
+            return "/icons/pdf-icon.png";
+        case "php":
+            return "/icons/php-icon.png";
+        case "png":
+            return "/icons/png-icon.png";
+        case "ppt":
+            return "/icons/ppt-icon.png";
+        case "rar":
+            return "/icons/rar-icon.png";
+        case "svg":
+            return "/icons/svg-icon.png";
+        case "plain":
+            return "/icons/text-icon.png";
+        case "tiff":
+            return "/icons/tiff-icon.png";
+        case "xls":
+            return "/icons/xls-icon.png";
+        case "xlsx":
+            return "/icons/xlsx-icon.png";
+        case "zip":
+            return "/icons/zip-icon.png";
+        default:
+            return "/icons/exe-icon.png";
+	    }
 		
 	}
 }
