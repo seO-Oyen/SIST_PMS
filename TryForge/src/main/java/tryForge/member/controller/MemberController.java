@@ -43,5 +43,14 @@ public class MemberController {
 		
 		return "user/register";
 	}
+	
+	// 회원가입
+	@PostMapping("register.do")
+	public String register(Member member) {
+		
+		memberService.registerMember(member);
+		
+		return "user/register";
+	}
 
 }

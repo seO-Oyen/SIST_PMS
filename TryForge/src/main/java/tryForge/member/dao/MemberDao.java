@@ -6,5 +6,8 @@ public interface MemberDao {
 
 	// 로그인
 	Member loginMember(Member member);
+	
+	// 회원가입
+	void registerMember(Member member);
 
 }
