@@ -7,6 +7,7 @@
 		<typeAlias alias="member" type="tryForge.vo.Member"/>
 		<typeAlias alias="notice" type="tryForge.vo.Notice"/>
 		<typeAlias alias="noticeSch" type="tryForge.vo.NoticeSch"/>
+		<typeAlias alias="project" type="tryForge.vo.Project"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="resource/mapper/mapper01.xml"/>
