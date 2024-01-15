@@ -86,7 +86,7 @@
 									</button>
 								</div> -->
 								<div class="text-center mt-4 font-weight-light">
-									 <a href="${path}/template/pages/samples/register.jsp"
+									 <a href="register.do"
 										class="text-primary">계정이 없으신가요?</a>
 								</div>
 							</form>

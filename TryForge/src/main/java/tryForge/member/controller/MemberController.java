@@ -36,5 +36,12 @@ public class MemberController {
 		return "user/login";
 
 	}
+	
+	// 회원가입 창 띄우기
+	@GetMapping("register.do")
+	public String registerPage() {
+		
+		return "user/register";
+	}
 
 }
