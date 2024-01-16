@@ -3,41 +3,44 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="tryForge.member.dao.MemberDao">
-	<parameterMap type="member" id="mem">
-		
-	</parameterMap>
-	<resultMap type="member" id="mem">
+	<!-- <parameterMap type="member" id="mapmember">
+		<parameter property="name"/>
+		<parameter property="id"/>
+		<parameter property="password"/>
+		<parameter property="email"/>
+	</parameterMap> -->
+	<!-- <resultMap type="member" id="mem">
 		<result column="memberno" property="no" />
 		<result column="membername" property="name" />
 		<result column="memberid" property="id" />
 		<result column="memberpwd" property="password" />
 		<result column="memberemail" property="email" />
 		<result column="memberrole" property="role" />
-	</resultMap>
+	</resultMap> -->
 
-	<select id="loginMember" resultMap="mem">
+	<select id="loginMember" resultType="member">
 		SELECT *
 		FROM member
-		WHERE memberid = #{id}
-			AND memberpwd = #{password}
+		WHERE member_id = #{member_id}
+			AND member_pwd = #{member_pwd}
 	</select>
 	
 	<insert id="registerMember" parameterType="member">
 		INSERT INTO MEMBER
 		(
-			memberno,
-			membername,
-			memberid,
-			memberpwd,
-			memberemail
+			member_key,
+			member_name,
+			member_id,
+			member_pwd,
+			member_email
 		)
 		VALUES
 		(
-			member_seq,
-			'#{name}',
-			'#{id}',
-			'#{password}',
-			'#{email}'
+			member_seq.nextval,
+			#{member_name},
+			#{member_id},
+			#{member_pwd},
+			#{member_email}
 		)
 	</insert>
 

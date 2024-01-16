@@ -28,8 +28,8 @@
 	href="${path}/template/css/vertical-layout-light/style.css">
 <!-- endinject -->
 <script>
-	var id = "${member.id}"
-	var sessId = "${loginMem.id}"	
+	var id = "${member.member_id}"
+	var sessId = "${loginMem.member_id}"
 	if(id!="") {
 		if(sessId!=""){
 			alert("로그인 성공\n메인페이지로 이동")
@@ -57,11 +57,11 @@
 							<form class="pt-3" method="post">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="exampleInputEmail1" name="id" placeholder="ID">
+										id="memberId" name="member_id" placeholder="ID">
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-lg"
-										id="exampleInputPassword1" name="password" placeholder="Password">
+										id="memberPwd" name="member_pwd" placeholder="Password">
 								</div>
 								<div class="mt-3">
 									<input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"

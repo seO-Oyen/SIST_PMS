@@ -43,10 +43,10 @@
               <!-- <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6> -->
               <form class="pt-3" method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="id" name="id" placeholder="ID">
+                  <input type="text" class="form-control form-control-lg" id="id" name="member_id" placeholder="ID">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="PassWord">
+                  <input type="password" class="form-control form-control-lg" id="password" name="member_pwd" placeholder="PassWord">
                 </div>
                 <!-- <div class="form-group">
                   <select class="form-control form-control-lg" id="exampleFormControlSelect2">
@@ -62,10 +62,10 @@
                   <input type="password" class="form-control form-control-lg" id="passwordChk" name="passwordChk" placeholder="PasswordCheck">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Name">
+                  <input type="text" class="form-control form-control-lg" id="name" name="member_name" placeholder="Name">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Email">
+                  <input type="email" class="form-control form-control-lg" id="email" name="member_email" placeholder="Email">
                 </div>
                 <!-- <div class="mb-4">
                   <div class="form-check">
