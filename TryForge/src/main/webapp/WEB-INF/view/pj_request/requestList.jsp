@@ -43,13 +43,19 @@
 			<form>
 
 				<div class="project-info"
-					style="padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #ddd; border-radius: 5px;">
-					<h3 style="margin-bottom: 10px;">프로젝트 PJ-1</h3>
+					style="padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #ddd; border-radius: 5px; text-align: center;">
+
+					<div style="margin: 10px 0;">
+						<h3 style="margin: 0;">프로젝트 PJ-1</h3>
+					</div>
+
+
 					<h5>TryForge</h5>
 					<p class="mb-0">2024.01.15~20240215</p>
+					<p class="mb-0">담당자</p>
 
 					<!-- 버튼을 같은 div로 묶음 -->
-					<div class="buttons" >
+					<div class="buttons">
 						<button type="button" class="btn btn-inverse-info btn-fw">승인</button>
 						<button type="button" class="btn btn-inverse-danger btn-fw">반려</button>
 					</div>
@@ -63,13 +69,13 @@
 				<br>
 				<blockquote class="blockquote" id="projectDescription2"
 					style="display: none; background-color: #f9f9f9; padding: 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-					<h3 class="card-title">프로젝트 상세설명</h3>
-					<ul class="list-arrow">
-						<li>pms프로그램 제작</li>
+					<h3 class="card-title" style="margin-bottom: 8px; font-size: 25px">프로젝트 상세설명</h3>
+					<ul class="list-arrow"  style="font-size: 18px;">
+						<li >pms프로그램 제작</li>
 					</ul>
 					<br>
-					<h3 class="card-title">참여 구성원</h3>
-					<ol>
+					<h3 class="card-title" style="margin-bottom: 8px; font-size: 25px">참여 구성원</h3>
+					<ol style="font-size: 18px;">
 						<li>홍길동 PL</li>
 						<li>김길동 PM</li>
 						<li>최길동 PM</li>
@@ -77,7 +83,7 @@
 						<li>오길동 PM</li>
 					</ol>
 				</blockquote>
-			
+
 			</form>
 			<script>
 				toggleDescription();
