@@ -46,7 +46,7 @@
 					style="padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #ddd; border-radius: 5px;">
 					<h3 style="margin-bottom: 10px;">프로젝트 PJ-1</h3>
 					<h5>TryForge</h5>
-					<p class="mb-0">20240115~20240215</p>
+					<p class="mb-0">2024.01.15~20240215</p>
 
 					<!-- 버튼을 같은 div로 묶음 -->
 					<div class="buttons" >
@@ -63,11 +63,12 @@
 				<br>
 				<blockquote class="blockquote" id="projectDescription2"
 					style="display: none; background-color: #f9f9f9; padding: 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-					<h4 class="card-title">프로젝트 상세설명</h4>
+					<h3 class="card-title">프로젝트 상세설명</h3>
 					<ul class="list-arrow">
 						<li>pms프로그램 제작</li>
 					</ul>
-					<h4 class="card-title">참여 구성원</h4>
+					<br>
+					<h3 class="card-title">참여 구성원</h3>
 					<ol>
 						<li>홍길동 PL</li>
 						<li>김길동 PM</li>
