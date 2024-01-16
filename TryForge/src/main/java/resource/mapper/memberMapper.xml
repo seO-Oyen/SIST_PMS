@@ -43,5 +43,11 @@
 			#{member_email}
 		)
 	</insert>
+	
+	<select id="checkId" parameterType="String" resultType="int">
+		SELECT count(member_id)
+		FROM MEMBER
+		WHERE member_id = #{member_id}
+	</select>
 
 </mapper>

@@ -8,6 +8,10 @@ public interface MemberDao {
 	Member loginMember(Member member);
 	
 	// 회원가입
-	void registerMember(Member member);
+	int registerMember(Member member);
+	
+	// 아이디 중복체크 - 회원가입
+	int checkId(String member_id);
+	
 
 }

@@ -17,7 +17,24 @@ public class MemberService {
 		return memberDao.loginMember(member);
 	}
 	
-	public void registerMember(Member member) {
-		memberDao.registerMember(member);
+	// 회원가입
+	public boolean registerMember(Member member) {
+		int result = memberDao.registerMember(member);
+		
+		if (result > 0) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	// 아이디 중복 체크
+	public boolean checkId(String id) {
+		if (memberDao.checkId(id) > 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

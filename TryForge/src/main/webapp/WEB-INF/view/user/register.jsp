@@ -27,6 +27,52 @@
 <link rel="stylesheet"
 	href="${path}/template/css/vertical-layout-light/style.css">
 <!-- endinject -->
+<!-- base:js -->
+<script src="${path}/template/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="${path}/template/js/off-canvas.js"></script>
+<script src="${path}/template/js/hoverable-collapse.js"></script>
+<script src="${path}/template/js/template.js"></script>
+<script src="${path}/template/js/settings.js"></script>
+<script src="${path}/template/js/todolist.js"></script>
+<!-- endinject -->
+<script type="text/javascript">
+$(document).ready(function(){
+	// 회원가입 성공 여부
+	var result = "${insertResult}"
+	if(result != "" && result == "true") {
+		alert("가입완료\n로그인창으로 이동합니다.")
+		location.href = "${path}/login.do"
+	} else if (result != "" && result == "false") {
+		alert("가입 실패")
+	}
+	
+	// 아이디 중복 체크
+	$("#idChkBtn").click(function() {
+		/* alert("클릭클릭~~") */
+		var userId = $("[name=member_id]").val()
+		$.ajax({
+			url : "ajax/checkId.jsp",
+			datat : "userId=" + userId,
+			dataType : "json",
+			success : function(rs) {
+				if (userId == "") {
+					alert("아이디를 입력해주세요.")
+				} else {
+					if (rs.checkId) {
+						alert("가입가능한 아이디입니다.")
+					} else {
+						alert("이미 존재하는 아이디입니다.")
+					}
+				}
+				
+			}
+		})
+	})
+});
+
+</script>
 </head>
 
 <body>
@@ -42,8 +88,11 @@
               <h4>회원가입</h4>
               <!-- <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6> -->
               <form class="pt-3" method="post">
-                <div class="form-group">
+                <div class="form-group" style="display: flex;">
                   <input type="text" class="form-control form-control-lg" id="id" name="member_id" placeholder="ID">
+                  <input type="button" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="idChkBtn" value="중복체크" 
+                  	style="padding-left: 10px; padding-right: 10px;
+							width: 122px; margin-left: 10px; margin-top: 3px;">
                 </div>
                 <div class="form-group">
                   <input type="password" class="form-control form-control-lg" id="password" name="member_pwd" placeholder="PassWord">
@@ -92,16 +141,6 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-  <!-- base:js -->
-  <script src="${path}/template/vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- inject:js -->
-  <script src="${path}/template/js/off-canvas.js"></script>
-  <script src="${path}/template/js/hoverable-collapse.js"></script>
-  <script src="${path}/template/js/template.js"></script>
-  <script src="${path}/template/js/settings.js"></script>
-  <script src="${path}/template/js/todolist.js"></script>
-  <!-- endinject -->
 </body>
 
 </html>
