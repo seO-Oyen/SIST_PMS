@@ -6,57 +6,97 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--<c:set var="path" value="${pageContext.request.contextPath }"/> --%>
 <jsp:include page="${path}/template/module/module_main.jsp" flush="true" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var msg = "${msg}" // controller단에서 온 결과 모델 처리..
+		if(msg!=""){
+			alert(msg);
+			location.href="${pageContext.request.contextPath}/file.do"
+			
+			//$("form")[0].reset() // 초기화처리(모델데이터 입력된 내용)
+		}		
+	});
+</script>
 <style>
   .file-div {
-    flex: 0 0 12.5%;
-    max-width: 12.5%;
+    flex: 0 0 10%;
+    max-width: 10%;
   }
   .file-image {
   	max-width: 100%;
   	height: auto;
   }
   .file-title {
-  	font-size: 20px;
+  	font-size: 15.5px; 
   	text-align: center;
   	overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    margin-top: 0.2rem; 
+    margin-bottom: 0;  
   }
+  .file-size{
+  	font-size: 14px;
+  	text-align: center;
+  	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 24px;
+    margin-bottom: 0; 
+    flex-grow: 1; 
+  }
+  .fdown {
+	font-size: 24px;
+	cursor: pointer;
+  }
+  .card .card-body {
+    padding: 0.7rem 1rem; 
+}
+.file-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 100%;
+}
 </style>
 
-		<!-- main 대시보드 내용 -->
-		<!-- partial -->
-		<div class="main-panel">
-			<div class="content-wrapper">
+<div class="main-panel">
+	<div class="content-wrapper">
 
+		<div class="row">
+			<div class="col-xl-6 grid-margin stretch-card flex-column" style = "flex: 0 0 100%; max-width: 100%;">
+			    <div class="d-flex justify-content-between mb-4 align-items-center">
+			        <h5 class="mb-2 text-titlecase" style="font-size : 28px;">파일저장소</h5>
+			        	<form method="post" enctype="multipart/form-data" action="upload.do">
+			        		<button type="button" id="uploadBtn" class="btn btn-success">업로드</button>
+			    			<input type="file" id="fileInput" name="files" multiple="multiple" style="display: none;" />
+			    		</form>
+			    </div>
 				<div class="row">
-					<div class="col-xl-6 grid-margin stretch-card flex-column" style = "flex: 0 0 100%; max-width: 100%;">
-					    <div class="d-flex justify-content-between mb-4 align-items-center">
-					        <h5 class="mb-2 text-titlecase">파일저장소</h5>
-					        	<form method="post" enctype="multipart/form-data" action="upload.do">
-					        		<button type="button" id="uploadBtn" class="btn btn-success">업로드</button>
-					    			<input type="file" id="fileInput" name="files" multiple="multiple" style="display: none;" />
-					    		</form>
-					    </div>
-						<div class="row">
-							<c:forEach var = "file" items="${fList}">
-							<div class="col-md-6 grid-margin stretch-card file-div">
-								<div class="card">
-									<div
-										class="card-body d-flex flex-column justify-content-between">
-										<div
-											class="d-flex justify-content-between align-items-center mb-2">
-											<img src="${pageContext.request.contextPath}${file.iconPath}" alt ="${file.ftype}"class="file-image">
-										</div>
-										<h4 title="${file.fname}" class="file-title">${file.fname}</h4>
-										<h4 title="${file.fsize}" class="file-title">${file.fsize}</h4>
-									</div>
+					<c:forEach var = "file" items="${fList}">
+					<div class="col-md-6 grid-margin stretch-card file-div">
+						<div class="card">
+							<div
+								class="card-body d-flex flex-column justify-content-between">
+								<div
+									class="d-flex justify-content-between align-items-center mb-2">
+									<img src="${pageContext.request.contextPath}${file.iconPath}" alt ="${file.ftype}"class="file-image">
+								</div>
+								<div>
+									<h4 title="${file.fname}" class="file-title">${file.fname}</h4>
+								</div>
+								<div class="file-info-container">
+								    <h4 title="${file.fsize}" class="file-size">${file.fsize}</h4>
+								    <i class="mdi mdi-download fdown" onclick = "download('${file.fname}')"></i>
 								</div>
 							</div>
-							</c:forEach>
 						</div>
 					</div>
+					</c:forEach>
 				</div>
+			</div>
+		</div>
 
 <!-- 업로드 버튼눌렀을때 바로 파일 선택하고, 파일 선택 시 업로드처리까지 한번에 처리. -->
 <script type="text/javascript">
@@ -67,6 +107,12 @@ document.querySelector("#uploadBtn").addEventListener('click', function(){
 document.querySelector("#fileInput").addEventListener('change', function(){
 	$("form").submit()
 })
+
+function download(fname){
+	if( confirm(fname+" 다운로드 하시겠습니까?")){
+		location.href="${pageContext.request.contextPath}/download.do?fname="+fname
+	}
+}
 </script>			
 			<!-- 풋터 -->
 			<!-- content-wrapper ends -->

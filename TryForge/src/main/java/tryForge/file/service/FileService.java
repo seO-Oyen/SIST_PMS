@@ -15,7 +15,7 @@ public class FileService {
 	
 	public List<FileStorage> FileList(FileStorage file){
 		List<FileStorage> fileList = dao.getFileList(file);
-		for(FileStorage fs:fileList) {
+		for(FileStorage fs:fileList) { // ftype 에 따른 icon get
 			String iconPath = getIcon(fs.getFtype());
 			fs.setIconPath(iconPath);
 		}
