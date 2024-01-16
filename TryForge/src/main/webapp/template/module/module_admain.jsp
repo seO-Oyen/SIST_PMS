@@ -71,7 +71,6 @@
 					<li class="nav-item nav-profile dropdown">
 					<a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
 						<img src="${path}/template/images/faces/face5.jpg" alt="profile" /> 
-						<span class="nav-profile-name">(유저 이름)</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 						aria-labelledby="profileDropdown">
@@ -91,7 +90,7 @@
 					<li class="nav-item nav-date dropdown">
 					<a class="nav-link d-flex justify-content-center align-items-center"
 						href="javascript:;">
-						<h6 class="date mb-0">Today : Mar 23</h6> 
+						<h6 class="date mb-0" id="currentDate"></h6> 
 						<i class="typcn typcn-calendar"></i>
 					</a>
 					</li>
@@ -191,13 +190,13 @@
 			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 				<ul class="navbar-nav mr-lg-2">
 					<li class="nav-item ml-0">
-						<h4 class="mb-0">Dashboard</h4>
+						<h4 class="mb-0">ADHome</h4>
 					</li>
 					<li class="nav-item">
 						<div class="d-flex align-items-baseline">
-							<p class="mb-0">Home</p>
+							<p class="mb-0"></p>
 							<i class="typcn typcn-chevron-right"></i>
-							<p class="mb-0">Main Dahboard</p>
+							<p class="mb-0"></p>
 						</div>
 					</li>
 				</ul>
@@ -217,19 +216,14 @@
 				</ul>
 			</div>
 			<!-- 아이콘 버튼 -->
-			<div class="navbar-links-wrapper d-flex align-items-stretch">
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-calendar-outline"></i></a>
+			<div class="navbar-links-wrapper d-flex align-items-stretch" >
+				<div class="nav-link" style="border-right:none; flex-grow:0.1;">
+					<a href="javascript:;"><i class="mdi mdi-desktop-mac"></i></a>
 				</div>
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-mail"></i></a>
+				<div class="nav-link" style="border-right:none;flex-grow:0.1;">
+					<a href="javascript:;"><i class="mdi mdi-brightness-5" style="margin-left:none;"></i></a>
 				</div>
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-folder"></i></a>
-				</div>
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-document-text"></i></a>
-				</div>
+				
 			</div>
 		</nav>
 		
@@ -544,7 +538,42 @@
 							</ul>
 						</div> -->
 					</li>
+					<li class="nav-item">
+					<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
+						aria-controls="auth">
+						<i class="mdi mdi-account-convert" style="width:20px;height:20px;"></i>
+						<span class="menu-title">일반유저페이지</span>
+						<!-- <i class="menu-arrow"></i> -->
+					</a>
+						<!-- <div class="collapse" id="auth">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item">
+								<a class="nav-link" href="pages/samples/login.jsp"> Login </a>
+								</li>
+								<li class="nav-item">
+								<a class="nav-link" href="pages/samples/register.jsp"> Register </a>
+								</li>
+							</ul>
+						</div> -->
+					</li>
 					
 					
 				</ul>
 			</nav>
+			
+			<script>
+  // 현재 날짜를 가져오는 함수
+  function getCurrentDate() {
+    var currentDate = new Date();
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var month = monthNames[currentDate.getMonth()];
+    var day = currentDate.getDate();
+
+    return month + ' ' + day;
+  }
+
+  // 페이지 로딩 시 현재 날짜로 업데이트
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('currentDate').innerText = 'Today: ' + getCurrentDate();
+  });
+</script>
