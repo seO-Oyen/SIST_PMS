@@ -6,13 +6,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/> --%>
 <jsp:include page="${path}/template/module/module_main.jsp" flush="true" />
-<script>
+<!-- <script>
 var sessId = "${loginMem.member_id}"
-	if(sessId==""){
-		alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
-		location.href="${path}/tryForge/login.do"
-	}
-</script>
+if(sessId==""){
+	alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
+	location.href="${path}/tryForge/login.do"
+}
+</script> -->
 		<!-- main 대시보드 내용 -->
 		<!-- partial -->
 		<%-- <div class="main-panel">
