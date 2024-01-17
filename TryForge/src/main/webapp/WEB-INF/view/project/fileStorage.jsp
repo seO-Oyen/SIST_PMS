@@ -24,11 +24,12 @@
     max-width: 10%;
   }
   .file-image {
-  	max-width: 100%;
+  	margin-left: 15%;
+  	max-width: 70%;
   	height: auto;
   }
   .file-title {
-  	font-size: 15.5px; 
+  	font-size: 13px; 
   	text-align: center;
   	overflow: hidden;
     text-overflow: ellipsis;
@@ -37,18 +38,20 @@
     margin-bottom: 0;  
   }
   .file-size{
-  	font-size: 14px;
+  	font-size: 12px;
   	text-align: center;
   	overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-left: 24px;
-    margin-bottom: 0; 
+    margin-left: 18px;
+    margin-bottom: 0;
+    margin-top : 4px; 
     flex-grow: 1; 
   }
   .fdown {
-	font-size: 24px;
+	font-size: 18px;
 	cursor: pointer;
+	margin-top : 4px;
   }
   .card .card-body {
     padding: 0.7rem 1rem; 

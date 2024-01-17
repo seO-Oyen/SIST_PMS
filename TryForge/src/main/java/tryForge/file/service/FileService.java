@@ -81,6 +81,18 @@ public class FileService {
             return "/icons/xlsx-icon.png";
         case "zip":
             return "/icons/zip-icon.png";
+        case "msword":
+            return "/icons/doc-icon.png";
+        case "vnd.openxmlformats-officedocument.wordprocessingml.document":
+            return "/icons/docx-icon.png";
+        case "vnd.ms-excel":
+            return "/icons/xls-icon.png";
+        case "vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+            return "/icons/xlsx-icon.png";
+        case "vnd.ms-powerpoint":
+            return "/icons/ppt-icon.png";
+        case "vnd.openxmlformats-officedocument.presentationml.presentation":
+            return "/icons/ppt-icon.png";
         default:
             return "/icons/exe-icon.png";
 	    }

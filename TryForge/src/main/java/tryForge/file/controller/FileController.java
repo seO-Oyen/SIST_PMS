@@ -16,6 +16,6 @@ public class FileController {
 	@GetMapping("file.do")
 	public String upload(FileStorage file, Model d) {
 		d.addAttribute("fList", service.FileList(file));
-		return "/project/index";
+		return "/project/fileStorage";
 	}
 }
