@@ -48,27 +48,50 @@ $(document).ready(function(){
 		alert("가입 실패")
 	}
 	
+	// 아이디 수정하면 문구 사라지게
+	$("[name=member_id]").keyup(function() {
+		$("#coment").html('')
+	})
+	
 	// 아이디 중복 체크
 	$("#idChkBtn").click(function() {
-		/* alert("클릭클릭~~") */
-		var userId = $("[name=member_id]").val()
+		var userIdVal = $("[name=member_id]").val()
+		if (userIdVal == "") {
+			$("#coment").html("아이디를 입력해주세요")
+			return false;
+		}
 		$.ajax({
-			url : "ajax/checkId.jsp",
-			datat : "userId=" + userId,
+			url : "${path}/test.do",
+			type : "GET",
+			data : {
+				userId: userIdVal
+			},
 			dataType : "json",
-			success : function(rs) {
-				if (userId == "") {
-					alert("아이디를 입력해주세요.")
+			success : function(data) {
+				if(data.userIdChk) {
+					$("#coment").html("사용 가능한 아이디입니다.")
+					$("#coment").css("color", "green")
 				} else {
-					if (rs.checkId) {
-						alert("가입가능한 아이디입니다.")
-					} else {
-						alert("이미 존재하는 아이디입니다.")
-					}
+					$("#coment").html("이미 존재하는 아이디입니다.")
 				}
-				
+			},
+			error : function(err) {
+				console.log(err)
 			}
 		})
+	})
+	
+	// 패스워드 동일한지 체크
+	$("[name=passwordChk]").keyup(function() {
+
+		console.log($("[name=passwordChk]").val())
+		console.log($("[name=member_pwd]").val())
+		if ($("[name=passwordChk]").val() == $("[name=member_pwd]").val()) {
+			$("#pwdComent").html("비밀번호가 일치합니다.")
+			$("#pwdComent").css("color", "green")
+		} else {
+			$("#pwdComent").html("비밀번호가 일치하지 않습니다.")
+		}
 	})
 });
 
@@ -86,27 +109,18 @@ $(document).ready(function(){
                 <img src="${path}/template/images/try_forge01.jpg" alt="logo">
               </div>
               <h4>회원가입</h4>
-              <!-- <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6> -->
               <form class="pt-3" method="post">
+              	<div id="coment" style="color: red;"></div>
                 <div class="form-group" style="display: flex;">
                   <input type="text" class="form-control form-control-lg" id="id" name="member_id" placeholder="ID">
                   <input type="button" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="idChkBtn" value="중복체크" 
                   	style="padding-left: 10px; padding-right: 10px;
 							width: 122px; margin-left: 10px; margin-top: 3px;">
                 </div>
+                <div id="pwdComent" style="color: red;"></div>
                 <div class="form-group">
                   <input type="password" class="form-control form-control-lg" id="password" name="member_pwd" placeholder="PassWord">
                 </div>
-                <!-- <div class="form-group">
-                  <select class="form-control form-control-lg" id="exampleFormControlSelect2">
-                    <option>Country</option>
-                    <option>United States of America</option>
-                    <option>United Kingdom</option>
-                    <option>India</option>
-                    <option>Germany</option>
-                    <option>Argentina</option>
-                  </select>
-                </div> -->
                 <div class="form-group">
                   <input type="password" class="form-control form-control-lg" id="passwordChk" name="passwordChk" placeholder="PasswordCheck">
                 </div>

@@ -31,7 +31,7 @@ public class MemberService {
 	
 	// 아이디 중복 체크
 	public boolean checkId(String id) {
-		if (memberDao.checkId(id) > 0) {
+		if (id != null && memberDao.checkId(id) > 0) {
 			return false;
 		} else {
 			return true;

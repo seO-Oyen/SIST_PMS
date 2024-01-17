@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import tryForge.member.service.MemberService;
 import tryForge.vo.Member;
@@ -53,6 +54,18 @@ public class MemberController {
 		d.addAttribute("insertResult", memberService.registerMember(member));
 		
 		return "user/register";
+	}
+	
+	@GetMapping("test.do")
+	public String test01(
+			@RequestParam("userId") String userId, Model d) {
+		if (memberService.checkId(userId)) {
+			System.out.println("중복");
+		} else {
+			System.out.println("안중복");
+		}
+		d.addAttribute("userIdChk", memberService.checkId(userId));
+		return "pageJsonReport";
 	}
 
 }
