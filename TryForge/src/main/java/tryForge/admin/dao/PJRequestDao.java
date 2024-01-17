@@ -2,10 +2,10 @@ package tryForge.admin.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Update;
+import tryForge.vo.Member;
+import tryForge.vo.Project;
 
 public interface PJRequestDao {
-
+	List<Project> ReqPJList();
+	List<Member> PJMemList(String project_key);
 }
