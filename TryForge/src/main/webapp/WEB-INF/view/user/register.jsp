@@ -48,9 +48,19 @@ $(document).ready(function(){
 		alert("가입 실패")
 	}
 	
+	// 엔터키 막기
+	document.addEventListener('keydown', function(event) {
+		if(event.keyCode === 13) {
+			event.preventDefault()
+		}
+	}, true)
+		
+	$("#regBtn").click(register)
+	
 	// 아이디 수정하면 문구 사라지게
 	$("[name=member_id]").keyup(function() {
 		$("#coment").html('')
+		$("#idchecked").val("false")
 	})
 	
 	// 아이디 중복 체크
@@ -58,6 +68,7 @@ $(document).ready(function(){
 		var userIdVal = $("[name=member_id]").val()
 		if (userIdVal == "") {
 			$("#coment").html("아이디를 입력해주세요")
+			$("#coment").css("color", "red")
 			return false;
 		}
 		$.ajax({
@@ -71,8 +82,11 @@ $(document).ready(function(){
 				if(data.userIdChk) {
 					$("#coment").html("사용 가능한 아이디입니다.")
 					$("#coment").css("color", "green")
+					$("#idchecked").val("true")
 				} else {
 					$("#coment").html("이미 존재하는 아이디입니다.")
+					$("#idchecked").val("false")
+					$("#coment").css("color", "red")
 				}
 			},
 			error : function(err) {
@@ -81,19 +95,58 @@ $(document).ready(function(){
 		})
 	})
 	
-	// 패스워드 동일한지 체크
-	$("[name=passwordChk]").keyup(function() {
-
-		console.log($("[name=passwordChk]").val())
-		console.log($("[name=member_pwd]").val())
+	// 비밀번호 일치 확인 (체크가 변하지 않고 비밀번호가 바뀌었을때)
+	$("[name=member_pwd]").keyup(function() {
 		if ($("[name=passwordChk]").val() == $("[name=member_pwd]").val()) {
 			$("#pwdComent").html("비밀번호가 일치합니다.")
 			$("#pwdComent").css("color", "green")
+			$("#pwdchecked").val("true")
 		} else {
-			$("#pwdComent").html("비밀번호가 일치하지 않습니다.")
+			if ($("[name=passwordChk]").val() != '') {
+				$("#pwdComent").html("비밀번호가 일치하지 않습니다.")
+				$("#pwdchecked").val("false")
+				$("#pwdComent").css("color", "red")
+			}
 		}
 	})
+	
+	// 비밀번호 일치 확인
+	$("[name=passwordChk]").keyup(function() {
+		if ($("[name=passwordChk]").val() == $("[name=member_pwd]").val()) {
+			$("#pwdComent").html("비밀번호가 일치합니다.")
+			$("#pwdComent").css("color", "green")
+			$("#pwdchecked").val("true")
+		} else {
+			$("#pwdComent").html("비밀번호가 일치하지 않습니다.")
+			$("#pwdchecked").val("false")
+			$("#pwdComent").css("color", "red")
+		}
+	})
+	
+	
 });
+
+// 회원가입 => 안적힌 것 있음 체크해서 폼 보내지 못하게
+function register() {
+	if($("#idchecked").val() == 'false') {
+		alert("아이디 중복체크를 해주세요.")
+		return false
+	}
+	if($("#pwdchecked").val() == 'false') {
+		alert("비밀번호가 일치하지 않습니다.")
+		return false
+	}
+	if($("#name").val() == '') {
+		alert("이름을 입력해주세요")
+		return false
+	}
+	if($("#email").val() == '') {
+		alert("이메일을 입력해주세요")
+		return false
+	}
+	
+	$("#registerFrm").attr("method", "post")
+}
 
 </script>
 </head>
@@ -109,15 +162,17 @@ $(document).ready(function(){
                 <img src="${path}/template/images/try_forge01.jpg" alt="logo">
               </div>
               <h4>회원가입</h4>
-              <form class="pt-3" method="post">
+              <form class="pt-3" id="registerFrm">
               	<div id="coment" style="color: red;"></div>
                 <div class="form-group" style="display: flex;">
+                	<input type="hidden" id="idchecked" value="false" disabled>
                   <input type="text" class="form-control form-control-lg" id="id" name="member_id" placeholder="ID">
                   <input type="button" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="idChkBtn" value="중복체크" 
                   	style="padding-left: 10px; padding-right: 10px;
 							width: 122px; margin-left: 10px; margin-top: 3px;">
                 </div>
-                <div id="pwdComent" style="color: red;"></div>
+                <input type="hidden" id="pwdchecked" value="false" disabled>
+                <div id="pwdComent"></div>
                 <div class="form-group">
                   <input type="password" class="form-control form-control-lg" id="password" name="member_pwd" placeholder="PassWord">
                 </div>
@@ -140,7 +195,7 @@ $(document).ready(function(){
                 </div> -->
                 <div class="mt-3">
 					<input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-						value="회원가입" />
+						id="regBtn" value="회원가입" />
 				</div>
                 <div class="text-center mt-4 font-weight-light">
                   이미 계정이 있으신가요? <a href="login.do" class="text-primary">로그인</a>
