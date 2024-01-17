@@ -45,4 +45,5 @@
 	        notice_uptdte = sysdate
 	    WHERE notice_key = #{notice_Key}
 	</update>
+	
 </mapper>
