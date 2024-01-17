@@ -1,9 +1,11 @@
 package tryForge.vo;
 
+import java.util.List;
+
 public class Team_Member {
 	private int team_Member_key;
 	private String role; 
-	private Member member;
+	private List<Member> member;
 	private Team team;
 	public Team_Member() {
 		// TODO Auto-generated constructor stub
@@ -14,12 +16,14 @@ public class Team_Member {
 		this.role = role;
 	}
 
-	public Team_Member(int team_Member_key, String role, Member member, Team team) {
+	
+	public Team_Member(int team_Member_key, String role, List<Member> member, Team team) {
 		this.team_Member_key = team_Member_key;
 		this.role = role;
 		this.member = member;
 		this.team = team;
 	}
+
 	public int getTeam_Member_key() {
 		return team_Member_key;
 	}
@@ -32,12 +36,15 @@ public class Team_Member {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public Member getMember() {
+	
+	public List<Member> getMember() {
 		return member;
 	}
-	public void setMember(Member member) {
+
+	public void setMember(List<Member> member) {
 		this.member = member;
 	}
+
 	public Team getTeam() {
 		return team;
 	}
