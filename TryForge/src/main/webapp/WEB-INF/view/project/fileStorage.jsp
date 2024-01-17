@@ -4,17 +4,14 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%--<c:set var="path" value="${pageContext.request.contextPath }"/> --%>
 <jsp:include page="${path}/template/module/module_main.jsp" flush="true" />
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		var msg = "${msg}" // controller단에서 온 결과 모델 처리..
+		var msg = "${msg}"
 		if(msg!=""){
 			alert(msg);
 			location.href="${pageContext.request.contextPath}/file.do"
-			
-			//$("form")[0].reset() // 초기화처리(모델데이터 입력된 내용)
 		}		
 	});
 </script>
