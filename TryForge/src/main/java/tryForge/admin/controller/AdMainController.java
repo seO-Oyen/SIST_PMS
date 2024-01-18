@@ -16,7 +16,7 @@ private NoticeService noticeService;
 @Autowired(required = false)
 private PJRequestService PJRequestService;
 
-//메인페이지 출력
+	//메인페이지 출력
 	@GetMapping("ad_main.do")
 	public String ad_main(NoticeSch sch, Model d) {
 		d.addAttribute("noticeList", noticeService.noticeList(sch));

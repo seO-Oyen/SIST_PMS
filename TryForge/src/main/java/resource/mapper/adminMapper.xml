@@ -20,7 +20,7 @@
         ) n
     )
     WHERE cnt BETWEEN #{start} AND #{end}
-</select>
+	</select>
 	
 	<!-- 공지사항 데이터 총 건수 -->
 	<select id="totNotice" resultType="int" parameterType="noticeSch">
