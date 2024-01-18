@@ -97,6 +97,12 @@ $(document).ready(function(){
 	
 	// 비밀번호 일치 확인 (체크가 변하지 않고 비밀번호가 바뀌었을때)
 	$("[name=member_pwd]").keyup(function() {
+		if ($("[name=member_pwd]").val() == '') {
+			$("#pwdComent").html('')
+			$("#pwdchecked").val("false")
+			return false
+		}
+		
 		if ($("[name=passwordChk]").val() == $("[name=member_pwd]").val()) {
 			$("#pwdComent").html("비밀번호가 일치합니다.")
 			$("#pwdComent").css("color", "green")
@@ -112,6 +118,11 @@ $(document).ready(function(){
 	
 	// 비밀번호 일치 확인
 	$("[name=passwordChk]").keyup(function() {
+		if ($("[name=passwordChk]").val() == '') {
+			$("#pwdComent").html('')
+			$("#pwdchecked").val("false")
+			return false
+		}
 		if ($("[name=passwordChk]").val() == $("[name=member_pwd]").val()) {
 			$("#pwdComent").html("비밀번호가 일치합니다.")
 			$("#pwdComent").css("color", "green")
