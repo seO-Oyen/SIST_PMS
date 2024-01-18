@@ -42,6 +42,13 @@
 <script src="${path}/template/js/dashboard.js"></script>
 <script src='${path}/template/dist/index.global.js'></script>
 <!-- End custom js for this page-->
+<script>
+var sessId = "${loginMem.member_id}"
+if(sessId==""){
+	alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
+	location.href="${path}/login.do"
+}
+</script>
 </head>
 <body>
 	<div class="container-scroller">
@@ -70,13 +77,14 @@
 					<li class="nav-item nav-profile dropdown">
 					<a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
 						<img src="${path}/template/images/faces/face5.jpg" alt="profile" /> 
-						<span class="nav-profile-name">(유저 이름)</span>
+						<span class="nav-profile-name">${loginMem.member_name} 님</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 						aria-labelledby="profileDropdown">
-						<a class="dropdown-item"> <i class="typcn typcn-cog-outline text-primary"></i> 마이페이지
+						<a class="dropdown-item">
+							<i class="typcn typcn-cog-outline text-primary"></i> 마이페이지
 						</a> 
-						<a class="dropdown-item"> 
+						<a class="dropdown-item" href="${path}/login.do"> 
 							<i class="typcn typcn-eject text-primary"></i> 로그아웃
 						</a>
 					</div>
