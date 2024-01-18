@@ -52,7 +52,7 @@
 		<div class="card-body">
 
 			<form class="forms-sample" method="post">
-				<input type="hidden" name="member_Key" value="${loginMem.member_no}">
+				<input type="hidden" name="member_Key" value="${loginMem.member_key}">
 				<input type="hidden" name="member_Role" value="${loginMem.member_role}">
 				<input type="hidden" name="project_Key" value="PJ-003">
 

@@ -52,7 +52,7 @@
 			<!-- 왼쪽 상단 로고 -->
 			<div class="navbar-brand-wrapper d-flex justify-content-center" style="background:white;">
 				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100" >
-					<a class="navbar-brand brand-logo" href="index.jsp" >
+					<a class="navbar-brand brand-logo" href="${path}/adMain.do" >
 					<img src="${path}/template/images/try_forge01.jpg" alt="logo" style="width:100%"/>
 					<!-- <span>TryForge</span> -->
 					</a> 
