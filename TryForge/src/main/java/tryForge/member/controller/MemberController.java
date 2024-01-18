@@ -20,7 +20,12 @@ public class MemberController {
 
 	// 로그인 창 띄우기
 	@GetMapping("login.do")
-	public String login() {
+	public String login(HttpSession session) {
+		// 기존 session이 있다면 삭제
+		if (session.getAttribute("loginMem") != null) {
+			session.removeAttribute("loginMem");
+			System.out.println("세션삭제");
+		}
 
 		return "user/login";
 	}

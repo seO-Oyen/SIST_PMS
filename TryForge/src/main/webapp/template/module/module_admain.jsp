@@ -52,7 +52,7 @@
 			<!-- 왼쪽 상단 로고 -->
 			<div class="navbar-brand-wrapper d-flex justify-content-center" style="background:white;">
 				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100" >
-					<a class="navbar-brand brand-logo" href="index.jsp" >
+					<a class="navbar-brand brand-logo" href="${path}/adMain.do" >
 					<img src="${path}/template/images/try_forge01.jpg" alt="logo" style="width:100%"/>
 					<!-- <span>TryForge</span> -->
 					</a> 
@@ -71,12 +71,13 @@
 					<li class="nav-item nav-profile dropdown">
 					<a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
 						<img src="${path}/template/images/faces/face5.jpg" alt="profile" /> 
+						<span class="nav-profile-name">${loginMem.member_name} 님</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 						aria-labelledby="profileDropdown">
 						<a class="dropdown-item"> <i class="typcn typcn-cog-outline text-primary"></i> 마이페이지
 						</a> 
-						<a class="dropdown-item"> 
+						<a class="dropdown-item" href="${path}/login.do"> 
 							<i class="typcn typcn-eject text-primary"></i> 로그아웃
 						</a>
 					</div>
@@ -428,7 +429,7 @@
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="index.jsp">
+					<li class="nav-item"><a class="nav-link">
 							<i class="mdi mdi-airplay" style="width:20px;height:20px;"></i> <span
 							class="menu-title">프로젝트관리</span>
 							<!-- <div class="badge badge-danger">new</div> -->
@@ -539,8 +540,7 @@
 						</div> -->
 					</li>
 					<li class="nav-item">
-					<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
-						aria-controls="auth">
+					<a class="nav-link"  href="${path}/userIndex.do"" >
 						<i class="mdi mdi-account-convert" style="width:20px;height:20px;"></i>
 						<span class="menu-title">일반유저페이지</span>
 						<!-- <i class="menu-arrow"></i> -->

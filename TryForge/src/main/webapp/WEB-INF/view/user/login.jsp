@@ -30,11 +30,15 @@
 <script>
 	var id = "${member.member_id}"
 	var sessId = "${loginMem.member_id}"
-	if(id!="") {
-		if(sessId!=""){
+	var role = "${loginMem.member_role}"
+	if(id != "") {
+		if(sessId != ""  && role == ""){
 			alert("로그인 성공\n메인페이지로 이동")
 			location.href="${path}/userIndex.do"
-		}else{
+		} else if(sessId != "" && role != "") {
+			alert("로그인 성공\n관리자페이지로 이동")
+			location.href = "${path}/adMain.do"
+		} else{
 			alert("로그인 실패\n다시 로그인하세요")
 		}
 		
