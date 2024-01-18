@@ -57,7 +57,7 @@
 							<form class="pt-3" method="post">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="memberId" name="member_id" placeholder="ID">
+										id="memberId" name="member_id" placeholder="ID" autocomplete="off">
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-lg"
@@ -67,24 +67,15 @@
 									<input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
 										value="로그인" />
 								</div>
-								<!-- <div class="my-2 d-flex justify-content-between align-items-center"> -->
 								<div class="text-center mt-2 font-weight-light">
+								<!-- 나중에 로그인 기억 같은거 하면 쓸 코드 -->
 									<!-- <div class="form-check">
-										<label class="form-check-label text-muted"> <input
-											type="checkbox" class="form-check-input"> Keep me
-											signed in
+										<label class="form-check-label text-muted"> 
+										<input type="checkbox" class="form-check-input"> Keep me signed in
 										</label>
 									</div> -->
 									<a href="#" class="auth-link text-black">비밀번호 찾기</a>
 								</div>
-								<!-- 페이스북 로그인 (소셜로그인) -->
-								<!-- <div class="mb-2">
-									<button type="button"
-										class="btn btn-block btn-facebook auth-form-btn">
-										<i class="typcn typcn-social-facebook mr-2"></i>Connect using
-										facebook
-									</button>
-								</div> -->
 								<div class="text-center mt-4 font-weight-light">
 									 <a href="register.do"
 										class="text-primary">계정이 없으신가요?</a>

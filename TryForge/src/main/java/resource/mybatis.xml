@@ -3,7 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="board" type="tryForge.vo.Board"/>
 		<typeAlias alias="member" type="tryForge.vo.Member"/>
 		<typeAlias alias="notice" type="tryForge.vo.Notice"/>
 		<typeAlias alias="noticeSch" type="tryForge.vo.NoticeSch"/>

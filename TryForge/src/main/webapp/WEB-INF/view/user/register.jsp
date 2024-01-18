@@ -166,7 +166,7 @@ function register() {
               	<div id="coment" style="color: red;"></div>
                 <div class="form-group" style="display: flex;">
                 	<input type="hidden" id="idchecked" value="false" disabled>
-                  <input type="text" class="form-control form-control-lg" id="id" name="member_id" placeholder="ID">
+                  <input type="text" class="form-control form-control-lg" id="id" name="member_id" placeholder="ID" autocomplete="off">
                   <input type="button" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="idChkBtn" value="중복체크" 
                   	style="padding-left: 10px; padding-right: 10px;
 							width: 122px; margin-left: 10px; margin-top: 3px;">
@@ -180,19 +180,11 @@ function register() {
                   <input type="password" class="form-control form-control-lg" id="passwordChk" name="passwordChk" placeholder="PasswordCheck">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="name" name="member_name" placeholder="Name">
+                  <input type="text" class="form-control form-control-lg" id="name" name="member_name" placeholder="Name" autocomplete="off">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="email" name="member_email" placeholder="Email">
+                  <input type="email" class="form-control form-control-lg" id="email" name="member_email" placeholder="Email" autocomplete="off">
                 </div>
-                <!-- <div class="mb-4">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      I agree to all Terms & Conditions
-                    </label>
-                  </div>
-                </div> -->
                 <div class="mt-3">
 					<input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
 						id="regBtn" value="회원가입" />
