@@ -72,7 +72,7 @@ $(document).ready(function(){
 			return false;
 		}
 		$.ajax({
-			url : "${path}/test.do",
+			url : "${path}/idCheck.do",
 			type : "GET",
 			data : {
 				userId: userIdVal
