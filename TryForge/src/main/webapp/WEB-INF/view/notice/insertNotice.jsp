@@ -52,8 +52,8 @@
 		<div class="card-body">
 
 			<form class="forms-sample" method="post">
-				<input type="hidden" name="member_Key" value="${loginMem.no}">
-				<input type="hidden" name="member_Role" value="${loginMem.role}">
+				<input type="hidden" name="member_Key" value="${loginMem.member_no}">
+				<input type="hidden" name="member_Role" value="${loginMem.member_role}">
 				<input type="hidden" name="project_Key" value="PJ-003">
 
 				<div class="form-group">
@@ -64,13 +64,13 @@
 
 				<div class="form-group">
 					<label for="exampleInputEmail3">작성자</label> <input type="text"
-						class="form-control" readonly value="${loginMem.name}"
+						class="form-control" readonly value="${loginMem.member_name}"
 						id="exampleInputEmail3" placeholder="Name" name="notice_Writer">
 				</div>
 
 				<div class="form-group">
 					<label for="exampleInputName1">아이디</label> <input type="text"
-						class="form-control" value="${loginMem.id}" id="noticeId" readonly
+						class="form-control" value="${loginMem.member_id}" id="noticeId" readonly
 						name="">
 				</div>
 
