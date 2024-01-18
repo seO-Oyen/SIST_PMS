@@ -23,6 +23,8 @@
 <!-- End plugin css for this page -->
 <!-- inject:css -->
 <link rel="stylesheet" href="${path}/template/css/vertical-layout-light/style.css">
+  <link rel="shortcut icon" href="../../images/favicon.png" />
+  
 <link rel="stylesheet" href="${path}/template/vendors/mdi/css/materialdesignicons.min.css"/>
 
 <!-- base:js -->
@@ -41,17 +43,6 @@
 <!-- Custom js for this page-->
 <script src="${path}/template/js/dashboard.js"></script>
 <!-- End custom js for this page-->
-<script>
-$(document).ready(function(){
-	var sessId = "${loginMem.member_id}"
-	if(sessId==""){
-		alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
-		location.href="${path}/login.do"
-	} else if ("${loginMem.member_role}" != "") {
-		$("#admin").css("display", "")
-	}
-})
-</script>
 </head>
 <body>
 	<div class="container-scroller">
@@ -61,11 +52,11 @@ $(document).ready(function(){
 			<!-- 왼쪽 상단 로고 -->
 			<div class="navbar-brand-wrapper d-flex justify-content-center" style="background:white;">
 				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100" >
-					<a class="navbar-brand brand-logo" href="${path}/userIndex.do" >
+					<a class="navbar-brand brand-logo" href="${path}/adMain.do" >
 					<img src="${path}/template/images/try_forge01.jpg" alt="logo" style="width:100%"/>
 					<!-- <span>TryForge</span> -->
 					</a> 
-					<a class="navbar-brand brand-logo-mini" href="${path}/userIndex.do">
+					<a class="navbar-brand brand-logo-mini" href="index.jsp">
 					<img src="${path}/template/images/try_logo.jpg" alt="logo" style="width:100%;"/></a>
 					<button class="navbar-toggler navbar-toggler align-self-center"
 						type="button" data-toggle="minimize" style="color:black; margin-left:10px;">
@@ -80,14 +71,12 @@ $(document).ready(function(){
 					<li class="nav-item nav-profile dropdown">
 					<a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
 						<img src="${path}/template/images/faces/face5.jpg" alt="profile" /> 
-						<span class="nav-profile-name">${loginMem.member_name} 님</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 						aria-labelledby="profileDropdown">
-						<a class="dropdown-item">
-							<i class="typcn typcn-cog-outline text-primary"></i> 마이페이지
+						<a class="dropdown-item"> <i class="typcn typcn-cog-outline text-primary"></i> 마이페이지
 						</a> 
-						<a class="dropdown-item" href="${path}/login.do"> 
+						<a class="dropdown-item"> 
 							<i class="typcn typcn-eject text-primary"></i> 로그아웃
 						</a>
 					</div>
@@ -101,7 +90,7 @@ $(document).ready(function(){
 					<li class="nav-item nav-date dropdown">
 					<a class="nav-link d-flex justify-content-center align-items-center"
 						href="javascript:;">
-						<h6 class="date mb-0">Today : Mar 23</h6> 
+						<h6 class="date mb-0" id="currentDate"></h6> 
 						<i class="typcn typcn-calendar"></i>
 					</a>
 					</li>
@@ -201,13 +190,13 @@ $(document).ready(function(){
 			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 				<ul class="navbar-nav mr-lg-2">
 					<li class="nav-item ml-0">
-						<h4 class="mb-0">Dashboard</h4>
+						<h4 class="mb-0">ADHome</h4>
 					</li>
 					<li class="nav-item">
 						<div class="d-flex align-items-baseline">
-							<p class="mb-0">Home</p>
+							<p class="mb-0"></p>
 							<i class="typcn typcn-chevron-right"></i>
-							<p class="mb-0">Main Dahboard</p>
+							<p class="mb-0"></p>
 						</div>
 					</li>
 				</ul>
@@ -227,19 +216,14 @@ $(document).ready(function(){
 				</ul>
 			</div>
 			<!-- 아이콘 버튼 -->
-			<div class="navbar-links-wrapper d-flex align-items-stretch">
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-calendar-outline"></i></a>
+			<div class="navbar-links-wrapper d-flex align-items-stretch" >
+				<div class="nav-link" style="border-right:none; flex-grow:0.1;">
+					<a onclick="location.href='${path}/adMain.do'"><i class="mdi mdi-desktop-mac"></i></a>
 				</div>
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-mail"></i></a>
+				<div class="nav-link" style="border-right:none;flex-grow:0.1;">
+					<a href="javascript:;"><i class="mdi mdi-brightness-5" style="margin-left:none;"></i></a>
 				</div>
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-folder"></i></a>
-				</div>
-				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-document-text"></i></a>
-				</div>
+				
 			</div>
 		</nav>
 		
@@ -444,18 +428,17 @@ $(document).ready(function(){
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
-					<li class="nav-item">
-						<a class="nav-link" href="${path}/userIndex.do">
-							<i class="typcn typcn-device-desktop menu-icon"></i> <span
-							class="menu-title">대시보드</span>
+					<li class="nav-item"><a class="nav-link" href="index.jsp">
+							<i class="mdi mdi-airplay" style="width:20px;height:20px;"></i> <span
+							class="menu-title">프로젝트관리</span>
 							<!-- <div class="badge badge-danger">new</div> -->
 					</a></li>
 					
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="collapse" 
-							href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-							<i class="typcn typcn-document-text menu-icon"></i>
-							<span class="menu-title">공지사항</span>
+						<a class="nav-link" data-toggle="collapse" onclick="location.href='${path}/reqPJList.do'"
+							 aria-expanded="false" aria-controls="ui-basic">
+							<i class="mdi mdi-arrow-up-drop-circle-outline" style="width:20px;height:20px;" ></i>
+							<span class="menu-title">프로젝트요청관리</span>
 							<!-- 메뉴 옆 +기호 -->
 							<!-- <i class="menu-arrow"></i> -->
 						</a>
@@ -478,8 +461,10 @@ $(document).ready(function(){
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
 						aria-controls="form-elements"> 
-						<i class="typcn typcn-film menu-icon"></i> 
-							<span class="menu-title">간트차트</span>
+							
+		                        <i class="mdi mdi-account-check" style="width:20px;height:20px;"></i>
+		                
+							<span class="menu-title">사용자관리</span>
 							<!-- <i class="menu-arrow"></i> -->
 					</a>
 						<!-- <div class="collapse" id="form-elements">
@@ -493,8 +478,8 @@ $(document).ready(function(){
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false"
 						aria-controls="charts">
-						<i class="typcn typcn-chart-pie-outline menu-icon"></i>
-						<span class="menu-title">캘린더</span>
+						<i class="mdi mdi-checkbox-marked-circle" style="width:20px;height:20px;"></i>
+						<span class="menu-title">현황관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
 						<!-- <div class="collapse" id="charts">
@@ -508,8 +493,8 @@ $(document).ready(function(){
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false"
 						aria-controls="tables">
-						<i class="typcn typcn-th-small-outline menu-icon"></i>
-						<span class="menu-title">업무 관리</span>
+						<i class="mdi mdi-file-check" ></i>
+						<span class="menu-title">업무보고관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
 						<!-- <div class="collapse" id="tables">
@@ -521,10 +506,10 @@ $(document).ready(function(){
 						</div> -->
 					</li>
 					<li class="nav-item">
-					<a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false"
-						aria-controls="icons">
-						<i class="typcn typcn-compass menu-icon"></i>
-						<span class="menu-title">업무 보고</span>
+					<a class="nav-link" data-toggle="collapse" aria-expanded="false"
+						aria-controls="icons" onclick="location.href='${path}/noticeList.do'">
+						<i class="mdi mdi-tooltip-text" style="width:20px;height:20px;"></i>
+						<span class="menu-title">공지사항관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
 						<!-- <div class="collapse" id="icons">
@@ -538,8 +523,8 @@ $(document).ready(function(){
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
 						aria-controls="auth">
-						<i class="typcn typcn-user-add-outline menu-icon"></i>
-						<span class="menu-title">리스크 관리</span>
+						<i class="mdi mdi-account-plus" style="width:20px;height:20px;"></i>
+						<span class="menu-title">권한요청관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
 						<!-- <div class="collapse" id="auth">
@@ -554,26 +539,41 @@ $(document).ready(function(){
 						</div> -->
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${path}/file.do" >
-							<i class="typcn typcn-globe-outline menu-icon"></i>
-							<span class="menu-title">파일저장소</span>
-							<!-- <i class="menu-arrow"></i> -->
-						</a>
-						<!-- <div class="collapse" id="error">
+					<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
+						aria-controls="auth">
+						<i class="mdi mdi-account-convert" style="width:20px;height:20px;"></i>
+						<span class="menu-title">일반유저페이지</span>
+						<!-- <i class="menu-arrow"></i> -->
+					</a>
+						<!-- <div class="collapse" id="auth">
 							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"><a class="nav-link"
-									href="pages/samples/error-404.jsp"> 404 </a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="pages/samples/error-500.jsp"> 500 </a></li>
+								<li class="nav-item">
+								<a class="nav-link" href="pages/samples/login.jsp"> Login </a>
+								</li>
+								<li class="nav-item">
+								<a class="nav-link" href="pages/samples/register.jsp"> Register </a>
+								</li>
 							</ul>
 						</div> -->
 					</li>
-					<li class="nav-item" id="admin" style="display: none;">
-						<a class="nav-link" href="${path}/adMain.do">
-							<i class="mdi mdi-account-convert" style="width:20px;height:20px;"></i>
-							<span class="menu-title">관리자페이지</span>
-							<!-- <i class="menu-arrow"></i> -->
-						</a>
-					</li>
+					
+					
 				</ul>
 			</nav>
+			
+			<script>
+  // 현재 날짜를 가져오는 함수
+  function getCurrentDate() {
+    var currentDate = new Date();
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var month = monthNames[currentDate.getMonth()];
+    var day = currentDate.getDate();
+
+    return month + ' ' + day;
+  }
+
+  // 페이지 로딩 시 현재 날짜로 업데이트
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('currentDate').innerText = 'Today: ' + getCurrentDate();
+  });
+</script>

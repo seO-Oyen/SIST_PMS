@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tryForge.admin.dao.PJRequestDao">
+	
+	<!-- 프로젝트 출력 -->
+	<select id="ReqPJList" resultType="project">
+		SELECT * FROM PROJECT p 
+	</select>
+	
+	<!-- 프로젝트에 해당하는 맴버 출력 -->
+	<select id="PJMemList" resultType="member" parameterType="String">
+		select m.* from member m 
+		LEFT JOIN TEAM_MEMBER tm ON tm.member_key = m.member_key
+		LEFT JOIN TEAM t ON t.TEAM_KEY = tm.TEAM_KEY
+		LEFT JOIN project p ON p.project_KEY = t.project_KEY
+		WHERE p.PROJECT_KEY = #{project_key}
+	</select>
+</mapper>

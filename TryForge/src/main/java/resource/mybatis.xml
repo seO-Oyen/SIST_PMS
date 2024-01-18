@@ -3,10 +3,18 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="board" type="tryForge.vo.Board"/>
+		<typeAlias alias="member" type="tryForge.vo.Member"/>
+		<typeAlias alias="notice" type="tryForge.vo.Notice"/>
+		<typeAlias alias="noticeSch" type="tryForge.vo.NoticeSch"/>
+		<typeAlias alias="project" type="tryForge.vo.Project"/>
+		<typeAlias alias="team" type="tryForge.vo.Team"/>
+		<typeAlias alias="team_member" type="tryForge.vo.Team_Member"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="resource/mapper01.xml"/>
+		<mapper resource="resource/mapper/mapper01.xml"/>
+		<mapper resource="resource/mapper/memberMapper.xml"/>
+		<mapper resource="resource/mapper/adminMapper.xml"/>
+		<mapper resource="resource/mapper/requestPJMapper.xml"/>
 	</mappers>
 	
 </configuration>

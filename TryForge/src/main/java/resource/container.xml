@@ -35,12 +35,15 @@
       	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
       	<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
       </context:component-scan>
+      
+      <context:property-placeholder
+      	location="classpath:resource/config.txt"/>
        <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-       		destroy-method="close"> <!-- 자원해제시 사용하는 메서드 선언 -->
-       		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-       		<property name="url" value="jdbc:oracle:thin:@211.63.89.67:1521:xe"/>
-       		<property name="username" value="one"/>
-       		<property name="password" value="1111"/>
+       		destroy-method="close">
+       		<property name="driverClassName" value="${db.driver}"/>
+       		<property name="url" value="${db.host}"/>
+       		<property name="username" value="${db.user}"/>
+       		<property name="password" value="${db.pwd}"/>
        </bean>
        <tx:annotation-driven proxy-target-class="true"/>
        <bean id="transactionManager"
@@ -68,7 +71,8 @@
 			<property name="contentType" value="text/html;charset=utf-8"/>        
         </bean>
         <!-- 파일 업로드 뷰 -->
-        
+        <bean id="multipartResolver"
+        	class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
         <!-- 파일 다운로드 뷰 -->
 
 </beans>      
