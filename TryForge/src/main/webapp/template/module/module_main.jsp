@@ -40,6 +40,7 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${path}/template/js/dashboard.js"></script>
+<script src="${path}/template/calendar/index.global.js"></script>
 <!-- End custom js for this page-->
 <script>
 $(document).ready(function(){

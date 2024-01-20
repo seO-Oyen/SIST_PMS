@@ -61,8 +61,9 @@ public class MemberController {
 		return "user/register";
 	}
 	
-	@GetMapping("test.do")
-	public String test01(
+	// 아이디 중복체크
+	@GetMapping("idCheck.do")
+	public String idCheck(
 			@RequestParam("userId") String userId, Model d) {
 		if (memberService.checkId(userId)) {
 			System.out.println("중복");
@@ -70,6 +71,7 @@ public class MemberController {
 			System.out.println("안중복");
 		}
 		d.addAttribute("userIdChk", memberService.checkId(userId));
+		
 		return "pageJsonReport";
 	}
 
