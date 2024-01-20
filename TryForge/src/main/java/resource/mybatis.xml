@@ -14,7 +14,7 @@
 		<mapper resource="resource/mapper/mapper01.xml"/>
 		<mapper resource="resource/mapper/memberMapper.xml"/>
 		<mapper resource="resource/mapper/adminMapper.xml"/>
-		<!--<mapper resource="resource/mapper/requestPJMapper.xml"/>-->
+		<mapper resource="resource/mapper/requestPJMapper.xml"/>
 	</mappers>
 	
 </configuration>

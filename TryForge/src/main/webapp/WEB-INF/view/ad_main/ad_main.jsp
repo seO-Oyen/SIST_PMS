@@ -71,14 +71,15 @@
 									</tr>
 								</thead>
 								<tbody>
-
+								<c:forEach var="plist" items="${plist}">
 									<tr>
-										<td>프로젝트1</td>
-										<td><button type="button"
+										<td>${plist.title}</td>
+										<td><button type="button" onclick="location.href='${path}/tryForge/reqPJList.do'"
 												class="btn btn-link btn-rounded btn-fw"
 												style="margin-left: 60%;">자세히</button></td>
 
 									</tr>
+								</c:forEach>
 
 								</tbody>
 							</table>

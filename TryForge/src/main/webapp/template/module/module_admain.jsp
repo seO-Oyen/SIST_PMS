@@ -52,7 +52,7 @@
 			<!-- 왼쪽 상단 로고 -->
 			<div class="navbar-brand-wrapper d-flex justify-content-center" style="background:white;">
 				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100" >
-					<a class="navbar-brand brand-logo" href="index.jsp" >
+					<a class="navbar-brand brand-logo" href="${path}/adMain.do" >
 					<img src="${path}/template/images/try_forge01.jpg" alt="logo" style="width:100%"/>
 					<!-- <span>TryForge</span> -->
 					</a> 
@@ -218,7 +218,7 @@
 			<!-- 아이콘 버튼 -->
 			<div class="navbar-links-wrapper d-flex align-items-stretch" >
 				<div class="nav-link" style="border-right:none; flex-grow:0.1;">
-					<a href="javascript:;"><i class="mdi mdi-desktop-mac"></i></a>
+					<a onclick="location.href='${path}/adMain.do'"><i class="mdi mdi-desktop-mac"></i></a>
 				</div>
 				<div class="nav-link" style="border-right:none;flex-grow:0.1;">
 					<a href="javascript:;"><i class="mdi mdi-brightness-5" style="margin-left:none;"></i></a>
@@ -435,8 +435,8 @@
 					</a></li>
 					
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="collapse" 
-							href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+						<a class="nav-link" data-toggle="collapse" onclick="location.href='${path}/reqPJList.do'"
+							 aria-expanded="false" aria-controls="ui-basic">
 							<i class="mdi mdi-arrow-up-drop-circle-outline" style="width:20px;height:20px;" ></i>
 							<span class="menu-title">프로젝트요청관리</span>
 							<!-- 메뉴 옆 +기호 -->
@@ -506,8 +506,8 @@
 						</div> -->
 					</li>
 					<li class="nav-item">
-					<a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false"
-						aria-controls="icons">
+					<a class="nav-link" data-toggle="collapse" aria-expanded="false"
+						aria-controls="icons" onclick="location.href='${path}/noticeList.do'">
 						<i class="mdi mdi-tooltip-text" style="width:20px;height:20px;"></i>
 						<span class="menu-title">공지사항관리</span>
 						<!-- <i class="menu-arrow"></i> -->

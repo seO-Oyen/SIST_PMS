@@ -43,11 +43,15 @@
 <script src='${path}/template/dist/index.global.js'></script>
 <!-- End custom js for this page-->
 <script>
-var sessId = "${loginMem.member_id}"
-if(sessId==""){
-	alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
-	location.href="${path}/login.do"
-}
+$(document).ready(function(){
+	var sessId = "${loginMem.member_id}"
+	if(sessId==""){
+		alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
+		location.href="${path}/login.do"
+	} else if ("${loginMem.member_role}" != "") {
+		$("#admin").css("display", "")
+	}
+})
 </script>
 </head>
 <body>
@@ -58,11 +62,11 @@ if(sessId==""){
 			<!-- 왼쪽 상단 로고 -->
 			<div class="navbar-brand-wrapper d-flex justify-content-center" style="background:white;">
 				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100" >
-					<a class="navbar-brand brand-logo" href="index.jsp" >
+					<a class="navbar-brand brand-logo" href="${path}/userIndex.do" >
 					<img src="${path}/template/images/try_forge01.jpg" alt="logo" style="width:100%"/>
 					<!-- <span>TryForge</span> -->
 					</a> 
-					<a class="navbar-brand brand-logo-mini" href="index.jsp">
+					<a class="navbar-brand brand-logo-mini" href="${path}/userIndex.do">
 					<img src="${path}/template/images/try_logo.jpg" alt="logo" style="width:100%;"/></a>
 					<button class="navbar-toggler navbar-toggler align-self-center"
 						type="button" data-toggle="minimize" style="color:black; margin-left:10px;">
@@ -441,7 +445,8 @@ if(sessId==""){
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="index.jsp">
+					<li class="nav-item">
+						<a class="nav-link" href="${path}/userIndex.do">
 							<i class="typcn typcn-device-desktop menu-icon"></i> <span
 							class="menu-title">대시보드</span>
 							<!-- <div class="badge badge-danger">new</div> -->
@@ -550,8 +555,7 @@ if(sessId==""){
 						</div> -->
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
-							aria-controls="error">
+						<a class="nav-link" href="${path}/file.do" >
 							<i class="typcn typcn-globe-outline menu-icon"></i>
 							<span class="menu-title">파일저장소</span>
 							<!-- <i class="menu-arrow"></i> -->
@@ -565,11 +569,12 @@ if(sessId==""){
 							</ul>
 						</div> -->
 					</li>
-					<!-- <li class="nav-item"><a class="nav-link"
-						href="https://bootstrapdash.com/demo/polluxui-free/docs/documentation.html">
-							<i class="typcn typcn-mortar-board menu-icon"></i> <span
-							class="menu-title">Documentation</span>
-					</a>
-					</li> -->
+					<li class="nav-item" id="admin" style="display: none;">
+						<a class="nav-link" href="${path}/adMain.do">
+							<i class="mdi mdi-account-convert" style="width:20px;height:20px;"></i>
+							<span class="menu-title">관리자페이지</span>
+							<!-- <i class="menu-arrow"></i> -->
+						</a>
+					</li>
 				</ul>
 			</nav>

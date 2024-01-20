@@ -31,8 +31,35 @@
 	//}
 
 	$(document).ready(function() {
+		$(window).on("load", function() {
+			var key = $("[id^='Form01']")
+	        key.submit();
+	        alert(key)
+	    });
+		
+		
+		// 모든 프로젝트의 토글 버튼에 대한 이벤트 처리
+		$("[id^=toggleSwitch]").change(function() {
+			var projectId = $(this).data("project-id");
+			toggleDescription(projectId);
+		});
 
-	})
+		// 모든 프로젝트의 초기 상태 설정
+		$("[id^=toggleSwitch]").each(function() {
+			var projectId = $(this).data("project-id");
+			toggleDescription(projectId);
+		});
+
+		function toggleDescription(projectId) {
+			var detailBox = $("#detailBox" + projectId);
+
+			if ($("#toggleSwitch" + projectId).prop("checked")) {
+				detailBox.hide();
+			} else {
+				detailBox.show();
+			}
+		}
+	});
 </script>
 <div class="col-lg-6 grid-margin stretch-card"
 	style="max-width: 85%; flex: 0 0 95%;">
@@ -40,21 +67,27 @@
 		<div class="card-body">
 			<h4 class="card-title">REQUEST PROJECT</h4>
 			<br>
-			<form>
+			<c:forEach var="plist" items="${plist}" varStatus="sts">
+				<form method="post" id="Form01" action="${path}/tryForge/reqPJList.do">
+					<input type="hidden" name="project_key"
+						value="${plist.project_key}" />
+				</form>
 
 				<div class="project-info"
 					style="padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #ddd; border-radius: 5px; text-align: center;">
 
 					<div style="margin: 10px 0;">
-						<h3 style="margin: 0;">프로젝트 PJ-1</h3>
+						<h3 style="margin: 0;">프로젝트 ${plist.project_key}</h3>
 					</div>
 
-
 					<h5>TryForge</h5>
-					<p class="mb-0">2024.01.15~20240215</p>
-					<p class="mb-0">담당자</p>
+					<p class="mb-0">
+						<fmt:formatDate value="${plist.start_date}" pattern="yyyy.MM.dd" />
+						~
+						<fmt:formatDate value="${plist.end_date}" pattern="yyyy.MM.dd" />
+					</p>
+					<p class="mb-0">${plist.leader}</p>
 
-					<!-- 버튼을 같은 div로 묶음 -->
 					<div class="buttons">
 						<button type="button" class="btn btn-inverse-info btn-fw">승인</button>
 						<button type="button" class="btn btn-inverse-danger btn-fw">반려</button>
@@ -62,44 +95,35 @@
 
 					<label class="toggle-switch toggle-switch-info"
 						style="margin-top: 10px;"> <input type="checkbox" checked
-						id="toggleSwitch" onchange="toggleDescription()"> <span
-						class="toggle-slider round"></span>
+						id="toggleSwitch${sts.count}" data-project-id="${sts.count}">
+						<span class="toggle-slider round"></span>
 					</label>
 				</div>
+
 				<br>
-				<blockquote class="blockquote" id="projectDescription2"
+
+				<blockquote class="blockquote" id="detailBox${sts.count}"
 					style="display: none; background-color: #f9f9f9; padding: 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-					<h3 class="card-title" style="margin-bottom: 8px; font-size: 25px">프로젝트 상세설명</h3>
-					<ul class="list-arrow"  style="font-size: 18px;">
-						<li >pms프로그램 제작</li>
+					<h3 class="card-title" style="margin-bottom: 8px; font-size: 25px">프로젝트
+						상세설명</h3>
+					<ul class="list-arrow" style="font-size: 18px;">
+						<li>${plist.detail}</li>
 					</ul>
 					<br>
-					<h3 class="card-title" style="margin-bottom: 8px; font-size: 25px">참여 구성원</h3>
+					<h3 class="card-title" style="margin-bottom: 8px; font-size: 25px">참여
+						구성원</h3>
 					<ol style="font-size: 18px;">
-						<li>홍길동 PL</li>
-						<li>김길동 PM</li>
-						<li>최길동 PM</li>
-						<li>박길동 PM</li>
-						<li>오길동 PM</li>
+						<li>홍길동</li>
+						<!-- 추가적인 참여 구성원 정보 표시 -->
 					</ol>
 				</blockquote>
+			</c:forEach>
 
-			</form>
+			
+
+
 			<script>
-				toggleDescription();
 
-				function toggleDescription() {
-					var description2 = document
-							.getElementById("projectDescription2");
-
-					if (!document.getElementById("toggleSwitch").checked) {
-						// 토글 스위치가 체크된 경우
-						description2.style.display = "none";
-					} else {
-						// 토글 스위치가 체크되지 않은 경우
-						description2.style.display = "block";
-					}
-				}
 			</script>
 
 

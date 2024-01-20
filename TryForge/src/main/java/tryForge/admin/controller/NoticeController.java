@@ -29,12 +29,6 @@ public class NoticeController {
 		return "notice/noticeList";
 	}
 	
-	// 관리자 메인페이지 공지사항 출력
-	@GetMapping("ad_main.do")
-	public String ad_main(NoticeSch sch, Model d) {
-		d.addAttribute("noticeList", service.noticeList(sch));
-	    return "ad_main\\ad_main";
-	}
 	
 	// 공지사항 상세페이지
 	@RequestMapping("getNotice.do")

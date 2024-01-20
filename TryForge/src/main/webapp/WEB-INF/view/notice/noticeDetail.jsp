@@ -11,8 +11,8 @@
 	flush="true" />
 
 <script>
-        var sessId = "${loginMem.id}"; 
-        var sessName = "${loginMem.name}"
+        var sessId = "${loginMem.member_id}"; 
+        var sessName = "${loginMem.member_name}"
         if (sessId === "") {
             alert("로그인을 하여야 현재 화면을 볼 수 있습니다.\n로그인 페이지로 이동합니다.");
             location.href = "${path}/tryForge/login.do";
