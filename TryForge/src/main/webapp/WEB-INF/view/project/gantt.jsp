@@ -5,18 +5,169 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="${path}/template/module/module_main.jsp" flush="true" />
+<style>
+.weekend {
+    background-color: #f4f7f9; /* 주말 배경색 변경 */
+}
+</style>
+<div id='gantt_here' style="width:100%; height:100%; margin-left:20px; margin-right:20px;"class="main-panel">
 
-<div class="main-panel">
-
-<div id='gantt_here' class="content-wrapper">
+<div >
 
 <script type="text/javascript">
+//기존 로케일 설정 유지
+gantt.setWorkTime({ day: 6, hours: false }); // 토요일을 비작업 시간으로 설정
+gantt.setWorkTime({ day: 0, hours: false });  
+gantt.config.duration_unit = "hour";
+gantt.config.work_time = true;
+// locale 설정 적용
+gantt.i18n.setLocale({
+    date: {
+        month_full: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+        month_short: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+        day_full: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"],
+        day_short: ["일", "월", "화", "수", "목", "금", "토"]
+    },
+    labels: {
+        new_task: "새로운 작업",
+        icon_save: "저장",
+        icon_cancel: "취소",
+        icon_details: "세부사항",
+        icon_edit: "편집",
+        icon_delete: "삭제",
+        gantt_save_btn: "저장",
+        gantt_cancel_btn: "취소",
+        gantt_delete_btn: "삭제",
+        confirm_closing: "", // 변경사항이 손실될 수 있습니다. 계속하시겠습니까?
+        confirm_deleting: "작업이 영구적으로 삭제됩니다. 계속하시겠습니까?",
+        section_description: "설명",
+        section_time: "기간",
+        section_type: "유형",
+        
+        /* grid columns */
+        column_wbs: "WBS",
+        column_text: "작업 이름",
+        column_start_date: "시작 시간",
+        column_duration: "기간",
+        column_add: "",
+        
+        /* link confirmation */
+        link: "링크",
+        confirm_link_deleting: "삭제될 것입니다",
+        link_start: " (시작)",
+        link_end: " (끝)",
+        
+        type_task: "작업",
+        type_project: "프로젝트",
+        type_milestone: "마일스톤",
+        
+        minutes: "분",
+        hours: "시간",
+        days: "일",
+        weeks: "주",
+        months: "월",
+        years: "년",
+        
+        /* message popup */
+        message_ok: "확인",
+        message_cancel: "취소",
+        
+        /* constraints */
+        section_constraint: "제약사항",
+        constraint_type: "제약사항 유형",
+        constraint_date: "제약사항 날짜",
+        asap: "가능한 빨리",
+        alap: "가능한 늦게",
+        snet: "빨리 시작 안함",
+        snlt: "늦게 시작 안함",
+        fnet: "빨리 끝내지 않음",
+        fnlt: "늦게 끝내지 않음",
+        mso: "반드시 시작",
+        mfo: "반드시 끝내기",
+        
+        /* resource control */
+        resources_filter_placeholder: "필터링을 위해 입력하세요",
+        resources_filter_label: "빈 항목 숨기기"
+    }
+});
+gantt.config.scales = [
+    {unit: "month", step: 1, format: "%Y년 %m월"}, // 월 단위 설정, 포맷 변경
+//    {unit: "week", step: 1, format: function (date) {
+//        return "Week #" + gantt.date.getWeek(date); // 주 단위 설정, 포맷 변경
+//    }},
+	{unit: "day", step: 1, format: "%D", css: function(date) {
+	    if(!gantt.isWorkTime({ date: date, unit: "day"})){
+	        return "weekend"; // 주말 스타일 변경
+	    }
+	}}
+];
+
+// 기존 설정들 유지
+show_empty_state = true;
+gantt.config.start_date = new Date(2024, 0, 1);
+gantt.config.end_date = new Date(2024, 11, 31);
+gantt.config.autosize = "y";
+// 날짜 포맷 변경 
+gantt.templates.format_date = function(date){
+	return date.toISOString();
+}; 
+gantt.config.date_grid = "%m월%d일"; 
+
+// 기존 스케일 설정 삭제 또는 주석 처리
+// gantt.config.scale_unit = "month";
+// gantt.config.date_scale = "%Y년 %m월";
+
+// 기존 서브스케일 설정 삭제 또는 주석 처리
+// gantt.config.subscales = [
+//    {unit:"day", step:1, date:"%d %l"} 
+// ];
+
+ 
+
+
+// gantt.config.bar_height = 30; 간트 작업 바 세로크기
+gantt.config.scale_height = 50;
+
+//gantt.templates.task_text = function(start, end, task){
+//    return task.name + " (" + task.duration + " days)";
+//};
+
+// 날짜 형식 템플릿 정의
+gantt.templates.date_scale = function(date){
+    var formatFunc = gantt.date.date_to_str("%d %l");
+    return formatFunc(date);
+};
+
+// 마일스톤 템플릿 정의
+gantt.templates.milestone_class = function(start, end, task){
+    if(task.type === gantt.config.types.milestone){
+        return "milestone";
+    }
+    return "";
+};
+
+gantt.config.columns=[
+    {name:"text",       label:"업무명",  tree:true, width:'*' },
+    {name:"start_date", label:"시작일", align: "center" },
+    {name:"duration",   label:"기간",   align: "center" },
+    {name:"add",        label:"" }
+];
+
+gantt.config.calendar_property = "calendar_id"; // 실제 차트 안에 들어갈것들 프로퍼티는.. 무슨종류인지 정하는??
+var tasks = {
+	    data:[
+	        {id:1, text:"Task #1", start_date:"01-04-2023", duration:5, calendar_id:"working_days"},
+	        {id:2, text:"Task #2", start_date:"02-04-2023", duration:3, calendar_id:"weekends"},
+	        // 더 많은 태스크...
+	    ]
+	}; 
 gantt.init("gantt_here");
+gantt.parse(tasks);
 </script>
 			<!-- 풋터 -->
 			<!-- content-wrapper ends -->  
 			<!-- partial:partials/_footer.html -->
-			<!-- <footer class="footer">
+			<!-- <footer class="footer"> 
 				<div class="card">
 					<div class="card-body">
 						<div
