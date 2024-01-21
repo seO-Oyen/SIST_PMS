@@ -24,6 +24,7 @@
 <!-- inject:css -->
 <link rel="stylesheet" href="${path}/template/css/vertical-layout-light/style.css">
 <link rel="stylesheet" href="${path}/template/vendors/mdi/css/materialdesignicons.min.css"/>
+<link rel="stylesheet" href="${path}/template/gantt/codebase/skins/dhtmlxgantt_material.css"/>
 
 <!-- base:js -->
 <script src="${path}/template/vendors/js/vendor.bundle.base.js"></script>
@@ -41,6 +42,7 @@
 <!-- Custom js for this page-->
 <script src="${path}/template/js/dashboard.js"></script>
 <script src="${path}/template/calendar/index.global.js"></script>
+<script src="${path}/template/gantt/codebase/dhtmlxgantt.js"></script>
 <!-- End custom js for this page-->
 <script>
 $(document).ready(function(){
