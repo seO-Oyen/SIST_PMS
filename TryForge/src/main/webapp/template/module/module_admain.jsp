@@ -45,6 +45,17 @@
 <script src="${path}/template/js/dashboard.js"></script>
 <script src="${path}/template/alert/sweetalert2.min.js"></script>
 <!-- End custom js for this page-->
+<script>
+$(document).ready(function(){
+	var sessId = "${loginMem.member_id}"
+	if(sessId==""){
+		alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
+		location.href="${path}/login.do"
+	} else if ("${loginMem.member_role}" != "") {
+		$("#admin").css("display", "")
+	}
+})
+</script>
 </head>
 <body>
 	<div class="container-scroller">
@@ -73,6 +84,7 @@
 					<li class="nav-item nav-profile dropdown">
 					<a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
 						<img src="${path}/template/images/faces/face5.jpg" alt="profile" /> 
+						<span class="nav-profile-name">${loginMem.member_name} 님</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 						aria-labelledby="profileDropdown">
