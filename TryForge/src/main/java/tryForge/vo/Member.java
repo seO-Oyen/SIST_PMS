@@ -1,70 +1,62 @@
 package tryForge.vo;
 
 public class Member {
-	private int no;
-	private String name;
-	private String id;
-	private String password;
-	private String email;
-	private String role;
-
+	private int member_key;
+	private String member_name;
+	private String member_id;
+	private String member_pwd;
+	private String member_email;
+	private String member_role;
+	
 	public Member() {
-
+		
 	}
-
-	public Member(int no, String name, String id, String password, String email) {
-		this.no = no;
-		this.name = name;
-		this.id = id;
-		this.password = password;
-		this.email = email;
+	
+	public Member(int member_key, String member_name, String member_id, String member_pwd, String member_email,
+			String member_role) {
+		this.member_key = member_key;
+		this.member_name = member_name;
+		this.member_id = member_id;
+		this.member_pwd = member_pwd;
+		this.member_email = member_email;
+		this.member_role = member_role;
 	}
-
-	public Member(int no, String name, String id, String password, String email,
-			String role) {
-		this.no = no;
-		this.name = name;
-		this.id = id;
-		this.password = password;
-		this.email = email;
-		this.role = role;
+	
+	public int getMember_key() {
+		return member_key;
 	}
-
-	public int getNo() {
-		return no;
+	public void setMember_key(int member_key) {
+		this.member_key = member_key;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public String getMember_name() {
+		return member_name;
 	}
-	public String getName() {
-		return name;
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public String getMember_id() {
+		return member_id;
 	}
-	public String getId() {
-		return id;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public String getMember_pwd() {
+		return member_pwd;
 	}
-	public String getPassword() {
-		return password;
+	public void setMember_pwd(String member_pwd) {
+		this.member_pwd = member_pwd;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public String getMember_email() {
+		return member_email;
 	}
-	public String getEmail() {
-		return email;
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public String getMember_role() {
+		return member_role;
 	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setMember_role(String member_role) {
+		this.member_role = member_role;
 	}
 
 }

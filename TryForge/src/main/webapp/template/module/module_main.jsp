@@ -24,6 +24,8 @@
 <!-- inject:css -->
 <link rel="stylesheet" href="${path}/template/css/vertical-layout-light/style.css">
 <link rel="stylesheet" href="${path}/template/vendors/mdi/css/materialdesignicons.min.css"/>
+<link rel="stylesheet" href="${path}/template/gantt/codebase/skins/dhtmlxgantt_material.css"/>
+<link rel="stylesheet" href="${path}/template/alert/sweetalert2.min.css">
 
 <!-- base:js -->
 <script src="${path}/template/vendors/js/vendor.bundle.base.js"></script>
@@ -40,7 +42,21 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${path}/template/js/dashboard.js"></script>
+<script src="${path}/template/calendar/index.global.js"></script>
+<script src="${path}/template/gantt/codebase/dhtmlxgantt.js"></script>
+<script src="${path}/template/alert/sweetalert2.min.js"></script>
 <!-- End custom js for this page-->
+<script>
+$(document).ready(function(){
+	var sessId = "${loginMem.member_id}"
+	if(sessId==""){
+		alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
+		location.href="${path}/login.do"
+	} else if ("${loginMem.member_role}" != "") {
+		$("#admin").css("display", "")
+	}
+})
+</script>
 </head>
 <body>
 	<div class="container-scroller">
@@ -50,11 +66,11 @@
 			<!-- 왼쪽 상단 로고 -->
 			<div class="navbar-brand-wrapper d-flex justify-content-center" style="background:white;">
 				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100" >
-					<a class="navbar-brand brand-logo" href="index.jsp" >
+					<a class="navbar-brand brand-logo" href="${path}/userIndex.do" >
 					<img src="${path}/template/images/try_forge01.jpg" alt="logo" style="width:100%"/>
 					<!-- <span>TryForge</span> -->
 					</a> 
-					<a class="navbar-brand brand-logo-mini" href="index.jsp">
+					<a class="navbar-brand brand-logo-mini" href="${path}/userIndex.do">
 					<img src="${path}/template/images/try_logo.jpg" alt="logo" style="width:100%;"/></a>
 					<button class="navbar-toggler navbar-toggler align-self-center"
 						type="button" data-toggle="minimize" style="color:black; margin-left:10px;">
@@ -69,13 +85,14 @@
 					<li class="nav-item nav-profile dropdown">
 					<a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
 						<img src="${path}/template/images/faces/face5.jpg" alt="profile" /> 
-						<span class="nav-profile-name">(유저 이름)</span>
+						<span class="nav-profile-name">${loginMem.member_name} 님</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 						aria-labelledby="profileDropdown">
-						<a class="dropdown-item"> <i class="typcn typcn-cog-outline text-primary"></i> 마이페이지
+						<a class="dropdown-item">
+							<i class="typcn typcn-cog-outline text-primary"></i> 마이페이지
 						</a> 
-						<a class="dropdown-item"> 
+						<a class="dropdown-item" href="${path}/login.do"> 
 							<i class="typcn typcn-eject text-primary"></i> 로그아웃
 						</a>
 					</div>
@@ -432,7 +449,8 @@
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="index.jsp">
+					<li class="nav-item">
+						<a class="nav-link" href="${path}/userIndex.do">
 							<i class="typcn typcn-device-desktop menu-icon"></i> <span
 							class="menu-title">대시보드</span>
 							<!-- <div class="badge badge-danger">new</div> -->
@@ -541,8 +559,7 @@
 						</div> -->
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
-							aria-controls="error">
+						<a class="nav-link" href="${path}/file.do" >
 							<i class="typcn typcn-globe-outline menu-icon"></i>
 							<span class="menu-title">파일저장소</span>
 							<!-- <i class="menu-arrow"></i> -->
@@ -556,11 +573,12 @@
 							</ul>
 						</div> -->
 					</li>
-					<!-- <li class="nav-item"><a class="nav-link"
-						href="https://bootstrapdash.com/demo/polluxui-free/docs/documentation.html">
-							<i class="typcn typcn-mortar-board menu-icon"></i> <span
-							class="menu-title">Documentation</span>
-					</a>
-					</li> -->
+					<li class="nav-item" id="admin" style="display: none;">
+						<a class="nav-link" href="${path}/adMain.do">
+							<i class="mdi mdi-account-convert" style="width:20px;height:20px;"></i>
+							<span class="menu-title">관리자페이지</span>
+							<!-- <i class="menu-arrow"></i> -->
+						</a>
+					</li>
 				</ul>
 			</nav>
