@@ -481,8 +481,7 @@ $(document).ready(function(){
 					</li>
 					
 					<li class="nav-item">
-					<a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
-						aria-controls="form-elements"> 
+					<a class="nav-link" href="${path}/gantt.do" > 
 						<i class="typcn typcn-film menu-icon"></i> 
 							<span class="menu-title">간트차트</span>
 							<!-- <i class="menu-arrow"></i> -->
@@ -496,8 +495,7 @@ $(document).ready(function(){
 						</div> -->
 					</li>
 					<li class="nav-item">
-					<a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false"
-						aria-controls="charts">
+					<a class="nav-link" href="${path}/calendar.do" >
 						<i class="typcn typcn-chart-pie-outline menu-icon"></i>
 						<span class="menu-title">캘린더</span>
 						<!-- <i class="menu-arrow"></i> -->
