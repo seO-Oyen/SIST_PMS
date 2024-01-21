@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import tryForge.admin.service.AdProjectService;
 import tryForge.vo.Member;
-import tryForge.vo.NoticeSch;
 import tryForge.vo.Project;
 
 
@@ -22,14 +21,21 @@ public class AdProjectController {
 	@Autowired(required = false)
 	private AdProjectService service;
 	
-	@RequestMapping("reqPJList.do")
-	public String reqPJList(Project p , Model d) {
-		d.addAttribute("plist",service.ReqPJList());
+	@RequestMapping("projList.do")
+	public String projList(Project p , Model d) {
+		d.addAttribute("plist",service.projList());
 		 //List<Member> mlist = service.PJMemList(project_key);
 		    //d.addAttribute("mlist", mlist);
-		return "pj_request\\requestList";
+		return "adProject\\projList";
 	}
 	
+	@GetMapping("schMem.do")
+	public String schMem(Member sch, Model d) {
+		d.addAttribute("memList",service.schMem(sch));
+		return "pageJsonReport";
+	}
+	
+	// 
 //	@GetMapping("reqPJ.do")
 //	public String reqPJFrm() {
 //		return"pj_request\\requestList";

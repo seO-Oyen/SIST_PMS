@@ -6,24 +6,19 @@ public class Project {
 	private String project_key;
 	private String title;
 	private String detail;
-	private String leader;
 	private String status;
 	private Date start_date;
 	private Date end_date;
-	private String rej_reason;
 	public Project() {
 		// TODO Auto-generated constructor stub
 	}
-	public Project(String project_key, String title, String detail, String leader, String status, Date start_date,
-			Date end_date, String rej_reason) {
+	public Project(String project_key, String title, String detail, String status, Date start_date, Date end_date) {
 		this.project_key = project_key;
 		this.title = title;
 		this.detail = detail;
-		this.leader = leader;
 		this.status = status;
 		this.start_date = start_date;
 		this.end_date = end_date;
-		this.rej_reason = rej_reason;
 	}
 	public String getProject_key() {
 		return project_key;
@@ -43,12 +38,6 @@ public class Project {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-	public String getLeader() {
-		return leader;
-	}
-	public void setLeader(String leader) {
-		this.leader = leader;
-	}
 	public String getStatus() {
 		return status;
 	}
@@ -67,11 +56,5 @@ public class Project {
 	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
-	public String getRej_reason() {
-		return rej_reason;
-	}
-	public void setRej_reason(String rej_reason) {
-		this.rej_reason = rej_reason;
-	}
-	
+
 }

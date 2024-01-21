@@ -5,7 +5,7 @@
 <mapper namespace="tryForge.admin.dao.AdProjectDao">
 	
 	<!-- 프로젝트 출력 -->
-	<select id="ReqPJList" resultType="project">
+	<select id="projList" resultType="project">
 		SELECT * FROM PROJECT p 
 	</select>
 	
@@ -17,6 +17,11 @@
 		LEFT JOIN project p ON p.project_KEY = t.project_KEY
 		WHERE p.PROJECT_KEY = #{project_key}
 	</select>
+	<!-- 사원 검색 출력 -->
+	<select id="schMem" resultType="member" parameterType="String">
+		SELECT * FROM MEMBER WHERE MEMBER_NAME = #{member_name}
+	</select>
+	
 	<!-- 프로젝트 입력 -->
 	<insert id=""></insert>
 </mapper>

@@ -14,14 +14,21 @@ public class AdProjectService {
 	@Autowired(required = false)
 	private AdProjectDao dao;
 	
-	public List<Project> ReqPJList(){
-		return dao.ReqPJList();
+	public List<Project> projList(){
+		return dao.projList();
 	}
 	
-	public List<Member> PJMemList(String project_key){
-		List<Member> mlist = dao.PJMemList(project_key);
-		return mlist;
+//	public List<Member> PJMemList(String project_key){
+//		List<Member> mlist = dao.PJMemList(project_key);
+//		return mlist;
+//	}
+	public List<Member> schMem(Member sch){
+		if(sch.getMember_name()==null) sch.setMember_name("");
+
+//	    for (Member mlist : dao.schMem(member_name)) {
+//	        System.out.println(mlist.getMember_name());
+//	        System.out.println(mlist.getMember_email());
+//	    }
+	    return dao.schMem(sch);
 	}
-	
-	
 }
