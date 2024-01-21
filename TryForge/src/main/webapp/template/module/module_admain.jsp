@@ -16,7 +16,6 @@
 <link rel="shortcut icon" type="image/x-icon" href="${path}/template/images/logo_backDelete.png">
 <title>TryForge</title>
 <!-- base:css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <link rel="stylesheet" href="${path}/template/vendors/typicons/typicons.css">
 <link rel="stylesheet" href="${path}/template/vendors/css/vendor.bundle.base.css">
 <!-- endinject -->
@@ -27,9 +26,9 @@
   <link rel="shortcut icon" href="../../images/favicon.png" />
   
 <link rel="stylesheet" href="${path}/template/vendors/mdi/css/materialdesignicons.min.css"/>
+<link rel="stylesheet" href="${path}/template/alert/sweetalert2.min.css">
 
 <!-- base:js -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="${path}/template/vendors/js/vendor.bundle.base.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
@@ -44,6 +43,7 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${path}/template/js/dashboard.js"></script>
+<script src="${path}/template/alert/sweetalert2.min.js"></script>
 <!-- End custom js for this page-->
 </head>
 <body>

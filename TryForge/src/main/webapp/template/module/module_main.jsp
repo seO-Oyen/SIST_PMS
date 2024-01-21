@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="${path}/template/css/vertical-layout-light/style.css">
 <link rel="stylesheet" href="${path}/template/vendors/mdi/css/materialdesignicons.min.css"/>
 <link rel="stylesheet" href="${path}/template/gantt/codebase/skins/dhtmlxgantt_material.css"/>
+<link rel="stylesheet" href="${path}/template/alert/sweetalert2.min.css">
 
 <!-- base:js -->
 <script src="${path}/template/vendors/js/vendor.bundle.base.js"></script>
@@ -43,6 +44,7 @@
 <script src="${path}/template/js/dashboard.js"></script>
 <script src="${path}/template/calendar/index.global.js"></script>
 <script src="${path}/template/gantt/codebase/dhtmlxgantt.js"></script>
+<script src="${path}/template/alert/sweetalert2.min.js"></script>
 <!-- End custom js for this page-->
 <script>
 $(document).ready(function(){
