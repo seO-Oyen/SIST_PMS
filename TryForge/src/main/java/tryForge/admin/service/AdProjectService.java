@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tryForge.admin.dao.PJRequestDao;
+import tryForge.admin.dao.AdProjectDao;
 import tryForge.vo.Member;
 import tryForge.vo.Project;
 
 @Service
-public class PJRequestService {
+public class AdProjectService {
 	@Autowired(required = false)
-	private PJRequestDao dao;
+	private AdProjectDao dao;
 	
 	public List<Project> ReqPJList(){
 		return dao.ReqPJList();
