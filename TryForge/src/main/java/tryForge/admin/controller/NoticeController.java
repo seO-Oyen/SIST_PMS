@@ -69,9 +69,9 @@ public class NoticeController {
 	            msg = "공지사항 수정이 실패하였습니다.\n 다시 시도해주세요.";
 	        }
 	        d.addAttribute("msg", msg);
-	        System.out.println("msg?" + msg);
+	        //System.out.println("msg?" + msg);
 	        d.addAttribute("proc", "upt");
-	        System.out.println("proc?");
+	        //System.out.println("proc?");
 	        int noticeKey = upt.getNotice_Key();
 	        d.addAttribute("notice", service.getNotice(upt.getNotice_Key()));
 	    return "notice/updateNotice";

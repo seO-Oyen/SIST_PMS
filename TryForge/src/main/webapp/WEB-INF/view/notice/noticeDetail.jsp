@@ -11,58 +11,72 @@
 	flush="true" />
 
 <script>
-        var sessId = "${loginMem.member_id}"; 
-        var sessName = "${loginMem.member_name}"
-        if (sessId === "") {
-            alert("로그인을 하여야 현재 화면을 볼 수 있습니다.\n로그인 페이지로 이동합니다.");
-            location.href = "${path}/tryForge/login.do";
+    // 수정, 삭제 구분
+    var proc = "${proc}";
+    var msg = "${msg}";
+
+    if (proc !== "") {
+        if (proc === "upt") {
+            Swal.fire({
+                text: msg + "\n메인화면으로 이동하시겠습니까?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: '확인',
+                cancelButtonText: '취소',
+                confirmButtonColor: '#007FFF',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = "${path}/tryForge/noticeList.do";
+                }
+            });
         }
-        // 수정, 삭제 구분
-        var proc="${proc}"
-        	var msg = "${msg}"
-        	if(proc!=""){
-        		if(proc=="upt"){
-        			if(confirm(msg+"\n메인화면으로 이동하시겠습니까?")){
-        				location.href="${path}/tryForge/noticeList.do"
-        			}
-        		}
-        		if(proc=="del"){
-        			alert(msg+"\n메인화면으로 이동합니다.")
-        			location.href="${path}/tryForge/noticeList.do"
-        		}
-        	}
+        if (proc === "del") {
+            Swal.fire({
+                text: msg + "\n메인화면으로 이동합니다.",
+                icon: 'warning',
+                confirmButtonColor: '#007FFF', 
+            }).then(() => {
+                location.href = "${path}/tryForge/noticeList.do";
+            });
+        }
+    }
+
+    // 세션값 확인하여 버튼 숨김
+    $(document).ready(function() {
+        var writer = "${notice.notice_Writer}";
+        var sessName = "${loginMem.member_name}";
+
+        if (sessName !== writer) {
+            $("#uptBtn").hide();
+            $("#delBtn").hide();
+        }
+
         
-		// 세션값 확인하여 버튼 숨김
-        $(document).ready(function() {
-            var writer = "${notice.notice_Writer}"; 
-            if (sessName !== writer) {
-                $("#uptBtn").hide(); 
-                $("#delBtn").hide(); 
-            }
-            // ADM과 PM은 전체 다 삭제 가능(추후에 위에 조건문에 추가예정)
-            <%--
-            var role = "${loginMem.role}";
-            if(role=="ADM"||"PM"){
-            	 $("#uptBtn").show(); 
-                 $("#delBtn").show(); 
-            }
-            --%>
-         
-           // 수정	 
-          	$("#uptBtn").click(function(){
-          		var noticeKey = "${notice.notice_Key}";
-          	    location.href = "${path}/tryForge/updateNoticeFrm.do?notice_Key="+noticeKey;
-          	}) 
-          	
-          // 삭제
-          $("#delBtn").click(function(){
-        	  var no = "${notice.notice_Key}";
-  				if(confirm("삭제하시겠습니까?")){
-  				location.href="${path}/tryForge/deleteNotice.do?notice_Key="+no		
-  			}
-          })
+        // 수정
+        $("#uptBtn").click(function() {
+            var noticeKey = "${notice.notice_Key}";
+            location.href = "${path}/tryForge/updateNoticeFrm.do?notice_Key=" + noticeKey;
         });
-    </script>
+
+        // 삭제
+        $("#delBtn").click(function() {
+            var no = "${notice.notice_Key}";
+            Swal.fire({
+                text: '삭제하시겠습니까?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#007FFF',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '확인',
+                cancelButtonText: '취소',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = "${path}/tryForge/deleteNotice.do?notice_Key=" + no;
+                }
+            });
+        });
+    });
+</script>
 <div class="col-12 grid-margin" style="max-width: 85%; flex: 0 0 95%;">
 	<div class="card">
 		<div class="card-body">
