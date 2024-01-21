@@ -6,27 +6,26 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="${path}/template/module/module_main.jsp" flush="true" />
 <style>
-
     .content-wrapper {
-        height: 100vh; /* 뷰포트 높이에 맞추기 */
+        height: 100vh;
         display: flex;
-        flex-direction: column; /* 자식 요소들을 세로로 정렬 */
+        flex-direction: column;
     }
 
     .card {
-        flex: 1; /* flex 컨테이너 내부에서 남은 공간을 모두 차지하도록 설정 */
+        flex: 1;
         display: flex;
-        flex-direction: column; /* 자식 요소들을 세로로 정렬 */
+        flex-direction: column;
     }
 
     .card-body {
-        flex: 1; /* flex 컨테이너 내부에서 남은 공간을 모두 차지하도록 설정 */
-        overflow: hidden !important; /* 스크롤바 숨기기 */
+        flex: 1;
+        overflow: hidden !important;
     }
 
     #calendar {
-        height: 100%; /* 부모 요소의 높이를 100% 상속받음 */
-        overflow: hidden !important; /* 스크롤바 숨기기 */
+        height: 100%;
+        overflow: hidden !important;
     }
     .card .card-body{
         padding: 1rem 1.65rem;
