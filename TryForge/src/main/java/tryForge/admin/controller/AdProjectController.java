@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import tryForge.admin.service.PJRequestService;
+import tryForge.admin.service.AdProjectService;
 import tryForge.vo.Member;
 import tryForge.vo.NoticeSch;
 import tryForge.vo.Project;
@@ -18,9 +18,9 @@ import tryForge.vo.Project;
 
 
 @Controller
-public class PJRequestController {
+public class AdProjectController {
 	@Autowired(required = false)
-	private PJRequestService service;
+	private AdProjectService service;
 	
 	@RequestMapping("reqPJList.do")
 	public String reqPJList(Project p , Model d) {

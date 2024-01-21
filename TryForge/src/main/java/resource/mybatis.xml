@@ -17,7 +17,7 @@
 		<mapper resource="resource/mapper/mapper01.xml"/>
 		<mapper resource="resource/mapper/memberMapper.xml"/>
 		<mapper resource="resource/mapper/adminMapper.xml"/>
-		<mapper resource="resource/mapper/requestPJMapper.xml"/>
+		<mapper resource="resource/mapper/adProjetMapper.xml"/>
 		<mapper resource="resource/mapper/calendarMapper.xml"/>
 		<mapper resource="resource/mapper/ganttMapper.xml"/>
 		<mapper resource="resource/mapper/dashboardMapper.xml"/>

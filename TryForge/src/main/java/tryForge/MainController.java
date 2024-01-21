@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import tryForge.admin.service.NoticeService;
-import tryForge.admin.service.PJRequestService;
+import tryForge.admin.service.AdProjectService;
 import tryForge.vo.NoticeSch;
 
 @Controller
@@ -14,7 +14,7 @@ public class MainController {
 	@Autowired(required = false)
 	private NoticeService noticeService; 
 	@Autowired(required = false)
-	private PJRequestService PJRequestService;
+	private AdProjectService PJRequestService;
 
 	@GetMapping("index.do")
 	public String indexPage() {

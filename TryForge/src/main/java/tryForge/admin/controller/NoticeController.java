@@ -61,7 +61,6 @@ public class NoticeController {
 	
 	@PostMapping("updateNotice.do")
 	public String updateNotice(Notice upt, Model d) {
-	    System.out.println("updateNotice 메서드 호출은 되나????");
 	    String msg = "";
 	        int uptNo = service.updateNotice(upt);
 	        if (uptNo > 0) {
@@ -73,19 +72,15 @@ public class NoticeController {
 	        System.out.println("msg?" + msg);
 	        d.addAttribute("proc", "upt");
 	        System.out.println("proc?");
-	        
 	        int noticeKey = upt.getNotice_Key();
-	        System.out.println("공지사항 키 값설정?? " + noticeKey);
 	        d.addAttribute("notice", service.getNotice(upt.getNotice_Key()));
-	   
-	    
 	    return "notice/updateNotice";
 	}
 	
 	// 공지사항 삭제
 	@RequestMapping("deleteNotice.do")
 	public String deleteNotice(@RequestParam("notice_Key") int notice_Key, Model d) {
-		d.addAttribute("proc","upt");
+		d.addAttribute("proc","del");
 		d.addAttribute("msg",service.deleteNotice(notice_Key));
 		return "notice/noticeDetail";
 	}
