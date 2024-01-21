@@ -26,6 +26,7 @@
   <link rel="shortcut icon" href="../../images/favicon.png" />
   
 <link rel="stylesheet" href="${path}/template/vendors/mdi/css/materialdesignicons.min.css"/>
+<link rel="stylesheet" href="${path}/template/alert/sweetalert2.min.css">
 
 <!-- base:js -->
 <script src="${path}/template/vendors/js/vendor.bundle.base.js"></script>
@@ -42,6 +43,7 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${path}/template/js/dashboard.js"></script>
+<script src="${path}/template/alert/sweetalert2.min.js"></script>
 <!-- End custom js for this page-->
 </head>
 <body>
