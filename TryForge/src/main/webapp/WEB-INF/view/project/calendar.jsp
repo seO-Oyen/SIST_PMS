@@ -6,24 +6,48 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="${path}/template/module/module_main.jsp" flush="true" />
 <style>
-	.fc-scrollgrid-sync-table {
-		height: 1300px !important;
-	}
+
+    .content-wrapper {
+        height: 100vh; /* 뷰포트 높이에 맞추기 */
+        display: flex;
+        flex-direction: column; /* 자식 요소들을 세로로 정렬 */
+    }
+
+    .card {
+        flex: 1; /* flex 컨테이너 내부에서 남은 공간을 모두 차지하도록 설정 */
+        display: flex;
+        flex-direction: column; /* 자식 요소들을 세로로 정렬 */
+    }
+
+    .card-body {
+        flex: 1; /* flex 컨테이너 내부에서 남은 공간을 모두 차지하도록 설정 */
+        overflow: hidden !important; /* 스크롤바 숨기기 */
+    }
+
+    #calendar {
+        height: 100%; /* 부모 요소의 높이를 100% 상속받음 */
+        overflow: hidden !important; /* 스크롤바 숨기기 */
+    }
+    .card .card-body{
+        padding: 1rem 1.65rem;
+    }
 </style>
 <div class="main-panel">
-
 <script type="text/javascript">
 
 	  document.addEventListener('DOMContentLoaded', function() {
 		    var calendarEl = document.getElementById('calendar');
 
 		    var calendar = new FullCalendar.Calendar(calendarEl, {
+				
 		      headerToolbar: {
 		        left: 'prev,next today',
 		        center: 'title',
 		        right: 'dayGridMonth,timeGridWeek,timeGridDay'
 		      },
 		      initialDate: '2023-01-12',
+		      fixedWeekCount: false,
+		      height: 'parent',
 		      navLinks: true, // can click day/week names to navigate views
 		      selectable: true,
 		      selectMirror: true,
@@ -108,7 +132,13 @@
 		  });
 	  
 </script>
-	<div id='calendar' style="" class="content-wrapper">
+
+<div class="content-wrapper">
+	<div class="card">
+		<div id='calendar' class="card-body">
+		
+		</div>
+	</div>
 			<!-- 풋터 -->
 			<!-- content-wrapper ends -->  
 			<!-- partial:partials/_footer.html -->
