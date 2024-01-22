@@ -74,5 +74,12 @@ public class MemberController {
 		
 		return "pageJsonReport";
 	}
+	
+	// 유저 초대 창
+	@GetMapping("insertUser.do")
+	public String insertUser() {
+		
+		return "user/insertUser";
+	}
 
 }
