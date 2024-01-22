@@ -117,34 +117,26 @@ $(document).ready(function() {
 			calendar.unselect()
 		},
 		eventClick : function(arg) {
-			$("#frm01")[0].reset()
 			console.log("#일정 클릭시#")
 			console.log(arg.event)
-			var evt = arg.event
+			addForm(arg.event)
 			// evt.속성 : 기본적으로 fullcalendar에서 사용하는 속성 
 			// evt.extendedProps.속성 : 기본속성이 아닌 추가적으로 
 			//		상세화면에 출력시 사용되는 속성
-			$("[name=calendar_key]").val(evt.extendedProps.calendar_key)
-			$("[name=title]").val(evt.title)
-			$("[name=writer]").val(evt.extendedProps.writer)
-			$("#start").val(evt.start.toLocaleString())
-			$("[name=start]").val(evt.startStr)
-			$("#end").val(evt.end.toLocaleString())
-			$("[name=end]").val(evt.endStr)
-			
-			$("[name=backgroundColor]").val(evt.backgroundColor)
-			$("[name=textColor]").val(evt.textColor)
-			$("[name=detail]").val(evt.extendedProps.detail)
-			$("[name=urlLink]").val(evt.extendedProps.urlLink)
-			$("[name=allDay]").val(evt.allDay?1:0)
-			
-			
 			
 			$("#calTitle").text("일정상세")	
 			$("#regBtn").hide()
 			$("#uptBtn").show()
 			$("#delBtn").show() 
 			$("#calModal").click()					
+		},
+		eventDrop : function(arg){
+			addForm(arg.event)
+			ajaxFunc("updateCalendar.do", "post")
+		},
+		eventResize : function(arg){
+			addForm(arg.event)
+			ajaxFunc("updateCalendar.do", "post")
 		},
 		editable : true,
 		dayMaxEvents : true, // allow "more" link when too many events
@@ -220,6 +212,21 @@ $(document).ready(function() {
 			}
 		})			
 		
+	}
+	function addForm(evt){
+		$("[name=calendar_key]").val(evt.extendedProps.calendar_key)
+		$("[name=title]").val(evt.title)
+		$("[name=writer]").val(evt.extendedProps.writer)
+		$("#start").val(evt.start.toLocaleString())
+		$("[name=start]").val(evt.startStr)
+		$("#end").val(evt.end.toLocaleString())
+		$("[name=end]").val(evt.endStr)
+		
+		$("[name=backgroundColor]").val(evt.backgroundColor)
+		$("[name=textColor]").val(evt.textColor)
+		$("[name=detail]").val(evt.extendedProps.detail)
+		$("[name=urlLink]").val(evt.extendedProps.urlLink)
+		$("[name=allDay]").val(evt.allDay?1:0)
 	}
 
 });

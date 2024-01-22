@@ -6,8 +6,48 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="${path}/template/module/module_main.jsp" flush="true" />
 <style>
-.weekend {
-    background-color: #f4f7f9; /* 주말 배경색 변경 */
+.saturday {
+    background-color: #f0f8ff; /* 토요일 */
+}
+.sunday {
+	background-color : #fff0f5; /* 일요일 */
+}
+.gantt_cal_light { /* 라이트박스 속성 변경 */
+	width: 40% !important;
+	height: auto !important; 
+}
+.gantt_delete_btn_set { /* 라이트박스 삭제버튼 속성 변경 */
+	display: inline-block !important;
+	color: #fff !important;
+	background-color: #dc3545 !important;
+	border-color : #dc3545 !important; 
+} 
+.gantt_delete_btn_set:hover {
+	color: #fff !important;
+	background-color: #c82333 !important;
+	border-color : #bd2130 !important; 
+} 
+.gantt_cancel_btn_set { /* 라이트박스 취소버튼 속성 변경 */
+	display: inline-block !important;
+	color: #fff !important; 
+	background-color: #6c7293 !important;
+	border-color : #6c7293 !important; 	 
+}
+.gantt_cancel_btn_set:hover {
+	color: #fff !important;
+	background-color: #5c617d !important;
+	border-color : #565b76 !important;
+} 
+.gantt_save_btn_set { /* 라이트박스 저장버튼 속성 변경 */
+	display: inline-block !important;
+	color: #fff !important; 
+	background-color: #3b86d1 !important;
+	border-color : #3b86d1 !important; 
+}
+.gantt_save_btn_set:hover {
+	color: #fff !important; 
+	background-color: #2c73ba !important; 
+	border-color : #296db0 !important; 
 }
 </style>
 <div id='gantt_here' style="width:100%; height:100%; margin-left:20px; margin-right:20px;"class="main-panel">
@@ -16,10 +56,10 @@
 
 <script type="text/javascript">
 //기존 로케일 설정 유지
-gantt.setWorkTime({ day: 6, hours: false }); // 토요일을 비작업 시간으로 설정
-gantt.setWorkTime({ day: 0, hours: false });  
-gantt.config.duration_unit = "hour";
-gantt.config.work_time = true;
+gantt.setWorkTime({ day: 6, hours: false }); // 토요일
+gantt.setWorkTime({ day: 0, hours: false }); // 일요일
+gantt.config.duration_unit = "day"; // duration (기간) 쪽 단위 지정 hour 로 할 경우 시간단위로 조절가능
+gantt.config.work_time = true; // 워크타임 적용(주말은 기간 합산 X)
 // locale 설정 적용
 gantt.i18n.setLocale({
     date: {
@@ -95,23 +135,28 @@ gantt.config.scales = [
 //    {unit: "week", step: 1, format: function (date) {
 //        return "Week #" + gantt.date.getWeek(date); // 주 단위 설정, 포맷 변경
 //    }},
-	{unit: "day", step: 1, format: "%D", css: function(date) {
+	{unit: "day", step: 1, format: "%d %D", css: function(date) {
 	    if(!gantt.isWorkTime({ date: date, unit: "day"})){
-	        return "weekend"; // 주말 스타일 변경
+	        var day = date.getDay();
+	        if(day === 6){
+				return "saturday";
+	        } else if(day === 0){
+				return "sunday";
+	        }	
 	    }
 	}}
 ];
 
 // 기존 설정들 유지
 show_empty_state = true;
-gantt.config.start_date = new Date(2024, 0, 1);
-gantt.config.end_date = new Date(2024, 11, 31);
-gantt.config.autosize = "y";
+gantt.config.start_date = new Date(2024, 0, 1); // 시작일
+gantt.config.end_date = new Date(2024, 11, 31); // 종료일
+gantt.config.autosize = "y"; // 사이즈 자동조절( 아래쪽에 스크롤바 올라옴 )
 // 날짜 포맷 변경 
 gantt.templates.format_date = function(date){
 	return date.toISOString();
-}; 
-gantt.config.date_grid = "%m월%d일"; 
+}; // ISO 형식으로 날짜 포맷은 해보긴했음
+gantt.config.date_grid = "%m월%d일"; // 좌측컬럼 date 형식 모양변경 
 
 // 기존 스케일 설정 삭제 또는 주석 처리
 // gantt.config.scale_unit = "month";
@@ -121,9 +166,16 @@ gantt.config.date_grid = "%m월%d일";
 // gantt.config.subscales = [
 //    {unit:"day", step:1, date:"%d %l"} 
 // ];
-
+// 라이트박스 섹션 속성 설정
+gantt.config.lightbox.sections=[
+    {name:"description", height:100, map_to:"text", type:"textarea", focus:true},
+    {name:"time",        height:72, map_to:"auto", type:"duration"}
+];
  
-
+gantt.config.lightbox.project_sections=[
+    {name:"description", height:100, map_to:"text", type:"textarea", focus:true},
+    {name:"time",        height:72, map_to:"auto", type:"duration"}
+];
 
 // gantt.config.bar_height = 30; 간트 작업 바 세로크기
 gantt.config.scale_height = 50;
