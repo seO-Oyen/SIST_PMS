@@ -189,7 +189,11 @@ gantt.templates.date_scale = function(date){
     var formatFunc = gantt.date.date_to_str("%d %l");
     return formatFunc(date);
 };
-
+gantt.templates.lightbox_header = function(start, end, task) {
+    // 날짜를 원하는 포맷으로 변경 (예: dd MM yyyy)
+    var dateFormat = gantt.date.date_to_str("%Y %M %d");
+    return dateFormat(start) + " - " + dateFormat(end) + task.text;
+};
 // 마일스톤 템플릿 정의
 gantt.templates.milestone_class = function(start, end, task){
     if(task.type === gantt.config.types.milestone){
