@@ -54,6 +54,7 @@ $(document).ready(function(){
 		location.href="${path}/login.do"
 	} else if ("${loginMem.member_role}" != "") {
 		$("#admin").css("display", "")
+		$("#sidebar").css("height", "175px")
 	}
 })
 </script>
@@ -481,6 +482,13 @@ $(document).ready(function(){
 							</ul>
 						</div> -->
 					</li>
+					<li class="nav-item" id="admin" style="display: none;">
+						<a class="nav-link" href="${path}/adMain.do">
+							<i class="mdi mdi-account-convert" style="width:20px;height:20px;"></i>
+							<span class="menu-title">관리자페이지</span>
+							<!-- <i class="menu-arrow"></i> -->
+						</a>
+					</li>
 					
 					<%-- <li class="nav-item">
 					<a class="nav-link" href="${path}/gantt.do" > 
@@ -573,12 +581,6 @@ $(document).ready(function(){
 							</ul>
 						</div> -->
 					</li>
-					<li class="nav-item" id="admin" style="display: none;">
-						<a class="nav-link" href="${path}/adMain.do">
-							<i class="mdi mdi-account-convert" style="width:20px;height:20px;"></i>
-							<span class="menu-title">관리자페이지</span>
-							<!-- <i class="menu-arrow"></i> -->
-						</a>
-					</li> --%>
+					 --%>
 				</ul>
 			</nav>
