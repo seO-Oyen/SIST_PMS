@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class DashBoardController {
-    @RequestMapping("test.do")
+    @RequestMapping("dashboard.do")
     public String test(){
-        return "index";
+        return "project/dashBoard";
     }
 }
