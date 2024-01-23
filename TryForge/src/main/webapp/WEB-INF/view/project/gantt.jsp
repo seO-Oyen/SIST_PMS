@@ -49,6 +49,25 @@
 	background-color: #2c73ba !important; 
 	border-color : #296db0 !important; 
 }
+.gantt_duration span {
+	display : none;
+}
+.gantt_scale_cell {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+/* 왼쪽 그리드 컬럼명 중앙 정렬 */
+.gantt_grid_head_cell {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+/* 왼쪽 그리드 컬럼 데이터 중앙 정렬 */
+.gantt_cell, .gantt_task_cell {
+    text-align: center !important;
+    vertical-align: middle !important;
+} 
 </style>
 <div id='gantt_here' style="width:100%; height:100%; margin-left:20px; margin-right:20px;"class="main-panel">
 
@@ -83,7 +102,9 @@ gantt.i18n.setLocale({
         section_description: "설명",
         section_time: "기간",
         section_type: "유형",
-        
+        section_owner: "담당자",
+        section_rollup: "롤업",
+        section_hide_bar: "바 숨기기",
         /* grid columns */
         column_wbs: "WBS",
         column_text: "작업 이름",
@@ -166,16 +187,47 @@ gantt.config.date_grid = "%m월%d일"; // 좌측컬럼 date 형식 모양변경
 // gantt.config.subscales = [
 //    {unit:"day", step:1, date:"%d %l"} 
 // ];
+//gantt.templates.task_time = function(start, end, task) {
+   // 날짜 포맷을 정의합니다 (예: "%Y년 %m월 %d일")
+//    var dateFormat = gantt.date.date_to_str("%Y년 %m월 %d일");
+    
+    // 포맷된 시작일과 완료일을 반환합니다
+//    return dateFormat(start) + " - " + dateFormat(end);
+//}; 
+
+var users = [
+    {key:"John Doe", label: "John Doe"},
+    {key:"Jane Doe", label: "Jane Doe"},
+    // 더 많은 사용자...
+];
 // 라이트박스 섹션 속성 설정
 gantt.config.lightbox.sections=[
     {name:"description", height:100, map_to:"text", type:"textarea", focus:true},
-    {name:"time",        height:72, map_to:"auto", type:"duration"}
+    {name: "type", height: 44, map_to: "type", type: "typeselect"},
+    {name:"owner",       height:44, map_to:"owner", type:"select", options:users},
+    {name:"time",        height:72, map_to:"auto", type:"duration", time_format:["%Y","%m","%d"]}
 ];
  
 gantt.config.lightbox.project_sections=[
     {name:"description", height:100, map_to:"text", type:"textarea", focus:true},
     {name:"time",        height:72, map_to:"auto", type:"duration"}
+];	
+
+gantt.config.lightbox.milestone_sections = [
+    {name: "description", height: 70, map_to: "text", type: "textarea", focus: true},
+    {name: "rollup", type: "checkbox", map_to: "rollup"},
+    {name: "hide_bar", type: "checkbox", map_to: "hide_bar"},
+    {name: "type", height: 44, type: "typeselect", map_to: "type"},
+    {name: "time", type: "duration", map_to: "auto"}
 ];
+
+/*
+gantt.config.lightbox.sections = [
+    {name:"description", height:38, map_to:"desc", type:"textarea",focus:true},
+    {name:"details",     height:38, map_to:"text", type:"textarea"}, 
+    {name:"time",        height:72, map_to:"auto", type:"duration"}
+];
+ */
 
 // gantt.config.bar_height = 30; 간트 작업 바 세로크기
 gantt.config.scale_height = 50;
@@ -191,32 +243,80 @@ gantt.templates.date_scale = function(date){
 };
 gantt.templates.lightbox_header = function(start, end, task) {
     // 날짜를 원하는 포맷으로 변경 (예: dd MM yyyy)
-    var dateFormat = gantt.date.date_to_str("%Y %M %d");
+    var dateFormat = gantt.date.date_to_str("%Y년 %M %d일 ");
     return dateFormat(start) + " - " + dateFormat(end) + task.text;
-};
+}; 
 // 마일스톤 템플릿 정의
 gantt.templates.milestone_class = function(start, end, task){
     if(task.type === gantt.config.types.milestone){
-        return "milestone";
+        return "milestone"; 
+    }
+    return "";
+}; 
+
+gantt.config.columns=[
+    {name:"text",       label:"업무명",  tree:true, width:200 }, // 업무명 너비를 200px로 설정
+    {name:"start_date", label:"시작일", align: "center", width:80 },
+    {name:"duration",   label:"기간",   align: "center", width:60 },
+    {name:"owner",      label:"담당자", align: "center", width:100 },
+    {name:"add",        label:"", width:44 }
+];
+
+// gantt.config.calendar_property = "calendar_id"; // 이거는 작업 태스크에서 서로 다른 속성의 달력을 사용하기 위해 보통 씀
+// ex) 일주일이 어떤건 5일, 어떤건 6일 이런식으로?? 하루 시간도 10~19시 이런느낌으로
+
+// 실제로 데이터를 넣어야 할 task 쪽.
+/*
+color 속성 추가 가능
+label 속성은 높음 중간 낮음 이런식으로 작업 우선순위 표현가능
+parrent 중요함. 부모속성.
+progressColor <- 진행상태 나타내는 색상
+
+ 
+ */
+var tasks = {
+	    data:[
+	    	// 프로젝트 타입은 duration 필요 없음. open <- true 라고 하면 처음 켰을때 하위업무들 다 뜸
+	    	// 마일스톤은 스타트데이트만. 프로젝트는 진행과정만
+	    	// duration 또한 프로젝트랑 마일스톤은 없어도 되는듯?
+		    {id:1, text:"Task #13", start_date:"01-04-2024", type:gantt.config.types.project, progress:0.6, open:true}, 
+		    {id:2, text:"Task #24", start_date:"02-04-2024", type:gantt.config.types.task,  duration:7, progress:0.3, parent:1},
+	        {id:3, text:"Milestone #1", start_date:"05-04-2024", type:gantt.config.types.milestone, parent:1, rollup: true, hide_bar: true},
+	        {id:7, text:"Project #1", start_date:"01-04-2024", type:gantt.config.types.project, parent:1} 
+	        // 더 많은 태스크...
+	    ],
+	    // 종속성 나타내는 링크 
+	    // source : 시작 테스크 id, target : 종료 테스크 id, type : 연결선 유형
+	    // id 끼리 연결 한 다음에 이게 무슨 타입인지 넣어주면 됨
+	    // 0 : Finish to Start (FS)
+	    // 1 : Start to Start (SS)
+	    // 2 : Finish to Finish (FF)
+	    // 3 : Start to Finish (SF)
+	    links: [
+	    	{id: 1, source: 1, target: 2, type: "0"}
+	    	
+	    ]
+	};
+	
+// 오른쪽에 텍스트 추가하는 기능인데. milestone에 대해서만 작동하도록 구성
+gantt.templates.rightside_text = function(start, end, task){
+    if(task.type === "milestone"){
+    	return task.text;
     }
     return "";
 };
-
-gantt.config.columns=[
-    {name:"text",       label:"업무명",  tree:true, width:'*' },
-    {name:"start_date", label:"시작일", align: "center" },
-    {name:"duration",   label:"기간",   align: "center" },
-    {name:"add",        label:"" }
-];
-
-gantt.config.calendar_property = "calendar_id"; // 실제 차트 안에 들어갈것들 프로퍼티는.. 무슨종류인지 정하는??
-var tasks = {
-	    data:[
-	        {id:1, text:"Task #1", start_date:"01-04-2023", duration:5, calendar_id:"working_days"},
-	        {id:2, text:"Task #2", start_date:"02-04-2023", duration:3, calendar_id:"weekends"},
-	        // 더 많은 태스크...
-	    ]
-	}; 
+/*
+gantt.attachEvent("onAfterTaskAdd", function(id, item){
+    // Ajax 요청으로 서버에 업무 추가
+});
+gantt.attachEvent("onAfterTaskUpdate", function(id, item){
+    // Ajax 요청으로 서버에 업무 수정
+});
+gantt.attachEvent("onAfterTaskDelete", function(id){
+    // Ajax 요청으로 서버에 업무 삭제
+}); 
+ 
+ */
 gantt.init("gantt_here");
 gantt.parse(tasks);
 </script>
