@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tryForge.member.service.MemberService;
+import tryForge.vo.MailSender;
 import tryForge.vo.Member;
 
 @Controller
@@ -78,6 +79,19 @@ public class MemberController {
 	// 유저 초대 창
 	@GetMapping("insertUser.do")
 	public String insertUser() {
+		
+		return "user/insertUser";
+	}
+	
+	@PostMapping("insertUser.do")
+	public String mailSend(@RequestParam("receiver") String receiver, Model d, HttpSession session) {
+		MailSender mailVo = new MailSender();
+		Member sendMem = (Member)session.getAttribute("loginMem");
+		mailVo.setReceiver(receiver);
+		mailVo.setTitle("TryForge에 초대합니다.");
+		// 링크만 나중에 수정하면 될듯
+		mailVo.setContent(sendMem.getMember_name() + "님이 초대하셨습니다.\n\nhttp://localhost:7080/tryForge/register.do");
+		d.addAttribute("msg", memberService.sendMail(mailVo));
 		
 		return "user/insertUser";
 	}
