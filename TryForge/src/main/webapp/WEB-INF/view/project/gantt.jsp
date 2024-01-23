@@ -67,11 +67,14 @@
 .gantt_cell, .gantt_task_cell {
     text-align: center !important;
     vertical-align: middle !important;
-} 
+}
+.gantt_grid_head_cell.gantt_grid_head_add.gantt_last_cell {
+    display: none !important; 
+}
 </style>
 <div id='gantt_here' style="width:100%; height:100%; margin-left:20px; margin-right:20px;"class="main-panel">
 
-<div >
+<div>
 
 <script type="text/javascript">
 //기존 로케일 설정 유지
@@ -177,6 +180,7 @@ gantt.config.autosize = "y"; // 사이즈 자동조절( 아래쪽에 스크롤�
 gantt.templates.format_date = function(date){
 	return date.toISOString();
 }; // ISO 형식으로 날짜 포맷은 해보긴했음
+gantt.config.date_format = "%Y-%m-%d";
 gantt.config.date_grid = "%m월%d일"; // 좌측컬럼 date 형식 모양변경 
 
 // 기존 스케일 설정 삭제 또는 주석 처리
@@ -196,9 +200,9 @@ gantt.config.date_grid = "%m월%d일"; // 좌측컬럼 date 형식 모양변경
 //}; 
 
 var users = [
-    {key:"John Doe", label: "John Doe"},
-    {key:"Jane Doe", label: "Jane Doe"},
-    // 더 많은 사용자...
+    {key:1, label: "마길동"},
+    {key:2, label: "김철수"},
+    // key 에 member_key 또는 member_name 이 오면 될거 같고. label 에 member_name 으로
 ];
 // 라이트박스 섹션 속성 설정
 gantt.config.lightbox.sections=[
@@ -277,12 +281,12 @@ progressColor <- 진행상태 나타내는 색상
 var tasks = {
 	    data:[
 	    	// 프로젝트 타입은 duration 필요 없음. open <- true 라고 하면 처음 켰을때 하위업무들 다 뜸
-	    	// 마일스톤은 스타트데이트만. 프로젝트는 진행과정만
+	    	// 마일스톤은 스타트데이트만. 프로젝트는 진행과정(progress)만
 	    	// duration 또한 프로젝트랑 마일스톤은 없어도 되는듯?
-		    {id:1, text:"Task #13", start_date:"01-04-2024", type:gantt.config.types.project, progress:0.6, open:true}, 
-		    {id:2, text:"Task #24", start_date:"02-04-2024", type:gantt.config.types.task,  duration:7, progress:0.3, parent:1},
-	        {id:3, text:"Milestone #1", start_date:"05-04-2024", type:gantt.config.types.milestone, parent:1, rollup: true, hide_bar: true},
-	        {id:7, text:"Project #1", start_date:"01-04-2024", type:gantt.config.types.project, parent:1} 
+		    {id:1, text:"tryForge", type:gantt.config.types.project, progress:0.6, open:true}, 
+		    {id:2, text:"업무1", start_date:"2024-01-07", type:gantt.config.types.task,  duration:7, progress:0.3, parent:1},
+	        {id:3, text:"테스트기한", start_date:"2024-02-01", type:gantt.config.types.milestone, parent:1, rollup: true, hide_bar: true},
+	        {id:7, text:"업무2", start_date:"2024-01-15", type:gantt.config.types.project, parent:1} 
 	        // 더 많은 태스크...
 	    ],
 	    // 종속성 나타내는 링크 
@@ -298,7 +302,7 @@ var tasks = {
 	    ]
 	};
 	
-// 오른쪽에 텍스트 추가하는 기능인데. milestone에 대해서만 작동하도록 구성
+// 오른쪽에 텍스트 추가하는 기능인데. milestone에 대해서만 작동하도록 구성(무슨 마일스톤인지 알아보기 쉽도록)
 gantt.templates.rightside_text = function(start, end, task){
     if(task.type === "milestone"){
     	return task.text;
@@ -317,8 +321,8 @@ gantt.attachEvent("onAfterTaskDelete", function(id){
 }); 
  
  */
-gantt.init("gantt_here");
-gantt.parse(tasks);
+gantt.init("gantt_here"); // 간트 로딩
+gantt.parse(tasks); // task 로딩
 </script>
 			<!-- 풋터 -->
 			<!-- content-wrapper ends -->  
