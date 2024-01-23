@@ -442,35 +442,13 @@ $(document).ready(function(){
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="index.jsp">
+					<li class="nav-item"><a class="nav-link" href="${path}/projList.do">
 							<i class="mdi mdi-airplay" style="width:20px;height:20px;"></i> <span
 							class="menu-title">프로젝트관리</span>
 							<!-- <div class="badge badge-danger">new</div> -->
 					</a></li>
 					
-					<li class="nav-item">
-						<a class="nav-link" data-toggle="collapse" onclick="location.href='${path}/reqPJList.do'"
-							 aria-expanded="false" aria-controls="ui-basic">
-							<i class="mdi mdi-arrow-up-drop-circle-outline" style="width:20px;height:20px;" ></i>
-							<span class="menu-title">프로젝트요청관리</span>
-							<!-- 메뉴 옆 +기호 -->
-							<!-- <i class="menu-arrow"></i> -->
-						</a>
-						<!-- 클릭시 나오는 메뉴 -->
-						<!-- <div class="collapse" id="ui-basic">
-							<ul class="nav flex-column sub-menu">
-								<li class="nav-item">
-									<a class="nav-link" href="pages/ui-features/buttons.jsp">Buttons</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="pages/ui-features/dropdowns.jsp">Dropdowns</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="pages/ui-features/typography.jsp">Typography</a>
-								</li>
-							</ul>
-						</div> -->
-					</li>
+	
 					
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
