@@ -148,7 +148,7 @@ gantt.i18n.setLocale({
         fnlt: "늦게 끝내지 않음",
         mso: "반드시 시작",
         mfo: "반드시 끝내기",
-        
+         
         /* resource control */
         resources_filter_placeholder: "필터링을 위해 입력하세요",
         resources_filter_label: "빈 항목 숨기기"
@@ -200,8 +200,8 @@ gantt.config.date_grid = "%m월%d일"; // 좌측컬럼 date 형식 모양변경
 //}; 
 
 var users = [
-    {key:1, label: "마길동"},
-    {key:2, label: "김철수"},
+    {key:"마길동", label: "마길동"},
+    {key:"김철수", label: "김철수"},
     // key 에 member_key 또는 member_name 이 오면 될거 같고. label 에 member_name 으로
 ];
 // 라이트박스 섹션 속성 설정
@@ -256,7 +256,7 @@ gantt.templates.milestone_class = function(start, end, task){
         return "milestone"; 
     }
     return "";
-}; 
+};
 
 gantt.config.columns=[
     {name:"text",       label:"업무명",  tree:true, width:200 }, // 업무명 너비를 200px로 설정
@@ -277,16 +277,17 @@ parrent 중요함. 부모속성.
 progressColor <- 진행상태 나타내는 색상
 
  
- */
+*/
+/*
 var tasks = {
 	    data:[
 	    	// 프로젝트 타입은 duration 필요 없음. open <- true 라고 하면 처음 켰을때 하위업무들 다 뜸
 	    	// 마일스톤은 스타트데이트만. 프로젝트는 진행과정(progress)만
 	    	// duration 또한 프로젝트랑 마일스톤은 없어도 되는듯?
-		    {id:1, text:"tryForge", type:gantt.config.types.project, progress:0.6, open:true}, 
-		    {id:2, text:"업무1", start_date:"2024-01-07", type:gantt.config.types.task,  duration:7, progress:0.3, parent:1},
-	        {id:3, text:"테스트기한", start_date:"2024-02-01", type:gantt.config.types.milestone, parent:1, rollup: true, hide_bar: true},
-	        {id:7, text:"업무2", start_date:"2024-01-15", type:gantt.config.types.project, parent:1} 
+//		    {id:8, text:"tryForge", type:gantt.config.types.project, progress:0.6, open:true}, 
+//		    {id:2, text:"업무1", start_date:"2024-01-07", type:gantt.config.types.task,  duration:7, progress:0.3, parent:1},
+//	        {id:3, text:"테스트기한", start_date:"2024-02-01", type:gantt.config.types.milestone, parent:1, rollup: true, hide_bar: true},
+//	        {id:7, text:"업무2", start_date:"2024-01-15", type:gantt.config.types.project, parent:1} 
 	        // 더 많은 태스크...
 	    ],
 	    // 종속성 나타내는 링크 
@@ -297,11 +298,22 @@ var tasks = {
 	    // 2 : Finish to Finish (FF)
 	    // 3 : Start to Finish (SF)
 	    links: [
-	    	{id: 1, source: 1, target: 2, type: "0"}
-	    	
+//	    	{id: 1, source: 1, target: 2, type: "0"}	    	
 	    ]
 	};
-	
+*/
+/*
+function ajaxFunc(url, type){
+	$.ajax({
+		type : type,
+		url : "${pageContext.request.contextPath}/"+url,
+		dataType : "json",
+		success : function(data){
+			gantt.json.parse(data);		
+		}
+	})
+}
+*/
 // 오른쪽에 텍스트 추가하는 기능인데. milestone에 대해서만 작동하도록 구성(무슨 마일스톤인지 알아보기 쉽도록)
 gantt.templates.rightside_text = function(start, end, task){
     if(task.type === "milestone"){
@@ -321,9 +333,26 @@ gantt.attachEvent("onAfterTaskDelete", function(id){
 }); 
  
  */
-gantt.init("gantt_here"); // 간트 로딩
-gantt.parse(tasks); // task 로딩
-</script>
+ /*
+ gantt.ajax.get({
+	    url: "${pageContext.request.contextPath}/getGantt.do",
+	    //headers: {
+	     //   "Authorization": "Token YOUR_AUTH_TOKEN"
+	    //}
+	}).then(function (xhr) {
+	    // 서버 응답을 JSON 형식으로 파싱
+	    var data = JSON.parse(xhr.responseText);
+	    // Gantt 차트에 데이터 로드
+	    gantt.parse(data);
+	}).catch(function (error) {
+	    // 오류 처리
+	    console.error("Error loading data: ", error);
+	}); 
+*/ 
+gantt.init("gantt_here"); // 간트 로딩 
+gantt.load("${pageContext.request.contextPath}/getGantt.do"); 
+//gantt.parse(tasks); // task 로딩
+</script> 
 			<!-- 풋터 -->
 			<!-- content-wrapper ends -->  
 			<!-- partial:partials/_footer.html -->

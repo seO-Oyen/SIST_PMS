@@ -12,13 +12,10 @@ public class Task {
 	private int parent;
 	private String type;
 	private String status;
-	private String rollup;
-	private String hide_bar;
-	public Task() {
-		// TODO Auto-generated constructor stub
-	}
+	private boolean rollup;
+	private boolean hide_bar;
 	public Task(int id, int member_key, String project_key, String text, String start_date, String end_date,
-			int duration, double progress, int parent, String type, String status, String rollup, String hide_bar) {
+			int duration, double progress, int parent, String type, String status, boolean rollup, boolean hide_bar) {
 		this.id = id;
 		this.member_key = member_key;
 		this.project_key = project_key;
@@ -32,6 +29,9 @@ public class Task {
 		this.status = status;
 		this.rollup = rollup;
 		this.hide_bar = hide_bar;
+	}
+	public Task() {
+		// TODO Auto-generated constructor stub
 	}
 	public int getId() {
 		return id;
@@ -99,16 +99,16 @@ public class Task {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getRollup() {
+	public boolean isRollup() {
 		return rollup;
 	}
-	public void setRollup(String rollup) {
+	public void setRollup(boolean rollup) {
 		this.rollup = rollup;
 	}
-	public String getHide_bar() {
+	public boolean isHide_bar() {
 		return hide_bar;
 	}
-	public void setHide_bar(String hide_bar) {
+	public void setHide_bar(boolean hide_bar) {
 		this.hide_bar = hide_bar;
 	}
 }
