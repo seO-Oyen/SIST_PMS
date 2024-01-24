@@ -10,7 +10,8 @@
 		<typeAlias alias="team" type="tryForge.vo.Team"/>
 		<typeAlias alias="team_member" type="tryForge.vo.Team_Member"/>
 		<typeAlias alias="calendar" type="tryForge.vo.Calendar"/>
-		<typeAlias alias="gantt" type="tryForge.vo.Gantt"/>
+		<typeAlias alias="task" type="tryForge.vo.Task"/>
+		<typeAlias alias="task_dep" type="tryForge.vo.Task_Dependency"/>
 		<typeAlias alias="dashboard" type="tryForge.vo.DashBoard"/>
 	</typeAliases>
 	<mappers>
