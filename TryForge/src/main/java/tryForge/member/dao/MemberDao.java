@@ -1,5 +1,6 @@
 package tryForge.member.dao;
 
+import tryForge.vo.MailSender;
 import tryForge.vo.Member;
 
 public interface MemberDao {
@@ -13,5 +14,5 @@ public interface MemberDao {
 	// 아이디 중복체크 - 회원가입
 	int checkId(String member_id);
 	
-
+	int inviteMember(Member member);
 }

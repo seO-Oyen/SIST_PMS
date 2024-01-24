@@ -49,5 +49,22 @@
 		FROM MEMBER
 		WHERE member_id = #{member_id}
 	</select>
+	
+	<insert id="inviteMember" parameterType="member">
+		INSERT INTO invate_member
+		(
+			invate_key,
+			invited_member,
+			invitee_email,
+			joined
+		)
+		VALUES
+		(
+			invate_seq.nextval,
+			#{member_key},
+			#{member_email},
+			'0'
+		)
+	</insert>
 
 </mapper>

@@ -1,6 +1,9 @@
 package tryForge.member.service;
 
 import javax.mail.MessagingException;
+
+import java.util.List;
+
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -10,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import tryForge.member.dao.MemberDao;
+import tryForge.vo.InviteMember;
 import tryForge.vo.MailSender;
 import tryForge.vo.Member;
 
@@ -47,8 +51,14 @@ public class MemberService {
 		}
 	}
 	
+	// 초대 목록 
+	public List<InviteMember> inviteMemberList() {
+		
+		return null;
+	}
+	
 	// 메일 발송
-	public String sendMail(MailSender email) {
+	public String sendMail(MailSender email, Member sendMem) {
 		String msg = "";
 		
 		MimeMessage mmsg = sender.createMimeMessage();
@@ -58,6 +68,7 @@ public class MemberService {
 			mmsg.setRecipient(RecipientType.TO, new InternetAddress(email.getReceiver()));
 			mmsg.setText(email.getContent());
 
+			memberDao.inviteMember(new Member(sendMem.getMember_key(), email.getReceiver()));
 			sender.send(mmsg);
 			msg = "메일 발송 성공";
 		} catch (MessagingException e) {

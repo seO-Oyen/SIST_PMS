@@ -12,6 +12,7 @@
 		<typeAlias alias="calendar" type="tryForge.vo.Calendar"/>
 		<typeAlias alias="gantt" type="tryForge.vo.Gantt"/>
 		<typeAlias alias="dashboard" type="tryForge.vo.DashBoard"/>
+		<typeAlias alias="inviteMember" type="tryForge.vo.InviteMember"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="resource/mapper/mapper01.xml"/>
