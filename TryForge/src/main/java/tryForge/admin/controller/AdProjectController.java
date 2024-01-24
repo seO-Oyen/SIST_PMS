@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tryForge.admin.service.AdProjectService;
+import tryForge.vo.Member;
 import tryForge.vo.Project;
 import tryForge.vo.Team;
+import tryForge.vo.Team_Member;
 
 
 
@@ -41,6 +42,16 @@ public class AdProjectController {
 	public String insertAll(Project insProject, Team insTeam, @RequestParam("member_key") List<String> member_key, Model d) {
 		d.addAttribute("insertAll",service.insertAll(insProject, insTeam, member_key));
 		d.addAttribute("plist",service.projList());
+		return "pageJsonReport";
+	}
+	
+	// 등록 프로젝트 상세정보 출력
+	@RequestMapping("detail.do")
+	public String detail(Project p, Team t, Team_Member tm, Member m, @RequestParam("project_key")String project_key, Model d ) {
+		d.addAttribute("projectInfo",service.projectInfo(project_key));
+		d.addAttribute("teamInfo",service.teamInfo(p.getProject_key()));
+		d.addAttribute("tmInfo",service.tmInfo(p.getProject_key(), t.getTeam_key()));
+		d.addAttribute("memberInfo",service.memberInfo(p.getProject_key(),t.getTeam_key()));
 		return "pageJsonReport";
 	}
 	

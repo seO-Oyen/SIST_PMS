@@ -4,21 +4,23 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="tryForge.admin.dao.AdProjectDao">
-
+	<resultMap type="Team_Member" id="tmRst">
+		<result column = "member_key" property = "member_key1"/>
+	</resultMap>
 	
 	<!-- 프로젝트 출력 -->
 	<select id="projList" resultType="project">
 		SELECT * FROM PROJECT p ORDER BY p.start_date
 	</select>
 	
-	<!-- 프로젝트에 해당하는 맴버 출력 -->
-	<select id="PJMemList" resultType="member" parameterType="String">
-		select m.* from member m 
+	<!-- 프로젝트에 해당하는 모든 정보 출력 
+	<select id="projectInfo01" resultType="" parameterType="String">
+		select * from member m 
 		LEFT JOIN TEAM_MEMBER tm ON tm.member_key = m.member_key
 		LEFT JOIN TEAM t ON t.TEAM_KEY = tm.TEAM_KEY
 		LEFT JOIN project p ON p.project_KEY = t.project_KEY
 		WHERE p.PROJECT_KEY = #{project_key}
-	</select>
+	</select>-->
 	
 	<!-- 사원 검색 출력 -->
 	<select id="schMem" resultType="member" parameterType="String">
@@ -50,5 +52,25 @@
 		    FROM TEAM_MEMBER tm
 		    WHERE tm.team_key = TEAM.team_key)
 	</update>
+	
+	<!-- 프로젝트 키로 프로젝트 정보 -->
+	<select id="projectInfo" resultType="project" parameterType="String">
+		select * from project where project_key = #{project_key}
+	</select>
+	
+	<!-- 프로젝트 키로 팀 정보 -->
+	<select id="teamInfo" resultType="team" parameterType="String">
+		select * from team where project_key = #{project_key}
+	</select>
+	
+	<!-- 팀 키로 팀 맴버 정보 -->
+	<select id="tmInfo" parameterType="int" resultMap = "tmRst">
+		select * from team_member where team_key = #{team_key}
+	</select>
+	
+	<!-- 맴버키로 맴버 정보 -->
+	<select id="memberInfo" resultType="member" parameterType="int">
+		select * from member where member_key = #{member_key}
+	</select>
 	
 </mapper>

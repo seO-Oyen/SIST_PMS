@@ -6,6 +6,7 @@ public class Team {
 	private int team_key;
 	private String team_name;
 	private int project_cnt;
+	private String project_key;
 	private Project project;
 	public Team() {
 		// TODO Auto-generated constructor stub
@@ -39,6 +40,12 @@ public class Team {
 	}
 	public void setProject(Project project) {
 		this.project = project;
+	}
+	public String getProject_key() {
+		return project_key;
+	}
+	public void setProject_key(String project_key) {
+		this.project_key = project_key;
 	}
 	
 }

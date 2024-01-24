@@ -9,6 +9,17 @@ public class Team_Member {
 	private List<Member> member;
 	private List<Integer> member_key;
 	private Team team;
+	private int team_key;
+	private int member_key1;
+	
+	public int getMember_key1() {
+		return member_key1;
+	}
+
+	public void setMember_key1(int member_key1) {
+		this.member_key1 = member_key1;
+	}
+
 	public Team_Member() {
 		// TODO Auto-generated constructor stub
 	}
@@ -67,8 +78,13 @@ public class Team_Member {
 	public void setMember_key(List<Integer> member_key) {
 		this.member_key = member_key;
 	}
-	
-	
-	
+
+	public int getTeam_key() {
+		return team_key;
+	}
+
+	public void setTeam_key(int team_key) {
+		this.team_key = team_key;
+	}
 	
 }

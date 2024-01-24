@@ -17,4 +17,8 @@ public interface AdProjectDao {
 	int insertTeam(Team insTeam);
 	int insertTm(int member_key);
 	int uptCnt();
+	Project projectInfo(String project_key);
+	Team teamInfo(String project_key);
+	List<Team_Member> tmInfo(int team_key);
+	Member memberInfo(int member_key);
 }

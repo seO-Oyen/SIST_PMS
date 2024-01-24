@@ -33,14 +33,40 @@
 </style>
 <script>
 	$(document).ready(function() {
-		var selectedMemberKeys = [];	
+		var selectedMemberKeys = [];
+		$("#clsBtn").click(function(){
+			$("#myModal form")[0].reset()
+			
+		})
 		
 		$("#regProj").click(function() {
 			$("#myModal").modal('show');
+			$(".modal-title").text("New Project")
+			$("#proTitle").text("프로젝트 생성")
+			// 구성원 목록 초기화
+		    $("#selectMem").empty();
+
+		    // 왼쪽 검색 결과 초기화
+		    $("#left input").val("");
+		    $("#addMem").empty();
+		    
+		    // 검색 결과 창 높이 초기화
+		    $("#searchResults").css("height", "150px");
+	
+		    // 프로젝트 구성원 추가 영역 초기화
+		    $("#right").removeClass("col-12");
+		    $("#right").addClass("col-6");
+		    $("#tm").text("프로젝트 구성원 추가");
+		    $("[name=member_name]").show();
+		    $("#regBtn").show()
+		    $("#uptBtn").hide()
+		    $("#delBtn").hide()
+		    $("#endBtn").hide()
+		    
 			schMem();
 		})
 
-		$("#member_name").keyup(function() {
+		$("[name=member_name]").keyup(function() {
 			schMem();
 		});
 
@@ -49,20 +75,20 @@
 			getAllMemberKeys();
 			$.ajax({
 				url : "${path}/tryForge/insertAll.do",
-				type: "POST",
+				type : "POST",
 				data : $("#modalFrm").serialize(),
 				dataType : "json",
-				  success: function (data) {
-			            var msg = data.insertAll;
-			            Swal.fire({
-			                title: '등록 성공',
-			                text: msg,
-			                icon: 'success',
-			            }).then(function () {
-			                $("#clsBtn").click();
-			                window.location.reload();
-			            });
-				  },
+				success : function(data) {
+					var msg = data.insertAll;
+					Swal.fire({
+						title : '등록 성공',
+						text : msg,
+						icon : 'success',
+					}).then(function() {
+						$("#clsBtn").click();
+						window.location.reload();
+					});
+				},
 				error : function(err) {
 					console.log(err)
 				}
@@ -99,38 +125,88 @@
 	}
 
 	function selectMem(member_key, member_name, member_email) {
-	    var row = "<tr data-member-key='" + member_key + "'>";
-	    row += "<td>" + member_name + "</td>";
-	    row += "<td>" + member_email + "</td>";
-	    row += "<td><button class='btn btn-danger' type='button' onclick='deleteMem(this)'>삭제</button></td>";
-	    row += "</tr>";
+		var row = "<tr data-member-key='" + member_key + "'>";
+		row += "<td>" + member_name + "</td>";
+		row += "<td>" + member_email + "</td>";
+		row += "<td><button class='btn btn-danger' type='button' onclick='deleteMem(this)'>삭제</button></td>";
+		row += "</tr>";
 
-	    $("#selectMem").append(row);
+		$("#selectMem").append(row);
 	}
 
 	function deleteMem(buttonElement) {
-	    // 삭제 버튼이 속한 행을 찾아서 삭제
-	    var row = $(buttonElement).closest("tr");
-	    var member_key = row.data("member-key");
-	    // 해당 member_key를 가진 행을 찾아서 삭제
-	    row.remove();
+		// 삭제 버튼이 속한 행을 찾아서 삭제
+		var row = $(buttonElement).closest("tr");
+		var member_key = row.data("member-key");
+		// 해당 member_key를 가진 행을 찾아서 삭제
+		row.remove();
 	}
-	
+
 	// 폼 안에 hidden 필드 추가
-	$("#modalFrm").append("<input type='hidden' name='member_key' value='' id='hiddenMemberKey'>");
+	$("#modalFrm")
+			.append(
+					"<input type='hidden' name='member_key' value='' id='hiddenMemberKey'>");
 
 	function getAllMemberKeys() {
-	    var member_key = [];
+		var member_key = [];
 
-	    // 모든 tr 요소를 선택하고 각각의 data-member-key 값을 가져와 배열에 추가
-	    $("#selectMem tr").each(function() {
-	        var memberKey = $(this).data("member-key");
-	        member_key.push(memberKey);
-	    });
+		// 모든 tr 요소를 선택하고 각각의 data-member-key 값을 가져와 배열에 추가
+		$("#selectMem tr").each(function() {
+			var memberKey = $(this).data("member-key");
+			member_key.push(memberKey);
+		});
 
-	    // hidden 필드의 값을 업데이트
-	    $("#hiddenMemberKey").val(member_key);
-	    return member_key;
+		// hidden 필드의 값을 업데이트
+		$("#hiddenMemberKey").val(member_key);
+		return member_key;
+	}
+
+	function openpage(key) {
+		$.ajax({
+			url : "${path}/tryForge/detail.do?project_key=" + key,
+			dataType : "json",
+			success : function(data) {
+				var projectInfo = data.projectInfo;
+				var teamInfo = data.teamInfo;
+				var tmInfo = data.tmInfo;
+				var memberInfo = data.memberInfo;
+				$("#myModal").modal('show');
+				$(".modal-title").text("Project Information")
+				$("#proTitle").text("상세정보 조회")
+				$("[name=title]").val(projectInfo.title)
+				$("[name=team_name]").val(teamInfo.team_name)
+				var startDate = new Date(projectInfo.start_date);
+				startDate.setDate(startDate.getDate() + 1);
+				var formattedStartDate = startDate.toISOString().split('T')[0];
+				var endDate = new Date(projectInfo.end_date);
+				endDate.setDate(endDate.getDate() + 1);
+				var formateedendtDate = endDate.toISOString().split('T')[0];
+				$("[name=start_date]").val(formattedStartDate)
+				$("[name=end_date]").val(formateedendtDate)
+				$("[name=detail]").val(projectInfo.detail)
+				$("[name=left]").hide()
+				$("[name=member_name]").hide()
+				$("#tm").text("프로젝트 구성원 확인")
+				$("#right").removeClass("col-6");
+				$("#right").addClass("col-12");
+				$("#searchResults").css("height","0px");
+				var addhtml = ""; // 초기화
+
+				$.each(memberInfo, function(index, member) {
+				    addhtml += "<tr><td>" + member.member_name + "</td><td>" + member.member_email + "</td></tr>";
+				});
+
+				// 기존의 내용을 비우고 새로운 행을 추가
+				$("#selectMem").empty().append(addhtml);
+				$("#regBtn").hide()
+				$("#uptBtn").show()
+				$("#delBtn").show()
+				$("#endBtn").show()
+			},
+			error : function(err) {
+				console.log(err)
+			}
+		})
 	}
 </script>
 <div class="main-panel">
@@ -142,7 +218,8 @@
 					<div class="card-body">
 						<h4 class="card-title">Ongoing Development Project</h4>
 						<!-- 진행중인 프로젝트 테이블 -->
-						<div class="table-responsive" style="width: 95%; margin-left: 4%; max-height: 500px; overflow-x: auto;">
+						<div class="table-responsive"
+							style="width: 95%; margin-left: 4%; max-height: 500px; overflow-x: auto;">
 							<table class="table table-hover" style="width: 100%;">
 								<thead>
 									<tr>
@@ -153,11 +230,13 @@
 								<tbody>
 									<c:forEach var="plist" items="${plist}">
 										<c:if test="${plist.status == '진행중'}">
-											<tr>
+											<tr ondblclick="openpage('${plist.project_key}')">
 												<td>${plist.title}</td>
-												<c:set var="formattedStartDate" value="${fn:substring(plist.start_date, 0, 10)}" />
+												<c:set var="formattedStartDate"
+													value="${fn:substring(plist.start_date, 0, 10)}" />
 												<td><c:out value="${formattedStartDate}" /></td>
-												<c:set var="formattedEndDate" value="${fn:substring(plist.end_date, 0, 10)}" />
+												<c:set var="formattedEndDate"
+													value="${fn:substring(plist.end_date, 0, 10)}" />
 												<td><c:out value="${formattedEndDate}" /></td>
 												<td><button type="button"
 														class="btn btn-link btn-rounded btn-fw"
@@ -222,16 +301,32 @@
 			<!-- Modal Header -->
 			<div class="modal-header">
 				<h2 class="modal-title">New Project</h2>
+				
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
 
 			<!-- Modal body -->
 			<div class="modal-body">
-				<h3>프로젝트 생성</h3>
+			<div style="display:flex;">
+				<h3 id=proTitle>프로젝트 생성</h3>
+				<div class="btn-group" style="margin-left:52%;">
+                      <button type="button" class="btn btn-"
+                      style="background-color: #007FFF; color: white;" 
+                      >프로젝트 상세설정</button>
+                      <button type="button" style="background-color: #007FFF; color: white;" 
+                      class="btn btn- dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
+                        <a class="dropdown-item" href="#">프로젝트 완료</a>
+                        <a class="dropdown-item" href="#">프로젝트 삭제</a>
+                      </div>
+                    </div> 
+			</div>
 
 			</div>
 			<form class="forms-sample" id="modalFrm">
-			
+
 				<div class="form-group">
 					<label for="exampleInputUsername1">프로젝트 타이틀</label> <input
 						name="title" type="text" class="form-control" id=""
@@ -257,11 +352,11 @@
 				</div>
 				<!-- 프로젝트 구성원 추가 -->
 				<div class="form-group">
-					<label>프로젝트 구성원 추가</label>
+					<label id="tm">프로젝트 구성원 추가</label>
 					<div class="row mt-3">
 						<!-- 왼쪽: 검색 결과 -->
-						<div class="col-6">
-							<input type="text" class="form-control mb-2" id="member_name"
+						<div class="col-6" id="left">
+							<input type="text" class="form-control mb-2" name="member_name"
 								placeholder="검색">
 							<div id="searchResults" style="height: 150px; overflow-y: auto;">
 								<table class="table table-hover">
@@ -272,10 +367,11 @@
 							</div>
 						</div>
 						<!-- 오른쪽: 선택한 구성원 -->
-						<div class="col-6">
+						<div class="col-6" id="right">
 
 							<div id="selectMember" style="height: 200px; overflow-y: auto;">
-							<input type="hidden" name="member_key" value="" id="hiddenMemberKey">
+								<input type="hidden" name="member_key" value=""
+									id="hiddenMemberKey">
 								<table class="table table-hover">
 
 									<tbody id="selectMem">
@@ -293,6 +389,8 @@
 				<div class="mx-auto">
 					<button type="button" class="btn btn-" id="regBtn"
 						style="background-color: #007FFF; color: white;">등록</button>
+					<button type="button" class="btn btn-" id="uptBtn"
+						style="background-color: #007FFF; color: white;">수정</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal"
 						id="clsBtn">닫기</button>
 				</div>
