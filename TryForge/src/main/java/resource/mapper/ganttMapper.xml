@@ -2,7 +2,28 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="tryForge.TestDao">
-
+<mapper namespace="tryForge.gantt.dao.GanttDao">
+	<resultMap type = "task" id="taskRst">
+		<result column = "task_key" property = "id"/>
+		<result column = "task_type" property = "type"/>
+		<result column = "task_rollup" property = "rollup"/>
+	</resultMap>
+	<resultMap type = "task_dep" id="taskDepRst">
+		<result column = "dependency_key" property = "id"/>
+		<result column = "start_source" property = "source"/>
+		<result column = "end_target" property = "target"/>
+		<result column = "dependency_type" property = "type"/>
+	</resultMap>
+	
+	<select id="getTask" resultMap="taskRst">
+		SELECT task_key, text, start_date, end_date,
+		duration, progress, parent, TASK_TYPE, status, TASK_ROLLUP, hide_bar
+		FROM TASK
+		WHERE PROJECT_KEY = 'PJ-0'
+	</select>
+		
+	<select id="getTaskDep" resultMap="taskDepRst">
+		SELECT * FROM TASK_DEPENDENCY
+	</select>
 </mapper>
 

@@ -1,12 +1,12 @@
 package tryForge.vo;
 
 public class Task {
-	private int task_key;
+	private int id;
 	private int member_key;
 	private String project_key;
-	private String title;
-	private String start;
-	private String end;
+	private String text;
+	private String start_date;
+	private String end_date;
 	private int duration;
 	private double progress;
 	private int parent;
@@ -14,14 +14,17 @@ public class Task {
 	private String status;
 	private String rollup;
 	private String hide_bar;
-	public Task(int task_key, int member_key, String project_key, String title, String start, String end, int duration,
-			double progress, int parent, String type, String status, String rollup, String hide_bar) {
-		this.task_key = task_key;
+	public Task() {
+		// TODO Auto-generated constructor stub
+	}
+	public Task(int id, int member_key, String project_key, String text, String start_date, String end_date,
+			int duration, double progress, int parent, String type, String status, String rollup, String hide_bar) {
+		this.id = id;
 		this.member_key = member_key;
 		this.project_key = project_key;
-		this.title = title;
-		this.start = start;
-		this.end = end;
+		this.text = text;
+		this.start_date = start_date;
+		this.end_date = end_date;
 		this.duration = duration;
 		this.progress = progress;
 		this.parent = parent;
@@ -30,14 +33,11 @@ public class Task {
 		this.rollup = rollup;
 		this.hide_bar = hide_bar;
 	}
-	public Task() {
-		// TODO Auto-generated constructor stub
+	public int getId() {
+		return id;
 	}
-	public int getTask_key() {
-		return task_key;
-	}
-	public void setTask_key(int task_key) {
-		this.task_key = task_key;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getMember_key() {
 		return member_key;
@@ -51,23 +51,23 @@ public class Task {
 	public void setProject_key(String project_key) {
 		this.project_key = project_key;
 	}
-	public String getTitle() {
-		return title;
+	public String getText() {
+		return text;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setText(String text) {
+		this.text = text;
 	}
-	public String getStart() {
-		return start;
+	public String getStart_date() {
+		return start_date;
 	}
-	public void setStart(String start) {
-		this.start = start;
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
 	}
-	public String getEnd() {
-		return end;
+	public String getEnd_date() {
+		return end_date;
 	}
-	public void setEnd(String end) {
-		this.end = end;
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
 	}
 	public int getDuration() {
 		return duration;

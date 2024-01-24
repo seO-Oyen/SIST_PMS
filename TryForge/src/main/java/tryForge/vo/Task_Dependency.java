@@ -1,24 +1,24 @@
 package tryForge.vo;
 
 public class Task_Dependency {
-	private String dependency_key;
+	private String id;
 	private int source;
 	private int target;
 	private String type;
-	public Task_Dependency() {
-		// TODO Auto-generated constructor stub
-	}
-	public Task_Dependency(String dependency_key, int source, int target, String type) {
-		this.dependency_key = dependency_key;
+	public Task_Dependency(String id, int source, int target, String type) {
+		this.id = id;
 		this.source = source;
 		this.target = target;
 		this.type = type;
 	}
-	public String getDependency_key() {
-		return dependency_key;
+	public Task_Dependency() {
+		// TODO Auto-generated constructor stub
 	}
-	public void setDependency_key(String dependency_key) {
-		this.dependency_key = dependency_key;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public int getSource() {
 		return source;
