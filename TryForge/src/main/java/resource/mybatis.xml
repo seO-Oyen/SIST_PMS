@@ -24,5 +24,4 @@
 		<mapper resource="resource/mapper/ganttMapper.xml"/>
 		<mapper resource="resource/mapper/dashboardMapper.xml"/>
 	</mappers>
-	
 </configuration>
