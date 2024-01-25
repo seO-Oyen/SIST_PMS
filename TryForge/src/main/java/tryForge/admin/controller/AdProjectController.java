@@ -25,8 +25,6 @@ public class AdProjectController {
 	@RequestMapping("projList.do")
 	public String projList(Project p , Model d) {
 		d.addAttribute("plist",service.projList());
-		 //List<Member> mlist = service.PJMemList(project_key);
-		    //d.addAttribute("mlist", mlist);
 		return "adProject\\projList";
 	}
 	

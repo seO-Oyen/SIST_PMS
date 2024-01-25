@@ -32,7 +32,8 @@ public class AdProjectService {
 		int insertPJ = dao.insertPJ(insProject);
 		int insertTeam = dao.insertTeam(insTeam);
 		int insertTm = 0;
-
+		// 배열로 받아온 맴버키 문자열 타입을 숫자형으로 변환
+		// , 와 공백 제거 처리
 		for (String memberKeys : member_key) {
 			String[] keys = memberKeys.replace(" ", "").split(",");
 			for (String key : keys) {

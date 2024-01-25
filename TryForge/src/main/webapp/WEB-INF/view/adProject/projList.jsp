@@ -38,6 +38,10 @@
 			$("#myModal form")[0].reset()
 			
 		})
+		$("#xBtn").click(function(){
+			$("#myModal form")[0].reset()
+			
+		})
 		
 		$("#regProj").click(function() {
 			$("#myModal").modal('show');
@@ -62,7 +66,7 @@
 		    $("#uptBtn").hide()
 		    $("#delBtn").hide()
 		    $("#endBtn").hide()
-		    
+		    $("#detailBtn").hide()
 			schMem();
 		})
 
@@ -71,9 +75,11 @@
 		});
 
 		$("#regBtn").click(function() {
-			event.preventDefault(); // 이 부분 추가
+			// 선택한 구성원의 배열값 넣기
+			event.preventDefault(); 
 			getAllMemberKeys();
 			$.ajax({
+				// 등록 controller 호출
 				url : "${path}/tryForge/insertAll.do",
 				type : "POST",
 				data : $("#modalFrm").serialize(),
@@ -82,7 +88,7 @@
 					var msg = data.insertAll;
 					Swal.fire({
 						title : '등록 성공',
-						text : msg,
+						text : ' ',
 						icon : 'success',
 					}).then(function() {
 						$("#clsBtn").click();
@@ -170,11 +176,13 @@
 				var teamInfo = data.teamInfo;
 				var tmInfo = data.tmInfo;
 				var memberInfo = data.memberInfo;
+				// 모달창 내용 변경
 				$("#myModal").modal('show');
 				$(".modal-title").text("Project Information")
 				$("#proTitle").text("상세정보 조회")
 				$("[name=title]").val(projectInfo.title)
 				$("[name=team_name]").val(teamInfo.team_name)
+				
 				var startDate = new Date(projectInfo.start_date);
 				startDate.setDate(startDate.getDate() + 1);
 				var formattedStartDate = startDate.toISOString().split('T')[0];
@@ -183,6 +191,7 @@
 				var formateedendtDate = endDate.toISOString().split('T')[0];
 				$("[name=start_date]").val(formattedStartDate)
 				$("[name=end_date]").val(formateedendtDate)
+				
 				$("[name=detail]").val(projectInfo.detail)
 				$("[name=left]").hide()
 				$("[name=member_name]").hide()
@@ -190,8 +199,8 @@
 				$("#right").removeClass("col-6");
 				$("#right").addClass("col-12");
 				$("#searchResults").css("height","0px");
-				var addhtml = ""; // 초기화
-
+				// 다중 멤버 each 처리
+				var addhtml = ""; 
 				$.each(memberInfo, function(index, member) {
 				    addhtml += "<tr><td>" + member.member_name + "</td><td>" + member.member_email + "</td></tr>";
 				});
@@ -202,6 +211,7 @@
 				$("#uptBtn").show()
 				$("#delBtn").show()
 				$("#endBtn").show()
+				$("#detailBtn").show()
 			},
 			error : function(err) {
 				console.log(err)
@@ -302,14 +312,14 @@
 			<div class="modal-header">
 				<h2 class="modal-title">New Project</h2>
 				
-				<button type="button" class="close" data-dismiss="modal">×</button>
+				<button type="button" class="close" data-dismiss="modal" id="xBtn">×</button>
 			</div>
 
 			<!-- Modal body -->
 			<div class="modal-body">
 			<div style="display:flex;">
 				<h3 id=proTitle>프로젝트 생성</h3>
-				<div class="btn-group" style="margin-left:52%;">
+				<div class="btn-group" style="margin-left:60%;" id="detailBtn">
                       <button type="button" class="btn btn-"
                       style="background-color: #007FFF; color: white;" 
                       >프로젝트 상세설정</button>
