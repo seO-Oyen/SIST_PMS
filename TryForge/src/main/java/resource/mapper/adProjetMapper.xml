@@ -72,5 +72,16 @@
 	<select id="memberInfo" resultType="member" parameterType="int">
 		select * from member where member_key = #{member_key}
 	</select>
+	<!-- 프로젝트 키로 프로젝트, 팀, 팀원 삭제 -->
+	<delete id="delTeam" parameterType="String">
+		DELETE FROM TEAM WHERE project_KEY = #{project_key}
+	</delete>
+	<delete id="delProject" parameterType="String">
+		DELETE FROM project WHERE project_KEY = #{project_key}
+	</delete>
 	
+	<!-- 프로젝트 완료 변경 -->
+	<update id="uptFin" parameterType="String">
+		UPDATE project SET status = '완료' WHERE project_key= #{project_key}
+	</update>
 </mapper>

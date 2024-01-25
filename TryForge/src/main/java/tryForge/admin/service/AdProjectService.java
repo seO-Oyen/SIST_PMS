@@ -85,38 +85,38 @@ public class AdProjectService {
 	// 팀원 키를 이용한 맴버 정보
 	public List<Member> memberInfo(String project_key, int team_key) {
 	    Team t = dao.teamInfo(project_key);
-	    System.out.println(t.getProject_key());
 	    team_key = t.getTeam_key();
-	    System.out.println(team_key);
 	    Member mem = new Member();
 	    List<Member> mlist = new ArrayList<>();
 	    List<Team_Member> tmInfo = dao.tmInfo(team_key);
-	    System.out.println("건수:"+tmInfo.size());
 	    
-	    System.out.println(tmInfo.get(1)); // ㅇㅋ
+	    System.out.println(tmInfo.get(1)); 
 	    
 	    for (Team_Member tm : tmInfo) {	        
-	    	System.out.println( tm.getMember_key1()); // getMember_key() 만 null
-	    	System.out.println("########mkey리스트");
+	    	System.out.println( tm.getMember_key1()); 
 	    	mem = dao.memberInfo(tm.getMember_key1());
 	    	mlist.add(mem);
 	    }
 	    return mlist;
 	}
 	
-//	public List<Member> memberInfo(String project_key) {
-//    Project pInfo = dao.projectInfo(project_key);
-//    Team tInfo = dao.teamInfo(project_key);
-//    List<Team_Member> tmInfo = dao.tmInfo(tInfo.getTeam_key());
-//    List<Member> mInfo = new ArrayList<>();
-//
-//    for (Team_Member tm : tmInfo) {
-//        for (int member_key : tm.getMember_key()) {
-//            Member member = dao.memberInfo(member_key);
-//            mInfo.add(member);
-//        }
-//    }
-//    return mInfo;
-//}
+	// 프로젝트 키를 이용해 프로젝트, 팀, 팀원 삭제
+	public String delAll(String project_key) {
+		String delmsg = "";
+		int delProject = dao.delProject(project_key);
+		int delTeam = dao.delTeam(project_key);
+		
+		if(delProject>0) {
+			delmsg+="프로젝트 삭제 완료";
+			if(delTeam>0) {
+				delmsg+="팀 삭제 완료";
+			}
+		}
+		return delmsg;
+	}
 	
+	// 프로젝트 완료
+	public String uptFin(String project_key) {
+		return dao.uptFin(project_key)>0?"완료 변경":"변경실패";
+	}
 }
