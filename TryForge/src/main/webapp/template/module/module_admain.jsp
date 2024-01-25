@@ -545,24 +545,6 @@ $(document).ready(function(){
 					</a> <!-- <div class="collapse" id="auth">
 						</div> -->
 					</li>
-					<li class="nav-item">
-					<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
-						aria-controls="auth">
-						<i class="mdi mdi-account-convert" style="width:20px;height:20px;"></i>
-						<span class="menu-title">일반유저페이지</span>
-						<!-- <i class="menu-arrow"></i> -->
-					</a>
-						<!-- <div class="collapse" id="auth">
-							<ul class="nav flex-column sub-menu">
-								<li class="nav-item">
-								<a class="nav-link" href="pages/samples/login.jsp"> Login </a>
-								</li>
-								<li class="nav-item">
-								<a class="nav-link" href="pages/samples/register.jsp"> Register </a>
-								</li>
-							</ul>
-						</div> -->
-					</li>
 					
 					
 				</ul>
