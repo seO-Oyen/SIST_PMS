@@ -34,6 +34,7 @@
 <script>
 	$(document).ready(function() {
 		var selectedMemberKeys = [];
+		
 		$("#clsBtn").click(function(){
 			$("#myModal form")[0].reset()
 			
@@ -64,8 +65,7 @@
 		    $("[name=member_name]").show();
 		    $("#regBtn").show()
 		    $("#uptBtn").hide()
-		    $("#delBtn").hide()
-		    $("#endBtn").hide()
+		   
 		    $("#detailBtn").hide()
 			schMem();
 		})
@@ -204,20 +204,94 @@
 				$.each(memberInfo, function(index, member) {
 				    addhtml += "<tr><td>" + member.member_name + "</td><td>" + member.member_email + "</td></tr>";
 				});
-
+	
 				// 기존의 내용을 비우고 새로운 행을 추가
 				$("#selectMem").empty().append(addhtml);
 				$("#regBtn").hide()
 				$("#uptBtn").show()
-				$("#delBtn").show()
-				$("#endBtn").show()
 				$("#detailBtn").show()
+				$("#delBtn").click(function () {
+			        Swal.fire({
+			            title: '삭제',
+			            text: '해당 프로젝트를 삭제하시겠습니까?',
+			            icon: 'question',
+			            showCancelButton: true,
+			            confirmButtonText: '확인',
+			            cancelButtonText: '취소',
+			        }).then(function (result) {
+			            if (result.isConfirmed) {
+			            	delAll(key);
+			            }
+			        });
+			    });
+				$("#endBtn").click(function () {
+			        Swal.fire({
+			            title: '확인',
+			            text: '진행상태를 완료로 변경하시겠습니까?',
+			            icon: 'question',
+			            showCancelButton: true,
+			            confirmButtonText: '확인',
+			            cancelButtonText: '취소',
+			        }).then(function (result) {
+			            if (result.isConfirmed) {
+			                uptFin(key);
+			            }
+			        });
+			    });
 			},
 			error : function(err) {
 				console.log(err)
 			}
 		})
 	}
+		function delAll(key){
+			$.ajax({
+				url:"${path}/tryForge/delAll.do?project_key="+key,
+				//data:$("#modalFrm").serialize(),
+				dataType : "json",
+				success:function(data){
+					var delmsg = data.delmsg;
+					if (delmsg != null) {
+						Swal.fire({
+							title : '삭제 성공',
+							text : ' ',
+							icon : 'success',
+						}).then(function() {
+							$("#clsBtn").click();
+							window.location.reload();
+						});
+		                
+		            }
+		        },
+				error : function(err){
+					console.log(err)
+				}
+			})
+		}
+		
+		function uptFin(key){
+			$.ajax({
+				url:"${path}/tryForge/uptFin.do?project_key="+key,
+				dataType : "json",
+				success:function(data){
+					var uptmsg = data.uptmsg;
+					if (uptmsg!= null) {
+						Swal.fire({
+							title : '수정 성공',
+							text :uptmsg,
+							icon : 'success',
+						}).then(function() {
+							$("#clsBtn").click();
+							window.location.reload();
+						});
+		                
+		            }
+		        },
+				error : function(err){
+					console.log(err)
+				}
+			})
+		}
 </script>
 <div class="main-panel">
 	<div class="content-wrapper">
@@ -280,7 +354,7 @@
 								<tbody>
 									<c:forEach var="plist" items="${plist}">
 										<c:if test="${plist.status == '완료'}">
-											<tr>
+											<tr ondblclick="openpage('${plist.project_key}')">
 												<td>${plist.title}</td>
 												<td><button type="button"
 														class="btn btn-link btn-rounded btn-fw"
@@ -319,7 +393,7 @@
 			<div class="modal-body">
 			<div style="display:flex;">
 				<h3 id=proTitle>프로젝트 생성</h3>
-				<div class="btn-group" style="margin-left:60%;" id="detailBtn">
+				<div class="btn-group" style="margin-left:50%;" id="detailBtn">
                       <button type="button" class="btn btn-"
                       style="background-color: #007FFF; color: white;" 
                       >프로젝트 상세설정</button>
@@ -328,8 +402,8 @@
                         <span class="sr-only">Toggle Dropdown</span>
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
-                        <a class="dropdown-item" href="#">프로젝트 완료</a>
-                        <a class="dropdown-item" href="#">프로젝트 삭제</a>
+                        <button class="dropdown-item" id="endBtn">프로젝트 완료</button>
+                        <button class="dropdown-item" id="delBtn">프로젝트 삭제</button>
                       </div>
                     </div> 
 			</div>
@@ -338,6 +412,7 @@
 			<form class="forms-sample" id="modalFrm">
 
 				<div class="form-group">
+					<input type="hidden" name="project_key" value=""/>
 					<label for="exampleInputUsername1">프로젝트 타이틀</label> <input
 						name="title" type="text" class="form-control" id=""
 						placeholder="title">

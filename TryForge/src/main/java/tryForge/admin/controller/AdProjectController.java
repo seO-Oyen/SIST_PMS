@@ -53,5 +53,19 @@ public class AdProjectController {
 		return "pageJsonReport";
 	}
 	
+	// 프로젝트, 팀, 팀원 삭제
+	@RequestMapping("delAll.do")
+	public String delAll(@RequestParam("project_key")String project_key, Model d) {
+		d.addAttribute("delmsg",service.delAll(project_key));
+		return "pageJsonReport"; 
+	}
+	
+	// 완료상태 변경
+	@RequestMapping("uptFin.do")
+	public String uptFin(@RequestParam("project_key")String project_key, Model d) {
+		d.addAttribute("uptmsg",service.uptFin(project_key));
+		return "pageJsonReport"; 
+	}
+	
 	
 }
