@@ -1,10 +1,13 @@
 package tryForge.member.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tryForge.member.dao.MemberDao;
 import tryForge.vo.Member;
+import tryForge.vo.Project;
 
 @Service
 public class MemberService {
@@ -36,5 +39,11 @@ public class MemberService {
 		} else {
 			return true;
 		}
+	}
+	
+	// 본인이 소속되어있는 프로젝트 출력
+	public List<Project> getUserProject(Member member) {
+		
+		return memberDao.getUserProject(member.getMember_key());
 	}
 }

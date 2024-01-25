@@ -1,6 +1,9 @@
 package tryForge.member.dao;
 
+import java.util.List;
+
 import tryForge.vo.Member;
+import tryForge.vo.Project;
 
 public interface MemberDao {
 
@@ -13,5 +16,5 @@ public interface MemberDao {
 	// 아이디 중복체크 - 회원가입
 	int checkId(String member_id);
 	
-
+	List<Project> getUserProject(int member_key);
 }
