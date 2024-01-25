@@ -78,12 +78,7 @@ $(document).ready(function() {
 		selectMirror : true,
 		select : function(arg) {
 			// 등록시 처리되는 이벤트 핸들러(날짜 클릭, 시간을 스크롤 하면 처리)
-			console.log("# 날짜를 등록시 선택했을 때 #")
-			console.log("시작일(문자):" + arg.startStr)
-			console.log("시작일(Date):" + arg.start)
-			console.log("종료일(문자):" + arg.endStr)
-			console.log("종료일(Date):" + arg.end)
-			console.log("종일여부:" + arg.allDay)
+
 			// 초기화..
 			// 등록하기 위해서 모달창을 로딩/모달창에 form name값에
 			// 해당 기본데이터를 설정..
@@ -184,7 +179,6 @@ $(document).ready(function() {
 	})
 	
 	function ajaxFunc(url, type){
-		alert($("#frm01").serialize());
 		$.ajax({
 			type : type,
 			url : "${pageContext.request.contextPath}/"+url,
@@ -198,7 +192,6 @@ $(document).ready(function() {
 				// 등록 후, 전체 데이터 json데이터로 가지고 있음..
 				// d.addAttribute("callist", service.getCalList());									
 				console.log(data)
-				alert(data.msg) // 등록성공/등록실패
 				$("#clsBtn").click() // 등록 모달창 닫기..
 				// 기존일정 삭제(full api에 등록된 데이터 삭제 js) 
 				calendar.removeAllEvents();
