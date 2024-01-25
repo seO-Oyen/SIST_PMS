@@ -11,37 +11,58 @@
 	flush="true" />
 
 <script>
-	var sessId = "${loginMem.member_id}"
-	if (sessId == "") {
-		alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
-		location.href = "${path}/tryForge/login.do"
-	}
+$(document).ready(function() {
+    var msg = "${msg}";
 
-	$(document).ready(function() {
-	    var msg = "${msg}";
-	    if(msg!=""){
-	        if(!confirm(msg+"\n계속 수정하시겠습니까?")){
-	            location.href="${path}/tryForge/noticeList.do"
-	        }
-	    }   
+    if (msg !== "") {
+        Swal.fire({
+            text: msg + "\n계속 수정하시겠습니까?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
+            confirmButtonColor: '#007FFF',
+        }).then((result) => {
+            if (!result.isConfirmed) {
+                location.href = "${path}/tryForge/noticeList.do";
+            }
+        });
+    }
 
-	    $("#regBtn").click(function() {
-	        if ($("#noticeTitle").val() === "") {
-	            alert("제목을 입력해주세요");
-	            return;
-	        }
-	        if ($("#noticeDetail").val() === "") {
-	            alert("공지사항 상세내용을 입력해주세요");
-	            return;
-	        }
-	        if(confirm("등록하시겠습니까?")){
-	        	$("form").attr("action","${path}/tryForge/updateNotice.do")
-	            $("form").submit();
-	        }
-	    });
+    $("#regBtn").click(function() {
+        if ($("#noticeTitle").val() === "") {
+            Swal.fire({
+                text: "제목을 입력해주세요",
+                icon: 'warning',
+                confirmButtonColor: '#007FFF',
+            });
+            return;
+        }
 
-	    
-	});
+        if ($("#noticeDetail").val() === "") {
+            Swal.fire({
+                text: "공지사항 상세내용을 입력해주세요",
+                icon: 'warning',
+                confirmButtonColor: '#007FFF', 
+            });
+            return;
+        }
+
+        Swal.fire({
+            text: "등록하시겠습니까?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
+            confirmButtonColor: '#007FFF',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $("form").attr("action", "${path}/tryForge/updateNotice.do")
+                $("form").submit();
+            }
+        });
+    });
+});
 </script>
 <div class="col-12 grid-margin stretch-card"
 	style="max-width: 85%; flex: 0 0 95%;">

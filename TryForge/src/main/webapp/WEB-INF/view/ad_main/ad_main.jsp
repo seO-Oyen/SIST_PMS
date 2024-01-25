@@ -17,31 +17,36 @@
 					<div class="row">
 						<div class="col-md-6" style="flex: 0 0 100%; max-width: 100%;">
 							<div class="card-body">
-
-								<h4 class="card-title">Ongoing Development Project</h4>
+								<div style="display: flex;">
+								<h4 class="card-title">Project</h4>
+								<button type="button" class="btn btn-link btn-rounded btn-fw"
+								style="margin-left: 83%;" onclick="location.href='${path}/tryForge/projList.do'">자세히</button>
+								</div>
 
 								<!-- 진행중인 프로젝트 테이블 -->
-								<div class="table-responsive" style="width: 95%;">
+								<div class="table-responsive" style="width: 95%; margin-left: 4%; max-height: 350px; overflow-x: auto;">
 									<table class="table table-hover"
 										style="width: 95%; margin-left: 4%;">
 										<thead>
 											<tr>
-												<th>프로젝트명</th>
-												<th></th>
+						
 
 											</tr>
 										</thead>
 										<tbody>
-
+									<c:forEach var="plist" items="${plist}">
+										<c:if test="${plist.status == '진행중'}">
 											<tr>
-												<td>프로젝트1</td>
-												<td><button type="button"
-														class="btn btn-link btn-rounded btn-fw"
-														style="margin-left: 60%;">자세히</button></td>
-
+												<td>${plist.title}</td>
+												<c:set var="formattedStartDate" value="${fn:substring(plist.start_date, 0, 10)}" />
+												<td><c:out value="${formattedStartDate}" /></td>
+												<c:set var="formattedEndDate" value="${fn:substring(plist.end_date, 0, 10)}" />
+												<td><c:out value="${formattedEndDate}" /></td>
+												
 											</tr>
-
-										</tbody>
+										</c:if>
+									</c:forEach>
+								</tbody>
 									</table>
 								</div>
 
@@ -58,29 +63,25 @@
 			<div class="col-md-6 grid-margin stretch-card">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">Requested Project</h4>
+						<h4 class="card-title">Completed Projects</h4>
 
-						<div class="table-responsive" style="width: 95%;">
+						<div class="table-responsive" style="width: 95%; margin-left: 4%; max-height: 200px; overflow-x: auto;">
 							<table class="table table-hover"
 								style="width: 95%; margin-left: 4%;">
 								<thead>
-									<tr>
-										<th>프로젝트명</th>
-										<th></th>
-
-									</tr>
+									
 								</thead>
 								<tbody>
-								<c:forEach var="plist" items="${plist}">
-									<tr>
-										<td>${plist.title}</td>
-										<td><button type="button" onclick="location.href='${path}/tryForge/reqPJList.do'"
-												class="btn btn-link btn-rounded btn-fw"
-												style="margin-left: 60%;">자세히</button></td>
-
-									</tr>
-								</c:forEach>
-
+									<c:forEach var="plist" items="${plist}">
+										<c:if test="${plist.status == '완료'}">
+											<tr>
+												<td>${plist.title}</td>
+												<td><button type="button"
+														class="btn btn-link btn-rounded btn-fw"
+														style="margin-left: 60%;">자세히</button></td>
+											</tr>
+										</c:if>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -134,7 +135,7 @@
 							<button type="button" class="btn btn-link btn-rounded btn-fw"
 								style="margin-left: 70%;" onclick="location.href='${path}/tryForge/noticeList.do'">자세히</button>
 						</div>
-						<div class="table-responsive" style="width: 95%;">
+						<div class="table-responsive" style="width: 95%; margin-left: 4%; max-height: 200px; overflow-x: auto;">
 							<table class="table table-hover"
 								style="width: 95%; margin-left: 4%;">
 								<thead>
