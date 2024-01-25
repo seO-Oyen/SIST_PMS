@@ -451,7 +451,7 @@ $(document).ready(function(){
 				<ul class="nav">
 					<li class="nav-item">
 						<a class="nav-link" href="${path}/dashboard.do">
-							<i class="typcn typcn-device-desktop menu-icon"></i> <span
+							<i class="typcn mdi mdi-collage menu-icon"></i> <span
 							class="menu-title">대시보드</span>
 							<!-- <div class="badge badge-danger">new</div> -->
 					</a></li>
@@ -482,7 +482,7 @@ $(document).ready(function(){
 					
 					<li class="nav-item">
 					<a class="nav-link" href="${path}/gantt.do" > 
-						<i class="typcn typcn-film menu-icon"></i> 
+						<i class="typcn mdi mdi-chart-gantt menu-icon"></i> 
 							<span class="menu-title">간트차트</span>
 							<!-- <i class="menu-arrow"></i> -->
 					</a>
@@ -496,7 +496,7 @@ $(document).ready(function(){
 					</li>
 					<li class="nav-item">
 					<a class="nav-link" href="${path}/calendar.do" >
-						<i class="typcn typcn-chart-pie-outline menu-icon"></i>
+						<i class="typcn mdi mdi-calendar menu-icon"></i>
 						<span class="menu-title">캘린더</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
@@ -511,7 +511,7 @@ $(document).ready(function(){
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false"
 						aria-controls="tables">
-						<i class="typcn typcn-th-small-outline menu-icon"></i>
+						<i class="typcn mdi mdi-clipboard-outline menu-icon"></i>
 						<span class="menu-title">업무 관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
@@ -526,7 +526,7 @@ $(document).ready(function(){
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false"
 						aria-controls="icons">
-						<i class="typcn typcn-compass menu-icon"></i>
+						<i class="typcn mdi mdi-clipboard-text menu-icon"></i>
 						<span class="menu-title">업무 보고</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
@@ -541,7 +541,7 @@ $(document).ready(function(){
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
 						aria-controls="auth">
-						<i class="typcn typcn-user-add-outline menu-icon"></i>
+						<i class="typcn mdi mdi-comment-alert-outline menu-icon"></i>
 						<span class="menu-title">리스크 관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
@@ -558,7 +558,7 @@ $(document).ready(function(){
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="${path}/file.do" >
-							<i class="typcn typcn-globe-outline menu-icon"></i>
+							<i class="typcn mdi mdi-folder-google-drive menu-icon"></i>
 							<span class="menu-title">파일저장소</span>
 							<!-- <i class="menu-arrow"></i> -->
 						</a>
