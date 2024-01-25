@@ -551,6 +551,14 @@ $(document).ready(function(){
 								</li>
 							</ul>
 						</div> --></li>
+					<li class="nav-item"><a class="nav-link" href="${path}/insertUser.do">
+						<i class="mdi mdi-account-multiple-plus"
+							style="width: 20px; height: 20px;"></i> <span class="menu-title">사용자 초대</span>
+						</a>
+					</li>
+						
+						
+						
 					<li class="nav-item"><a class="nav-link"
 						href="${path}/userIndex.do"" > <i
 							class="mdi mdi-account-convert"

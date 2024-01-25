@@ -1,5 +1,8 @@
 package tryForge.member.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tryForge.member.service.MemberService;
+import tryForge.vo.InviteMember;
+import tryForge.vo.MailSender;
 import tryForge.vo.Member;
 
 @Controller
@@ -73,6 +78,37 @@ public class MemberController {
 		d.addAttribute("userIdChk", memberService.checkId(userId));
 		
 		return "pageJsonReport";
+	}
+	
+	// 유저 초대 창
+	@GetMapping("insertUser.do")
+	public String insertUser(Model d) {
+		List<InviteMember> inviteList = memberService.inviteMemberList();
+		List<Member> memberList = new ArrayList<Member>();
+		
+		for(InviteMember invite : inviteList) {
+			memberList.add(memberService.getMember(invite.getInvited_member()));
+		}
+		
+		d.addAttribute("list", inviteList);
+		d.addAttribute("mem", memberList);
+		
+		return "user/insertUser";
+	}
+	
+	@PostMapping("insertUser.do")
+	public String mailSend(@RequestParam("receiver") String receiver, Model d, HttpSession session) {
+		MailSender mailVo = new MailSender();
+		Member sendMem = (Member)session.getAttribute("loginMem");
+		mailVo.setReceiver(receiver);
+		mailVo.setTitle("TryForge에 초대합니다.");
+		// 링크만 나중에 수정하면 될듯
+		mailVo.setContent(sendMem.getMember_name() + "님이 초대하셨습니다."
+				+ "\n아래링크를 눌러 가입해주세요.\n\nhttp://211.63.89.67:1111/tryForge/register.do");
+		// d.addAttribute("msg", memberService.sendMail(mailVo, sendMem));
+		memberService.sendMail(mailVo, sendMem);
+		
+		return "redirect:/insertUser.do";
 	}
 
 }

@@ -57,5 +57,34 @@
 		    and mem.team_key = team.team_key
 		    and team.project_key = p.project_key
 	</select>
+	
+	<insert id="inviteMember" parameterType="member">
+		INSERT INTO invite_member
+		(
+			invite_key,
+			invited_member,
+			invitee_email,
+			joined
+		)
+		VALUES
+		(
+			invite_seq.nextval,
+			#{member_key},
+			#{member_email},
+			'0'
+		)
+	</insert>
+	
+	<select id="getInviteMemberList" resultType="inviteMember">
+		SELECT *
+		FROM invite_member
+		ORDER BY invite_key desc
+	</select>
+	
+	<select id="getMeber" parameterType="int" resultType="member">
+		select * 
+		from member
+		where member_key = #{memberKey}
+	</select>
 
 </mapper>
