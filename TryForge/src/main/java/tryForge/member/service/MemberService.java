@@ -54,7 +54,12 @@ public class MemberService {
 	// 초대 목록 
 	public List<InviteMember> inviteMemberList() {
 		
-		return null;
+		return memberDao.getInviteMemberList();
+	}
+	
+	// 유저key로 유저 찾기
+	public Member getMember(int memberKey) {
+		return memberDao.getMeber(memberKey);
 	}
 	
 	// 메일 발송

@@ -51,20 +51,32 @@
 	</select>
 	
 	<insert id="inviteMember" parameterType="member">
-		INSERT INTO invate_member
+		INSERT INTO invite_member
 		(
-			invate_key,
+			invite_key,
 			invited_member,
 			invitee_email,
 			joined
 		)
 		VALUES
 		(
-			invate_seq.nextval,
+			invite_seq.nextval,
 			#{member_key},
 			#{member_email},
 			'0'
 		)
 	</insert>
+	
+	<select id="getInviteMemberList" resultType="inviteMember">
+		SELECT *
+		FROM invite_member
+		ORDER BY invite_key desc
+	</select>
+	
+	<select id="getMeber" parameterType="int" resultType="member">
+		select * 
+		from member
+		where member_key = #{memberKey}
+	</select>
 
 </mapper>

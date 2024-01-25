@@ -1,6 +1,8 @@
 package tryForge.member.dao;
 
-import tryForge.vo.MailSender;
+import java.util.List;
+
+import tryForge.vo.InviteMember;
 import tryForge.vo.Member;
 
 public interface MemberDao {
@@ -14,5 +16,12 @@ public interface MemberDao {
 	// 아이디 중복체크 - 회원가입
 	int checkId(String member_id);
 	
+	// 초대 내역 저장
 	int inviteMember(Member member);
+	
+	// 초내 내역 출력
+	List<InviteMember> getInviteMemberList();
+	
+	// 유저 key로 유저 찾기
+	Member getMeber(int memberKey);
 }
