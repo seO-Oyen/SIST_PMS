@@ -68,9 +68,11 @@
     text-align: center !important;
     vertical-align: middle !important;
 }
+/*
 .gantt_grid_head_cell.gantt_grid_head_add.gantt_last_cell {
     display: none !important; 
-}
+} // 맨 위 추가항목 삭제 스타일
+*/
 </style>
 <div id='gantt_here' style="width:100%; height:100%; margin-left:20px; margin-right:20px;"class="main-panel">
 
@@ -173,7 +175,7 @@ gantt.config.scales = [
 
 // 기존 설정들 유지
 show_empty_state = true;
-gantt.config.start_date = new Date(2024, 0, 1); // 시작일
+gantt.config.start_date = new Date(2024, 0, 1); // 시작일 나중에 프로젝트 기간으로 넣어야됨
 gantt.config.end_date = new Date(2024, 11, 31); // 종료일
 gantt.config.autosize = "y"; // 사이즈 자동조절( 아래쪽에 스크롤바 올라옴 )
 // 날짜 포맷 변경 

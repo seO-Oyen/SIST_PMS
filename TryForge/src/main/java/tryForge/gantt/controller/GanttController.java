@@ -23,4 +23,6 @@ public class GanttController {
 		d.addAttribute("links", service.getTaskDep());
 		return "pageJsonReport";
 	}
+	
+	
 }
