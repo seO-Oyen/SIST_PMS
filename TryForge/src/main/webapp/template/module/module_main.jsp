@@ -450,7 +450,7 @@ $(document).ready(function(){
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
 					<li class="nav-item">
-						<a class="nav-link" href="${path}/userIndex.do">
+						<a class="nav-link" href="${path}/dashboard.do">
 							<i class="typcn typcn-device-desktop menu-icon"></i> <span
 							class="menu-title">대시보드</span>
 							<!-- <div class="badge badge-danger">new</div> -->

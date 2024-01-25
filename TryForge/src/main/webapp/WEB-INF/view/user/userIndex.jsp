@@ -6,13 +6,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/> --%>
 <jsp:include page="${path}/template/module/module_user.jsp" flush="true" />
-<!-- <script>
-var sessId = "${loginMem.member_id}"
-if(sessId==""){
-	alert("로그인을 하여야 현재화면을 볼 수 있습니다\n로그인 페이지 이동")
-	location.href="${path}/tryForge/login.do"
+<script>
+function goDash(projectKey) {
+	alert("프로젝트 키 : " + projectKey)
+	location.href = "${path}/tryForge/dashboard.do"
 }
-</script> -->
+</script>
 		<!-- main 대시보드 내용 -->
 		<!-- partial -->
 		<div class="main-panel">
@@ -39,7 +38,7 @@ if(sessId==""){
 											<c:forEach var="plist" items="${plist}">
 												<tr>
 													<td>${plist.title}</td>
-													<td><button type="button" onclick="alert('${plist.detail}')"
+													<td><button type="button" onclick="goDash('${plist.project_key}')"
 															class="btn btn-link btn-rounded btn-fw"
 															style="margin-left: 60%;">자세히</button></td>
 			

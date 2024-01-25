@@ -102,10 +102,9 @@ public class MemberController {
 		Member sendMem = (Member)session.getAttribute("loginMem");
 		mailVo.setReceiver(receiver);
 		mailVo.setTitle("TryForge에 초대합니다.");
-		// 링크만 나중에 수정하면 될듯
+		
 		mailVo.setContent(sendMem.getMember_name() + "님이 초대하셨습니다."
 				+ "\n아래링크를 눌러 가입해주세요.\n\nhttp://211.63.89.67:1111/tryForge/register.do");
-		// d.addAttribute("msg", memberService.sendMail(mailVo, sendMem));
 		memberService.sendMail(mailVo, sendMem);
 		
 		return "redirect:/insertUser.do";
