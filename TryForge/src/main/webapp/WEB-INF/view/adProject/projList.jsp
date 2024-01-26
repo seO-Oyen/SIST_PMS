@@ -234,7 +234,22 @@
 			            cancelButtonText: '취소',
 			        }).then(function (result) {
 			            if (result.isConfirmed) {
-			                uptFin(key);
+			                uptFin();
+			            }
+			        });
+			    });
+				// 수정
+				$("#uptBtn").click(function () {
+			        Swal.fire({
+			            title: '확인',
+			            text: '내용을 변경하시겠습니까?',
+			            icon: 'question',
+			            showCancelButton: true,
+			            confirmButtonText: '확인',
+			            cancelButtonText: '취소',
+			        }).then(function (result) {
+			            if (result.isConfirmed) {
+			                uptAll(key);
 			            }
 			        });
 			    });
@@ -271,7 +286,7 @@
 		
 		function uptFin(key){
 			$.ajax({
-				url:"${path}/tryForge/uptFin.do?project_key="+key,
+				url:"${path}/tryForge/uptFin.do?"+key,
 				dataType : "json",
 				success:function(data){
 					var uptmsg = data.uptmsg;
@@ -279,6 +294,33 @@
 						Swal.fire({
 							title : '수정 성공',
 							text :uptmsg,
+							icon : 'success',
+						}).then(function() {
+							$("#clsBtn").click();
+							window.location.reload();
+						});
+		                
+		            }
+		        },
+				error : function(err){
+					console.log(err)
+				}
+			})
+		}
+		
+		function uptAll(key){
+			alert($("#modalFrm").serialize())
+			alert(key)
+			$.ajax({
+				url:"${path}/tryForge/uptAll.do?project_key="+key,
+				dataType : "json",
+				data :  $("#modalFrm").serialize(),
+				success : function(data){
+					var uptAllmsg = data.uptAllmsg;
+					if (uptAllmsg!= null) {
+						Swal.fire({
+							title : '수정 성공',
+							text :' ',
 							icon : 'success',
 						}).then(function() {
 							$("#clsBtn").click();
@@ -322,9 +364,10 @@
 												<c:set var="formattedEndDate"
 													value="${fn:substring(plist.end_date, 0, 10)}" />
 												<td><c:out value="${formattedEndDate}" /></td>
-												<td><button type="button"
+												<td><button type="button" 
+												onclick="location.href='${path}/tryForge/dashboard.do'"
 														class="btn btn-link btn-rounded btn-fw"
-														style="margin-left: 60%;">자세히</button></td>
+														style="margin-left: 60%;">대시보드</button></td>
 											</tr>
 										</c:if>
 									</c:forEach>
@@ -357,8 +400,9 @@
 											<tr ondblclick="openpage('${plist.project_key}')">
 												<td>${plist.title}</td>
 												<td><button type="button"
+												onclick="location.href='${path}/tryForge/dashboard.do'"
 														class="btn btn-link btn-rounded btn-fw"
-														style="margin-left: 60%;">자세히</button></td>
+														style="margin-left: 60%;">대시보드</button></td>
 											</tr>
 										</c:if>
 									</c:forEach>
@@ -410,9 +454,7 @@
 
 			</div>
 			<form class="forms-sample" id="modalFrm">
-
 				<div class="form-group">
-					<input type="hidden" name="project_key" value=""/>
 					<label for="exampleInputUsername1">프로젝트 타이틀</label> <input
 						name="title" type="text" class="form-control" id=""
 						placeholder="title">
