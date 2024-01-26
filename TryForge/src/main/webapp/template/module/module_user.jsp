@@ -54,6 +54,7 @@ $(document).ready(function(){
 		location.href="${path}/login.do"
 	} else if ("${loginMem.member_role}" != "") {
 		$("#admin").css("display", "")
+		$("#sidebar").css("height", "175px")
 	}
 })
 </script>
@@ -201,12 +202,13 @@ $(document).ready(function(){
 		
 		<!-- 기존 민트색 상단바 -->
 		<!-- partial -->
-		<nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0" style="background:#007FFF;">
+		<!-- <nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0" style="background:#007FFF;">
 			
-			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end"
+				style="width: 1000px;">
 				<ul class="navbar-nav mr-lg-2">
 					<li class="nav-item ml-0">
-						<h4 class="mb-0">Dashboard</h4>
+						<h4 class="mb-0">Main</h4>
 					</li>
 					<li class="nav-item">
 						<div class="d-flex align-items-baseline">
@@ -216,9 +218,9 @@ $(document).ready(function(){
 						</div>
 					</li>
 				</ul>
-				<!-- 검색창 => <ul>은 공간때문에 냅둠 -->
+				검색창 => <ul>은 공간때문에 냅둠
 				<ul class="navbar-nav navbar-nav-right">
-					<!-- <li class="nav-item nav-search d-none d-md-block mr-0">
+					<li class="nav-item nav-search d-none d-md-block mr-0">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Search..."
 								aria-label="search" aria-describedby="search">
@@ -228,25 +230,26 @@ $(document).ready(function(){
 								</span>
 							</div>
 						</div>
-					</li> -->
+					</li>
 				</ul>
 			</div>
-			<!-- 아이콘 버튼 -->
-			<div class="navbar-links-wrapper d-flex align-items-stretch">
+			아이콘 버튼
+			<div class="navbar-links-wrapper d-flex align-items-stretch"
+				style="width: 400px;">
 				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-calendar-outline"></i></a>
+					<a href="javascript:;"><span>업무현황</span></a>
 				</div>
 				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-mail"></i></a>
+					<a href="javascript:;"><span>업무현황</span></a>
 				</div>
 				<div class="nav-link" style="border-right:none;">
-					<a href="javascript:;"><i class="typcn typcn-folder"></i></a>
+					<a href="javascript:;"><span>업무현황</span></a>
 				</div>
 				<div class="nav-link" style="border-right:none;">
 					<a href="javascript:;"><i class="typcn typcn-document-text"></i></a>
 				</div>
 			</div>
-		</nav>
+		</nav> -->
 		
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
@@ -447,12 +450,12 @@ $(document).ready(function(){
 			<!-- 사이드바 -->
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
-			<nav class="sidebar sidebar-offcanvas" id="sidebar">
+			<nav class="sidebar" id="sidebar" style="height: 130px; min-height: auto;">
 				<ul class="nav">
 					<li class="nav-item">
-						<a class="nav-link" href="${path}/dashboard.do">
-							<i class="typcn mdi mdi-collage menu-icon"></i> <span
-							class="menu-title">대시보드</span>
+						<a class="nav-link" href="${path}/userIndex.do">
+							<i class="typcn typcn-device-desktop menu-icon"></i> <span
+							class="menu-title">메인화면</span>
 							<!-- <div class="badge badge-danger">new</div> -->
 					</a></li>
 					
@@ -460,7 +463,7 @@ $(document).ready(function(){
 						<a class="nav-link" data-toggle="collapse" 
 							href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
 							<i class="typcn typcn-document-text menu-icon"></i>
-							<span class="menu-title">공지사항</span>
+							<span class="menu-title">업무현황</span>
 							<!-- 메뉴 옆 +기호 -->
 							<!-- <i class="menu-arrow"></i> -->
 						</a>
@@ -479,10 +482,17 @@ $(document).ready(function(){
 							</ul>
 						</div> -->
 					</li>
+					<li class="nav-item" id="admin" style="display: none;">
+						<a class="nav-link" href="${path}/adMain.do">
+							<i class="mdi mdi-account-convert" style="width:20px;height:20px;"></i>
+							<span class="menu-title">관리자페이지</span>
+							<!-- <i class="menu-arrow"></i> -->
+						</a>
+					</li>
 					
-					<li class="nav-item">
+					<%-- <li class="nav-item">
 					<a class="nav-link" href="${path}/gantt.do" > 
-						<i class="typcn mdi mdi-chart-gantt menu-icon"></i> 
+						<i class="typcn typcn-film menu-icon"></i> 
 							<span class="menu-title">간트차트</span>
 							<!-- <i class="menu-arrow"></i> -->
 					</a>
@@ -496,7 +506,7 @@ $(document).ready(function(){
 					</li>
 					<li class="nav-item">
 					<a class="nav-link" href="${path}/calendar.do" >
-						<i class="typcn mdi mdi-calendar menu-icon"></i>
+						<i class="typcn typcn-chart-pie-outline menu-icon"></i>
 						<span class="menu-title">캘린더</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
@@ -511,7 +521,7 @@ $(document).ready(function(){
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false"
 						aria-controls="tables">
-						<i class="typcn mdi mdi-clipboard-outline menu-icon"></i>
+						<i class="typcn typcn-th-small-outline menu-icon"></i>
 						<span class="menu-title">업무 관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
@@ -526,7 +536,7 @@ $(document).ready(function(){
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false"
 						aria-controls="icons">
-						<i class="typcn mdi mdi-clipboard-text menu-icon"></i>
+						<i class="typcn typcn-compass menu-icon"></i>
 						<span class="menu-title">업무 보고</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
@@ -541,7 +551,7 @@ $(document).ready(function(){
 					<li class="nav-item">
 					<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
 						aria-controls="auth">
-						<i class="typcn mdi mdi-comment-alert-outline menu-icon"></i>
+						<i class="typcn typcn-user-add-outline menu-icon"></i>
 						<span class="menu-title">리스크 관리</span>
 						<!-- <i class="menu-arrow"></i> -->
 					</a>
@@ -558,7 +568,7 @@ $(document).ready(function(){
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="${path}/file.do" >
-							<i class="typcn mdi mdi-folder-google-drive menu-icon"></i>
+							<i class="typcn typcn-globe-outline menu-icon"></i>
 							<span class="menu-title">파일저장소</span>
 							<!-- <i class="menu-arrow"></i> -->
 						</a>
@@ -571,12 +581,6 @@ $(document).ready(function(){
 							</ul>
 						</div> -->
 					</li>
-					<li class="nav-item" id="admin" style="display: none;">
-						<a class="nav-link" href="${path}/adMain.do">
-							<i class="mdi mdi-account-convert" style="width:20px;height:20px;"></i>
-							<span class="menu-title">관리자페이지</span>
-							<!-- <i class="menu-arrow"></i> -->
-						</a>
-					</li>
+					 --%>
 				</ul>
 			</nav>

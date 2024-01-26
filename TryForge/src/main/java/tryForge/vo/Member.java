@@ -22,6 +22,11 @@ public class Member {
 		this.member_role = member_role;
 	}
 	
+	public Member(int member_key, String member_email) {
+		this.member_key = member_key;
+		this.member_email = member_email;
+	}
+	
 	public int getMember_key() {
 		return member_key;
 	}

@@ -13,6 +13,7 @@
 		<typeAlias alias="task" type="tryForge.vo.Task"/>
 		<typeAlias alias="task_dep" type="tryForge.vo.Task_Dependency"/>
 		<typeAlias alias="dashboard" type="tryForge.vo.DashBoard"/>
+		<typeAlias alias="inviteMember" type="tryForge.vo.InviteMember"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="resource/mapper/mapper01.xml"/>
@@ -23,5 +24,4 @@
 		<mapper resource="resource/mapper/ganttMapper.xml"/>
 		<mapper resource="resource/mapper/dashboardMapper.xml"/>
 	</mappers>
-	
 </configuration>
