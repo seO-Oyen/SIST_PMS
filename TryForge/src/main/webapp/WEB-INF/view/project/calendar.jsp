@@ -53,16 +53,8 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	var calendarEl = document.getElementById('calendar');
-	var today = new Date(); // 날짜형 js 객체
-	console.log(today)
-	console.log(today.toLocaleString())
-	// GMT기준으로 시간별 경도의 날짜/시간표시
-	console.log(today.toISOString())
-	// 전세계 표준시간(GMT)
-	console.log(today.toISOString().split("T"))
-	// 시간과 날짜를 배열로 구분해서 출력..
-	var todayTitle = today.toISOString().split("T")[0]
-	// 날짜만 표현..(기준시간을 지정)
+	var today = new Date();
+	var todayTitle = today.toISOString().split("T")[0] // 표준시간
 	console.log(todayTitle)
 	var calendar = new FullCalendar.Calendar(calendarEl, {
 		headerToolbar : {
@@ -76,12 +68,10 @@ $(document).ready(function() {
 		navLinks : true, // can click day/week names to navigate views
 		selectable : true,
 		selectMirror : true,
-		select : function(arg) {
-			// 등록시 처리되는 이벤트 핸들러(날짜 클릭, 시간을 스크롤 하면 처리)
-
-			// 초기화..
-			// 등록하기 위해서 모달창을 로딩/모달창에 form name값에
-			// 해당 기본데이터를 설정..
+		
+		select : function(arg) { // 날짜 선택하면 상세일정 등록 이벤트
+			// 등록을 위해 처리되는 이벤트 핸들러(날짜 클릭, 시간을 스크롤 하면 처리)
+			// 등록을 위해서 기존에 있던 정보(없으면 공백)으로 입력창 출력
 			$("#frm01")[0].reset()
 			$("#calTitle").text("일정등록")
 			$("#start").val(arg.start.toLocaleString())
@@ -95,30 +85,15 @@ $(document).ready(function() {
 			$("#uptBtn").hide()
 			$("#delBtn").hide() 
 			$("#calModal").click()				
-			
-			
-			/*
-			var title = prompt('Event Title:');
-			if (title) {
-				calendar.addEvent({
-					title : title,
-					start : arg.start,
-					end : arg.end,
-					allDay : arg.allDay
-				})
-			}
-			
-			 */
-			calendar.unselect()
+
+			calendar.unselect() // 입력된 정보 등록/취소 후 날짜선택창 닫음
 		},
+		
 		eventClick : function(arg) {
 			console.log("#일정 클릭시#")
 			console.log(arg.event)
 			addForm(arg.event)
-			// evt.속성 : 기본적으로 fullcalendar에서 사용하는 속성 
-			// evt.extendedProps.속성 : 기본속성이 아닌 추가적으로 
-			//		상세화면에 출력시 사용되는 속성
-			
+
 			$("#calTitle").text("일정상세")	
 			$("#regBtn").hide()
 			$("#uptBtn").show()
@@ -151,7 +126,6 @@ $(document).ready(function() {
 					failureCallBack(err)
 				}
 			})
-
 		}
 	});
 
@@ -177,35 +151,25 @@ $(document).ready(function() {
 			window.open($(this).val(),"","")
 		}
 	})
-	
+	// 데이터를 입력하고 요청데이터 서버에 전송 함수
 	function ajaxFunc(url, type){
 		$.ajax({
 			type : type,
 			url : "${pageContext.request.contextPath}/"+url,
 			data : $("#frm01").serialize(),
-			// 데이터를 입력하고 요청데이터 서버에 전송
 			dataType : "json",
-
-			success : function(data) {
-				// 해당 controller에서 다시 모델데이터로 넘겨준 데이터
-				// d.addAttribute("msg", service.insertCalendar(ins));
-				// 등록 후, 전체 데이터 json데이터로 가지고 있음..
-				// d.addAttribute("callist", service.getCalList());									
-				console.log(data)
-				$("#clsBtn").click() // 등록 모달창 닫기..
-				// 기존일정 삭제(full api에 등록된 데이터 삭제 js) 
-				calendar.removeAllEvents();
-				console.log(data.cal)
-				// 새로운 일정 추가..(서버에서 controller로 넘겨오 데이터)
-				// 다시 추가 처리..
-				calendar.addEventSource(data.cal)
+			success : function(data) {							
+				$("#clsBtn").click() 
+				calendar.refetchEvents();
 			},
 			error : function(err) {
 				console.log(err)
 			}
 		})			
-		
 	}
+	// evt.속성 : 기본적으로 fullcalendar에서 사용하는 속성 
+	// evt.extendedProps.속성 : 기본속성이 아닌 추가적으로 
+	//		상세화면에 출력시 사용되는 속성
 	function addForm(evt){
 		$("[name=calendar_key]").val(evt.extendedProps.calendar_key)
 		$("[name=title]").val(evt.title)
