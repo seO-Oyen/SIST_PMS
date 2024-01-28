@@ -5,7 +5,7 @@
 			
 		<!-- main 대시보드 내용 -->
 		<!-- partial -->
-		<%-- <div class="main-panel">
+		<div class="main-panel">
 			<div class="content-wrapper">
 
 				<div class="row">
@@ -458,7 +458,7 @@
 					</div>
 				</div>
 
-			</div> --%>
+			</div>
 			
 			<!-- 풋터 -->
 			<!-- content-wrapper ends -->
