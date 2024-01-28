@@ -49,5 +49,13 @@
 		FROM MEMBER
 		WHERE member_id = #{member_id}
 	</select>
+	
+	<select id="getUserProject" parameterType="int" resultType="project">
+		select p.*
+		from team_member mem,  team, project p
+		where member_key = #{member_key}
+		    and mem.team_key = team.team_key
+		    and team.project_key = p.project_key
+	</select>
 
 </mapper>
