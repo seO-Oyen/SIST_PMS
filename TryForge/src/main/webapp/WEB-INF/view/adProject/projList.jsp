@@ -34,39 +34,39 @@
 <script>
 	$(document).ready(function() {
 		var selectedMemberKeys = [];
-		
-		$("#clsBtn").click(function(){
+
+		$("#clsBtn").click(function() {
 			$("#myModal form")[0].reset()
-			
+
 		})
-		$("#xBtn").click(function(){
+		$("#xBtn").click(function() {
 			$("#myModal form")[0].reset()
-			
+
 		})
-		
+
 		$("#regProj").click(function() {
 			$("#myModal").modal('show');
 			$(".modal-title").text("New Project")
 			$("#proTitle").text("프로젝트 생성")
 			// 구성원 목록 초기화
-		    $("#selectMem").empty();
+			$("#selectMem").empty();
 
-		    // 왼쪽 검색 결과 초기화
-		    $("#left input").val("");
-		    $("#addMem").empty();
-		    
-		    // 검색 결과 창 높이 초기화
-		    $("#searchResults").css("height", "150px");
-	
-		    // 프로젝트 구성원 추가 영역 초기화
-		    $("#right").removeClass("col-12");
-		    $("#right").addClass("col-6");
-		    $("#tm").text("프로젝트 구성원 추가");
-		    $("[name=member_name]").show();
-		    $("#regBtn").show()
-		    $("#uptBtn").hide()
-		   
-		    $("#detailBtn").hide()
+			// 왼쪽 검색 결과 초기화
+			$("#left input").val("");
+			$("#addMem").empty();
+
+			// 검색 결과 창 높이 초기화
+			$("#searchResults").css("height", "150px");
+
+			// 프로젝트 구성원 추가 영역 초기화
+			$("#right").removeClass("col-12");
+			$("#right").addClass("col-6");
+			$("#tm").text("프로젝트 구성원 추가");
+			$("[name=member_name]").show();
+			$("#regBtn").show()
+			$("#uptBtn").hide()
+
+			$("#detailBtn").hide()
 			schMem();
 		})
 
@@ -76,8 +76,14 @@
 
 		$("#regBtn").click(function() {
 			// 선택한 구성원의 배열값 넣기
-			event.preventDefault(); 
+			event.preventDefault();
+			// Validate the input
+		    if (!emptyCheck()) {
+		        // 만약 유효성 검사에서 실패하면, 더 이상의 처리를 중단
+		        return;
+		    }
 			getAllMemberKeys();
+			
 			$.ajax({
 				// 등록 controller 호출
 				url : "${path}/tryForge/insertAll.do",
@@ -94,6 +100,8 @@
 						$("#clsBtn").click();
 						window.location.reload();
 					});
+					
+					
 				},
 				error : function(err) {
 					console.log(err)
@@ -113,14 +121,29 @@
 				var html = "";
 				$(memList).each(
 						function(idx, member) {
-							html += "<tr ondblclick='selectMem("
+							if(member.title!=null){
+							html += "<tr> ";
+							html += "<td>" + member.member_name + "</td>";
+							html += "<td>" + member.member_email + "</td>";
+							html += "<td>" + member.title + "</td>";
+							html += "<td>" + member.start_date+ "</td>";
+							html += "<td>" + member.end_date+ "</td>";
+							html += "</tr>";
+							}else{
+								html += "<tr ondblclick='selectMem("
 									+ member.member_key + ", \""
 									+ member.member_name + "\", \""
 									+ member.member_email + "\")' > ";
 							html += "<td>" + member.member_name + "</td>";
 							html += "<td>" + member.member_email + "</td>";
+							html += "<td style='text-align: center;'>·</td>";
+							html += "<td style='text-align: center;'>·</td>";
+							html += "<td style='text-align: center;'>·</td>";
+							
 							html += "</tr>";
+							}
 						});
+
 				$("#addMem").html(html);
 				selectedMemberKeys.push(member_key);
 			},
@@ -182,7 +205,7 @@
 				$("#proTitle").text("상세정보 조회")
 				$("[name=title]").val(projectInfo.title)
 				$("[name=team_name]").val(teamInfo.team_name)
-				
+
 				var startDate = new Date(projectInfo.start_date);
 				startDate.setDate(startDate.getDate() + 1);
 				var formattedStartDate = startDate.toISOString().split('T')[0];
@@ -191,149 +214,172 @@
 				var formateedendtDate = endDate.toISOString().split('T')[0];
 				$("[name=start_date]").val(formattedStartDate)
 				$("[name=end_date]").val(formateedendtDate)
-				
+
 				$("[name=detail]").val(projectInfo.detail)
 				$("[name=left]").hide()
 				$("[name=member_name]").hide()
 				$("#tm").text("프로젝트 구성원 확인")
 				$("#right").removeClass("col-6");
 				$("#right").addClass("col-12");
-				$("#searchResults").css("height","0px");
+				$("#searchResults").css("height", "0px");
 				// 다중 멤버 each 처리
-				var addhtml = ""; 
+				var addhtml = "";
 				$.each(memberInfo, function(index, member) {
-				    addhtml += "<tr><td>" + member.member_name + "</td><td>" + member.member_email + "</td></tr>";
+					addhtml += "<tr><td>" + member.member_name + "</td><td>"
+							+ member.member_email + "</td></tr>";
 				});
-	
+
 				// 기존의 내용을 비우고 새로운 행을 추가
 				$("#selectMem").empty().append(addhtml);
 				$("#regBtn").hide()
 				$("#uptBtn").show()
 				$("#detailBtn").show()
-				$("#delBtn").click(function () {
-			        Swal.fire({
-			            title: '삭제',
-			            text: '해당 프로젝트를 삭제하시겠습니까?',
-			            icon: 'question',
-			            showCancelButton: true,
-			            confirmButtonText: '확인',
-			            cancelButtonText: '취소',
-			        }).then(function (result) {
-			            if (result.isConfirmed) {
-			            	delAll(key);
-			            }
-			        });
-			    });
-				$("#endBtn").click(function () {
-			        Swal.fire({
-			            title: '확인',
-			            text: '진행상태를 완료로 변경하시겠습니까?',
-			            icon: 'question',
-			            showCancelButton: true,
-			            confirmButtonText: '확인',
-			            cancelButtonText: '취소',
-			        }).then(function (result) {
-			            if (result.isConfirmed) {
-			                uptFin();
-			            }
-			        });
-			    });
+				$("#delBtn").click(function() {
+					Swal.fire({
+						title : '삭제',
+						text : '해당 프로젝트를 삭제하시겠습니까?',
+						icon : 'question',
+						showCancelButton : true,
+						confirmButtonText : '확인',
+						cancelButtonText : '취소',
+					}).then(function(result) {
+						if (result.isConfirmed) {
+							delAll(key);
+						}
+					});
+				});
+				$("#endBtn").click(function() {
+					Swal.fire({
+						title : '확인',
+						text : '진행상태를 완료로 변경하시겠습니까?',
+						icon : 'question',
+						showCancelButton : true,
+						confirmButtonText : '확인',
+						cancelButtonText : '취소',
+					}).then(function(result) {
+						if (result.isConfirmed) {
+							uptFin();
+						}
+					});
+				});
 				// 수정
-				$("#uptBtn").click(function () {
-			        Swal.fire({
-			            title: '확인',
-			            text: '내용을 변경하시겠습니까?',
-			            icon: 'question',
-			            showCancelButton: true,
-			            confirmButtonText: '확인',
-			            cancelButtonText: '취소',
-			        }).then(function (result) {
-			            if (result.isConfirmed) {
-			                uptAll(key);
-			            }
-			        });
-			    });
+				$("#uptBtn").click(function() {
+					Swal.fire({
+						title : '확인',
+						text : '내용을 변경하시겠습니까?',
+						icon : 'question',
+						showCancelButton : true,
+						confirmButtonText : '확인',
+						cancelButtonText : '취소',
+					}).then(function(result) {
+						if (result.isConfirmed) {
+							uptAll(key);
+						}
+					});
+				});
 			},
 			error : function(err) {
 				console.log(err)
 			}
 		})
 	}
-		function delAll(key){
-			$.ajax({
-				url:"${path}/tryForge/delAll.do?project_key="+key,
-				//data:$("#modalFrm").serialize(),
-				dataType : "json",
-				success:function(data){
-					var delmsg = data.delmsg;
-					if (delmsg != null) {
-						Swal.fire({
-							title : '삭제 성공',
-							text : ' ',
-							icon : 'success',
-						}).then(function() {
-							$("#clsBtn").click();
-							window.location.reload();
-						});
-		                
-		            }
-		        },
-				error : function(err){
-					console.log(err)
+	function delAll(key) {
+		$.ajax({
+			url : "${path}/tryForge/delAll.do?project_key=" + key,
+			//data:$("#modalFrm").serialize(),
+			dataType : "json",
+			success : function(data) {
+				var delmsg = data.delmsg;
+				if (delmsg != null) {
+					Swal.fire({
+						title : '삭제 성공',
+						text : ' ',
+						icon : 'success',
+					}).then(function() {
+						$("#clsBtn").click();
+						window.location.reload();
+					});
+
 				}
-			})
-		}
+			},
+			error : function(err) {
+				console.log(err)
+			}
+		})
+	}
+
+	function uptFin(key) {
+		$.ajax({
+			url : "${path}/tryForge/uptFin.do?" + key,
+			dataType : "json",
+			success : function(data) {
+				var uptmsg = data.uptmsg;
+				if (uptmsg != null) {
+					Swal.fire({
+						title : '수정 성공',
+						text : uptmsg,
+						icon : 'success',
+					}).then(function() {
+						$("#clsBtn").click();
+						window.location.reload();
+					});
+
+				}
+			},
+			error : function(err) {
+				console.log(err)
+			}
+		})
+	}
+
+	function uptAll(key) {
+		alert($("#modalFrm").serialize())
+		alert(key)
+		$.ajax({
+			url : "${path}/tryForge/uptAll.do?project_key=" + key,
+			dataType : "json",
+			data : $("#modalFrm").serialize(),
+			success : function(data) {
+				var uptAllmsg = data.uptAllmsg;
+				if (uptAllmsg != null) {
+					Swal.fire({
+						title : '수정 성공',
+						text : ' ',
+						icon : 'success',
+					}).then(function() {
+						$("#clsBtn").click();
+						window.location.reload();
+					});
+
+				}
+			},
+			error : function(err) {
+				console.log(err)
+			}
+		})
+	}
+	
+	function emptyCheck(){
 		
-		function uptFin(key){
-			$.ajax({
-				url:"${path}/tryForge/uptFin.do?"+key,
-				dataType : "json",
-				success:function(data){
-					var uptmsg = data.uptmsg;
-					if (uptmsg!= null) {
-						Swal.fire({
-							title : '수정 성공',
-							text :uptmsg,
-							icon : 'success',
-						}).then(function() {
-							$("#clsBtn").click();
-							window.location.reload();
-						});
-		                
-		            }
-		        },
-				error : function(err){
-					console.log(err)
-				}
-			})
-		}
-		
-		function uptAll(key){
-			alert($("#modalFrm").serialize())
-			alert(key)
-			$.ajax({
-				url:"${path}/tryForge/uptAll.do?project_key="+key,
-				dataType : "json",
-				data :  $("#modalFrm").serialize(),
-				success : function(data){
-					var uptAllmsg = data.uptAllmsg;
-					if (uptAllmsg!= null) {
-						Swal.fire({
-							title : '수정 성공',
-							text :' ',
-							icon : 'success',
-						}).then(function() {
-							$("#clsBtn").click();
-							window.location.reload();
-						});
-		                
-		            }
-		        },
-				error : function(err){
-					console.log(err)
-				}
-			})
-		}
+		var title = $("#modalFrm [name='title']").val();
+	    var teamName = $("#modalFrm [name='team_name']").val();
+	    var startDate = $("#modalFrm [name='start_date']").val();
+	    var endDate = $("#modalFrm [name='end_date']").val();
+	    var detail = $("#modalFrm [name='detail']").val();
+
+	    if (title.trim() === "" || teamName.trim() === "" || startDate === "" || endDate === "" || detail.trim() === "") {
+	        // Use SweetAlert2 for a more visually appealing alert
+	        Swal.fire({
+	            icon: 'warning',
+	            title: '입력 오류',
+	            text: '모든 입력칸을 채워주세요',
+	            confirmButtonColor: '#007FFF',
+	        });
+	        return false; 
+	    }
+
+	    return true; 
+	}
 </script>
 <div class="main-panel">
 	<div class="content-wrapper">
@@ -364,8 +410,8 @@
 												<c:set var="formattedEndDate"
 													value="${fn:substring(plist.end_date, 0, 10)}" />
 												<td><c:out value="${formattedEndDate}" /></td>
-												<td><button type="button" 
-												onclick="location.href='${path}/tryForge/dashboard.do'"
+												<td><button type="button"
+														onclick="location.href='${path}/tryForge/dashboard.do'"
 														class="btn btn-link btn-rounded btn-fw"
 														style="margin-left: 60%;">대시보드</button></td>
 											</tr>
@@ -400,7 +446,7 @@
 											<tr ondblclick="openpage('${plist.project_key}')">
 												<td>${plist.title}</td>
 												<td><button type="button"
-												onclick="location.href='${path}/tryForge/dashboard.do'"
+														onclick="location.href='${path}/tryForge/dashboard.do'"
 														class="btn btn-link btn-rounded btn-fw"
 														style="margin-left: 60%;">대시보드</button></td>
 											</tr>
@@ -429,28 +475,32 @@
 			<!-- Modal Header -->
 			<div class="modal-header">
 				<h2 class="modal-title">New Project</h2>
-				
+
 				<button type="button" class="close" data-dismiss="modal" id="xBtn">×</button>
 			</div>
 
 			<!-- Modal body -->
 			<div class="modal-body">
-			<div style="display:flex;">
-				<h3 id=proTitle>프로젝트 생성</h3>
-				<div class="btn-group" style="margin-left:50%;" id="detailBtn">
-                      <button type="button" class="btn btn-"
-                      style="background-color: #007FFF; color: white;" 
-                      >프로젝트 상세설정</button>
-                      <button type="button" style="background-color: #007FFF; color: white;" 
-                      class="btn btn- dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
-                        <button class="dropdown-item" id="endBtn">프로젝트 완료</button>
-                        <button class="dropdown-item" id="delBtn">프로젝트 삭제</button>
-                      </div>
-                    </div> 
-			</div>
+				<div style="display: flex;">
+					<h3 id=proTitle>프로젝트 생성</h3>
+					<div class="btn-group" style="margin-left: 50%;" id="detailBtn">
+						<button type="button" class="btn btn-"
+							style="background-color: #007FFF; color: white;">프로젝트
+							상세설정</button>
+						<button type="button"
+							style="background-color: #007FFF; color: white;"
+							class="btn btn- dropdown-toggle dropdown-toggle-split"
+							id="dropdownMenuSplitButton1" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<div class="dropdown-menu"
+							aria-labelledby="dropdownMenuSplitButton1">
+							<button class="dropdown-item" id="endBtn">프로젝트 완료</button>
+							<button class="dropdown-item" id="delBtn">프로젝트 삭제</button>
+						</div>
+					</div>
+				</div>
 
 			</div>
 			<form class="forms-sample" id="modalFrm">
@@ -481,26 +531,23 @@
 				<div class="form-group">
 					<label id="tm">프로젝트 구성원 추가</label>
 					<div class="row mt-3">
-						<!-- 왼쪽: 검색 결과 -->
-						<div class="col-6" id="left">
+						<!-- 아래: 검색 결과 -->
+						<div class="col-12" id="bottom">
 							<input type="text" class="form-control mb-2" name="member_name"
 								placeholder="검색">
 							<div id="searchResults" style="height: 150px; overflow-y: auto;">
 								<table class="table table-hover">
-
 									<tbody id="addMem">
 									</tbody>
 								</table>
 							</div>
 						</div>
-						<!-- 오른쪽: 선택한 구성원 -->
-						<div class="col-6" id="right">
-
+						<!-- 위: 선택한 구성원 -->
+						<div class="col-12 mb-2" id="top">
 							<div id="selectMember" style="height: 200px; overflow-y: auto;">
 								<input type="hidden" name="member_key" value=""
 									id="hiddenMemberKey">
 								<table class="table table-hover">
-
 									<tbody id="selectMem">
 									</tbody>
 								</table>
@@ -508,6 +555,8 @@
 						</div>
 					</div>
 				</div>
+
+
 			</form>
 
 
