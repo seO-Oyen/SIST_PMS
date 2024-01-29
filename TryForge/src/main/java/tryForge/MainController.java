@@ -52,5 +52,12 @@ public class MainController {
 		
 	    return "ad_main\\ad_main";
 	}
+	
+	//마이페이지 출력
+	@GetMapping("myPage.do")
+	public String myPage(Model d) {
+		
+	    return "user/myPage";
+	}
 
 }
