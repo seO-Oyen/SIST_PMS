@@ -14,6 +14,7 @@
 		<typeAlias alias="task_dep" type="tryForge.vo.Task_Dependency"/>
 		<typeAlias alias="dashboard" type="tryForge.vo.DashBoard"/>
 		<typeAlias alias="inviteMember" type="tryForge.vo.InviteMember"/>
+		<typeAlias alias="memberSch" type="tryForge.vo.MemberSch"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="resource/mapper/mapper01.xml"/>
@@ -23,5 +24,6 @@
 		<mapper resource="resource/mapper/calendarMapper.xml"/>
 		<mapper resource="resource/mapper/ganttMapper.xml"/>
 		<mapper resource="resource/mapper/dashboardMapper.xml"/>
+		<mapper resource="resource/mapper/adTask.xml"/>
 	</mappers>
 </configuration>

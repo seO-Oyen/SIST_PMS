@@ -2,6 +2,8 @@ package tryForge.vo;
 // m.member_name, m.member_email, tm.ROLE, p.title, p.start_date, p.end_date
 // tryForge.vo.MemberSch
 public class MemberSch {
+	private String project_key;
+	private String member_key;
 	private String member_name;
 	private String member_email;
 	private String role;
@@ -55,6 +57,18 @@ public class MemberSch {
 	}
 	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
+	}
+	public String getMember_key() {
+		return member_key;
+	}
+	public void setMember_key(String member_key) {
+		this.member_key = member_key;
+	}
+	public String getProject_key() {
+		return project_key;
+	}
+	public void setProject_key(String project_key) {
+		this.project_key = project_key;
 	}
 	
 }
