@@ -14,6 +14,7 @@ public class Task {
 	private String status;
 	private boolean rollup;
 	private boolean hide_bar;
+	private String detail;
 	public Task(int id, int member_key, String project_key, String text, String start_date, String end_date,
 			int duration, double progress, int parent, String type, String status, boolean rollup, boolean hide_bar) {
 		this.id = id;
@@ -111,4 +112,11 @@ public class Task {
 	public void setHide_bar(boolean hide_bar) {
 		this.hide_bar = hide_bar;
 	}
+	public String getDetail() {
+		return detail;
+	}
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+	
 }

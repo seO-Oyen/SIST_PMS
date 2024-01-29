@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import tryForge.admin.dao.AdTaskDao;
 import tryForge.vo.MemberSch;
+import tryForge.vo.Task;
 
 @Service
 public class AdTaskService {
@@ -21,5 +22,9 @@ public class AdTaskService {
 	// 프로젝트 별로 select 로 구분
 	public List<String> getTitle(){
 		return dao.getTitle();
+	}
+	// 업무등록
+	public String insertTask(Task ins) {
+		return dao.insertTask(ins)>0?"업무배정완료":"업무배정실패";
 	}
 }

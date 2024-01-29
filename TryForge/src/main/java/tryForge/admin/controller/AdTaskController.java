@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import tryForge.admin.service.AdTaskService;
 import tryForge.vo.MemberSch;
+import tryForge.vo.Task;
 
 @Controller
 public class AdTaskController {
@@ -21,9 +22,15 @@ public class AdTaskController {
 		return service.getTitle();
 	}
 	
-	@RequestMapping("test.do")
+	@RequestMapping("task.do")
 	public String test(MemberSch sch, Model d ) {
 		d.addAttribute("memList",service.schTaskMem(sch));
 		return "adTask/insertTask";
+	}
+	
+	@RequestMapping("insertTask.do")
+	public String insertTask(Task ins, Model d) {
+		d.addAttribute("insMsg",service.insertTask(ins));
+		return "pageJsonReport";
 	}
 }

@@ -36,13 +36,34 @@ $(document).ready(function() {
     // 동적으로 생성된 버튼에 대한 이벤트 처리
     $(document).on('click', '.btn-open', function() {
         var memberName = $(this).data("member-name");
-        var memberKey = $(this).data("member-key");aq2
+        var memberKey = $(this).data("member-key");
+        var projectKey = $(this).data("project-key");
         $("#mname").val(memberName);
+        $("#modalFrm [name=member_key]").val(memberKey);
+        $("#modalFrm [name=project_key]").val(projectKey);
         // 모달 열기
         $("#myModal").modal('show');
     });
-});
 	
+	$("#regBtn").click(function(){
+		$.ajax({
+			url:"${path}/tryForge/insertTask.do",
+			dataType:"json",
+			data:$("#modalFrm").serialize(),
+			success:function(data){
+				var insMsg = data.insMsg
+				if(insMsg != null){
+					alert(insMsg)
+				}
+			},
+			error:function(err){
+				console.log(err)
+			}
+		})
+	})
+});
+
+
 </script>
 
 <div class="main-panel">
@@ -87,6 +108,7 @@ $(document).ready(function() {
 											 <td>
 									             <button type="button" class="btn btn-open" data-toggle="modal" data-target="#myModal"
 									                    data-member-name="${mlist.member_name}" data-member-key="${mlist.member_key}"
+									                    data-project-key="${mlist.project_key}"
 									                    style="background-color: #007FFF; color: white;">업무할당
 									            </button>
 									        </td>
@@ -99,7 +121,7 @@ $(document).ready(function() {
 				</div>
 			</div>
 
-			<!-- 진행중인 프로젝트 end -->
+			<!--구성원 검색 end -->
 
 
 		</div>
@@ -128,28 +150,30 @@ $(document).ready(function() {
 
 			</div>
 			<form class="forms-sample" id="modalFrm">
+			<input type="hidden" name="member_key"/>
+			<input type="hidden" name="project_key"/>
 				<div class="form-group">
 					<label for="exampleInputUsername1">이름</label> <input
-						name="member_name" type="text" class="form-control" id="mname"
-						placeholder="title">
+						name="member_name" readonly type="text" class="form-control" id="mname"
+						placeholder="member name">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputUsername1">업무이름</label> <input
-						name="" type="text" class="form-control" id=""
+						name="text" type="text" class="form-control" id=""
 						placeholder="title">
 				</div>
 				<div class="form-group">
 					<label for="exampleTextarea1">상세내용</label>
-					<textarea class="form-control" id="" rows="4" name=""></textarea>
+					<textarea class="form-control" id="" rows="4" name="detail"></textarea>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">업무 시작일</label> <input
-						name="" type="date" class="form-control" id=""
+						name="start_date" type="date" class="form-control" id=""
 						placeholder="startDate">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputConfirmPassword1">업무 종료일</label> <input
-						name="" type="date" class="form-control" id=""
+						name="end_date" type="date" class="form-control" id=""
 						placeholder="endDate">
 				</div>
 				
