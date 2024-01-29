@@ -67,5 +67,12 @@ public class AdProjectController {
 		return "pageJsonReport"; 
 	}
 	
-	
+	// 프로젝트 상세내용 변경
+	@RequestMapping("uptAll.do")
+	public String uptAll(Project uptPro, Team uptTeam, Model d, @RequestParam("project_key")String project_key) {
+		uptPro.setProject_key(project_key);
+		uptTeam.setProject_key(project_key);
+		d.addAttribute("uptAllmsg",service.uptAll(uptPro, uptTeam));
+		return "pageJsonReport"; 
+	}
 }

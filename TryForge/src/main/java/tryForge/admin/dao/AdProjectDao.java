@@ -12,6 +12,7 @@ import tryForge.vo.Team_Member;
 public interface AdProjectDao {
 	List<Project> projList();
 	List<Member> PJMemList(String project_key);
+	// sql 변경!
 	List<Member> schMem(@Param("member_name")String member_name);
 	int insertPJ(Project insProject);
 	int insertTeam(Team insTeam);
@@ -24,4 +25,6 @@ public interface AdProjectDao {
 	int delProject(String project_key);
 	int delTeam(String project_key);
 	int uptFin(String project_key);
+	int uptProject(Project uptPro);
+	int uptTeam(Team uptTeam);
 }

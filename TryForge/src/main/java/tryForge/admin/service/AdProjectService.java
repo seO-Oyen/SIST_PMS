@@ -119,4 +119,23 @@ public class AdProjectService {
 	public String uptFin(String project_key) {
 		return dao.uptFin(project_key)>0?"완료 변경":"변경실패";
 	}
+	
+	// 프로젝트 상세 수정
+	public String uptAll(Project uptPro,Team uptTeam) {
+		String uptmsg = "";
+		int uptProject = dao.uptProject(uptPro);
+		int uptTeamName = dao.uptTeam(uptTeam);
+		System.out.println("프젝키"+uptPro.getProject_key());
+		System.out.println("팀프젝티"+uptTeam.getProject_key());
+		
+		if(uptProject>0) {
+			uptmsg += "프로젝트 상세 변경 완료";
+			System.out.println(uptmsg);
+			if(uptTeamName>0) {
+				uptmsg += "팀 이름 변경 완료";
+				System.out.println(uptmsg);
+			}
+		}
+		return uptmsg;
+	}
 }
