@@ -151,7 +151,7 @@ $(document).ready(function(){
 						class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center"
 						id="notificationDropdown" href="#" data-toggle="dropdown">
 						<i class="typcn typcn-bell mx-0"></i>
-						<span class="count"></span>
+						<span class="count">3+</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
 						aria-labelledby="notificationDropdown">
